@@ -25,8 +25,7 @@ SECRET_KEY = '8_w-mw*+5!!%)74n)io$^5na=u4cos@gp6!)v8@5nd24*c&b$7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -123,7 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, '/dashboard/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 try:
@@ -132,4 +131,3 @@ except Exception as e:
     pass
 
 print(STATIC_ROOT)
-print()

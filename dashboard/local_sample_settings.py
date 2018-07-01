@@ -32,7 +32,7 @@ MIDDLEWARE += [
 #
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "astatic")
 ]
 
 INTERNAL_IPS = '127.0.0.1'
