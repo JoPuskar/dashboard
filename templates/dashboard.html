@@ -45,69 +45,22 @@
                     <div class="story-header">
                         <h5>Recent Stories</h5>
                         <a href="#" title="">View All Stories</a>
+                        <a href="{% url 'visualizations:recent_story_create' %}" title="">Add New Story</a>
                     </div>
                     <div class="story-section padding-top">
-                        <div class="story-list">
+                        <div class="story-list">{% for story in recent_story%}
                             <div>
                                 <div class="story-item">
                                     <img src="{% static 'assets/img/kulbahadur.png' %}" alt="">
                                     <div class="user-info">
-                                        <h6>Kul Bahadur Tamang</h6>
-                                        <span>Khanigaun, Nuwakot, Nepal</span>
+                                        <h6>{{ story.name }}</h6>
+                                        <span>{{ story.address }}</span>
                                     </div>
                                     <p>
-                                        It was my father who built the house. It has been a huge relief to me, being able to build a house that is safe and livable. I have put my efforts in building this house and the guidance from the engineers have been really helpful to me. This is  <a href="#" title="">read more [+]</a>
+                                        {{story.description}}<a href="#" title="">read more [+]</a>
                                     </p>
                                 </div>
-                            </div>
-                            <div>
-                                <div class="story-item">
-                                    <img src="{% static 'assets/img/bishnumaya.png' %}" alt="">
-                                    <div class="user-info">
-                                        <h6>Bishnu Maya Pariyar</h6>
-                                        <span>Kakani, Nuwakot, Nepal</span>
-                                    </div>
-                                    <p>
-                                       I was sleeping in the sun, just after lunch when the earthquake struck. I was alone in the house because everybody was in the fields. At first, I did not understand what was happening. When I came to my senses, I crept away from the house. I would <a href="#" title="">read more [+]</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="story-item">
-                                    <img src="{% static 'assets/img/ramprashad.png' %}" alt="">
-                                    <div class="user-info">
-                                        <h6>Ram Prashad Neupane</h6>
-                                        <span>Gorkha Bazar, Gorkha</span>
-                                    </div>
-                                    <p>
-                                        For me, building a house seemed impossible. It has been a struggle to provide for a family of five and the earthquake made things worse. We stayed in temporary shelter for two years and now with the help from the government and engineers <a href="#" title="">read more [+]</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="story-item">
-                                    <img src="{% static 'assets/img/liva.png' %}" alt="">
-                                    <div class="user-info">
-                                        <h6>Liva Shrestha</h6>
-                                        <span>Engineer, Build Change Nepal</span>
-                                    </div>
-                                    <p>
-                                        We have been providing technical support to the community through our Technical Support Centres (TSCs). The civilians have been benefitted largely by the TSCs because we help them turn their dream houses into government approved designs which they <a href="#" title="">read more [+]</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="story-item">
-                                    <img src="{% static 'assets/img/bishnumaya.png' %}" alt="">
-                                    <div class="user-info">
-                                        <h6>Bishnu Maya Pariyar</h6>
-                                        <span>Kakani, Nuwakot, Nepal</span>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-                                    </p>
-                                </div>
-                            </div>
+                            </div>{% endfor %}
                         </div>
                     </div>
                 </div>

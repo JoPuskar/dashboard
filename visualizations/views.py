@@ -3,7 +3,6 @@ from django.views.generic import TemplateView, CreateView, UpdateView, ListView
 from .models import HousingCompletion, ReconstructionGrant, RecentStory
 
 
-
 class Dashboard(TemplateView):
     template_name = "dashboard.html"
 
