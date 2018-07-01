@@ -128,25 +128,15 @@
                             <div class="col-md-6">
                                 <div class="chart-wrap">
                                     <h5><strong>Housing Completion</strong></h5>
+                                    <a href="{% url 'visualizations:housing_create' %}">Add</a>
                                     <canvas id="housingChart"></canvas>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="chart-wrap">
                                     <h5><strong>Reconstruction Grants Received</strong></h5>
+                                    <a href="{% url 'visualizations:reconstruction_create' %}">Add</a>
                                     <canvas id="reconstructionGrantsReceivedChart"></canvas>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="graph-text-info margin-top-large">
-                                    <div class="percent-count">50%</div>
-                                    Women
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="graph-text-info margin-top-large">
-                                    <div class="percent-count">73%</div>
-                                    Rural
                                 </div>
                             </div>
                         </div>
@@ -178,7 +168,7 @@
                     <div class="col-md-5">
                         <div class="map-popup">
                             <div class="pop-head">
-                                Tarkeshwar Gaunpalika
+                                Tarkeshwar Gaunpalika{{reconstruction_values}}
                             </div>
                             <div class="pop-body">
                                 <div class="pop-info-item">
@@ -306,10 +296,10 @@
             var myChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ["Houses Completed", "Houses in Stage - I", "Houses in Stage - II", "Houses in Stage - III"],
+                    labels: {{housing_label|safe}},
                     datasets: [{
                         label: '# of Votes',
-                        data: [12, 19, 3, 5],
+                        data: {{housing_values}},
                         backgroundColor: [
                             '#00628e',
                             '#0181b8',
@@ -341,10 +331,10 @@
             var myChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ["Received Tranche - I", "Received Tranche - II", "Received Tranche - III"],
+                    labels: {{reconstruction_label|safe}},
                     datasets: [{
                         label: '# of Votes',
-                        data: [19, 3, 5],
+                        data: {{reconstruction_values}},
                         backgroundColor: [
                             '#00628e',
                             '#0181b8',
