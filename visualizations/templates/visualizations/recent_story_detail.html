@@ -48,7 +48,7 @@
                         <a href="{% url 'visualizations:recent_story_create' %}" title="">Add New Story</a>
                     </div>
                     <div class="story-section padding-top">
-                        <div class="story-list">{% for story in recent_story%}
+                        <div class="story-list">
                             <div>
                                 <div class="story-item">
                                     <img src="{% static 'assets/img/kulbahadur.png' %}" alt="">
@@ -57,10 +57,10 @@
                                         <span>{{ story.address }}</span>
                                     </div>
                                     <p>
-                                        {{story.description}}<a href="{% url 'visualizations:recent_story_detail' story.pk %}" title="">read more [+]</a>
+                                        {{story.description}}
                                     </p>
                                 </div>
-                            </div>{% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>

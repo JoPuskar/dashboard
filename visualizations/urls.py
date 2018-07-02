@@ -12,4 +12,5 @@ urlpatterns = [
     path('housing-update/<int:pk>', views.HousingCompletionUpdate.as_view(), name="housing_update"),
     path('reconstruction-update/<int:pk>', views.RecentStoryUpdate.as_view(), name="reconstruction-update"),
     path('recent-story-update/<int:pk>', views.RecentStoryUpdate.as_view(), name="recent_story_update"),
+    path('recent-story-detail/<int:pk>', views.RecentStoryDetail.as_view(), name="recent_story_detail"),
 ]
