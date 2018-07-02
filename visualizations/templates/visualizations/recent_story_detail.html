@@ -42,16 +42,18 @@
         <div class="bg-gray module-padding">
             <div class="container">
                 <div class="module-story">
-                    <div class="story-header">
+                    <div     class="story-header">
                         <h5>Recent Stories</h5>
+                        <a href="{% url 'visualizations:recent_story_update' story.pk %}">Edit This Story</a>
                         <a href="#" title="">View All Stories</a>
-                        <a href="{% url 'visualizations:recent_story_create' %}" title="">Add New Story</a>
+                        <a href="{% url 'visualizations:recent_story_create' %}" title="">Add New Story</a><br/>
                     </div>
                     <div class="story-section padding-top">
                         <div class="story-list">
                             <div>
                                 <div class="story-item">
-                                    <img src="{% static 'assets/img/kulbahadur.png' %}" alt="">
+                                    <!--<img src="{{ MEDIA_URL }}{{ story.picture }}" alt="">-->
+                                    <img src="{% static 'assets/img/kulbahadur.png' %}">
                                     <div class="user-info">
                                         <h6>{{ story.name }}</h6>
                                         <span>{{ story.address }}</span>
