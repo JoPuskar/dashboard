@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path, include
-
+from visualizations import views
 
 
 urlpatterns = [
+    path('', views.Dashboard.as_view(), name="dashboard"),
     path('visualize/', include('visualizations.urls')),
     path('admin/', admin.site.urls),
 ]
