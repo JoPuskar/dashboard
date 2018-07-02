@@ -38,7 +38,7 @@ class ReconstructionGrantCreate(CreateView):
 
 
 class ReconstructionGrantUpdate(UpdateView):
-    model = HousingCompletion
+    model = ReconstructionGrant
     template_name = "visualizations/housing_completion_create.html"
     fields = '__all__'
     success_url = reverse_lazy("visualizations:dashboard")

@@ -44,9 +44,7 @@
                 <div class="module-story">
                     <div class="story-header">
                         <h5>Recent Stories</h5>
-                        <a href="#" title="">View All Stories</a>
-                        <a href="{% url 'visualizations:recent_story_create' %}" title="">Add New Story</a>
-                    </div>
+                        <a href="#" title="">View All Stories</a> </div>
                     <div class="story-section padding-top">
                         <div class="story-list">{% for story in recent_story%}
                             <div>
@@ -82,15 +80,12 @@
                             <div class="col-md-6">
                                 <div class="chart-wrap">
                                     <h5><strong>Housing Completion</strong></h5>
-                                    <a href="{% url 'visualizations:housing_create' %}">Add</a>
                                     <canvas id="housingChart"></canvas>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="chart-wrap">
-                                    <h5><strong>Reconstruction Grants Received</strong></h5>
-                                    <a href="{% url 'visualizations:reconstruction_create' %}">Add</a>
-                                    <canvas id="reconstructionGrantsReceivedChart"></canvas>
+                                    <h5><strong>Reconstruction Grants Received</strong></h5><canvas id="reconstructionGrantsReceivedChart"></canvas>
                                 </div>
                             </div>
                         </div>

@@ -43,11 +43,7 @@
             <div class="container">
                 <div class="module-story">
                     <div     class="story-header">
-                        <h5>Recent Stories</h5>
-                        <a href="{% url 'visualizations:recent_story_update' story.pk %}">Edit This Story</a>
-                        <a href="#" title="">View All Stories</a>
-                        <a href="{% url 'visualizations:recent_story_create' %}" title="">Add New Story</a><br/>
-                    </div>
+                        <h5>Recent Stories</h5> <a href="#" title="">View All Stories</a></div>
                     <div class="story-section padding-top">
                         <div class="story-list">
                             <div>
@@ -61,118 +57,6 @@
                                     <p>
                                         {{story.description}}
                                     </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bg-white module-padding">
-            <div class="container">
-                <div class="stat-wrap">
-                    <div class="stat-head">
-                        <h4><strong>Government of India Support to Nepal Housing Reconstruction Program</strong></h4>
-                        <div class="progress-label">&#8377; 23,589,341 Disbursed</div>
-                        <div class="progress" style="height: 20px;">
-                          <div class="progress-bar bg-primary-gradient" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div class="stat-body bg-gray padding-large margin-top-large">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="chart-wrap">
-                                    <h5><strong>Housing Completion</strong></h5>
-                                    <a href="{% url 'visualizations:housing_create' %}">Add</a>
-                                    <canvas id="housingChart"></canvas>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="chart-wrap">
-                                    <h5><strong>Reconstruction Grants Received</strong></h5>
-                                    <a href="{% url 'visualizations:reconstruction_create' %}">Add</a>
-                                    <canvas id="reconstructionGrantsReceivedChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bg-gray module-padding">
-            <div class="container">
-                <form>
-                    <div class="row">
-                        <div class="col-md-5 col-lg-4">
-                            <div class="form-group">
-                                <label>District Selected</label>
-                                <select class="form-control inputDistrictClass" id="inputDistrict">
-                                  <option> All </option>
-                                  <option id = "gorkha">Gorkha</option>
-                                  <option id = "nuwakot">Nuwakot</option>
-                                </select>
-                              </div>
-                        </div>
-                    </div>
-                </form>
-                <div class="row">
-                    <div class="col-md-7">
-                        <div id="map"></div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="map-popup">
-                            <div class="pop-head">
-                                Tarkeshwar Gaunpalika{{reconstruction_values}}
-                            </div>
-                            <div class="pop-body">
-                                <div class="pop-info-item">
-                                    <div class="count">265</div>
-                                    Houses Completed
-                                </div>
-                                <div class="row no-gutters">
-                                    <div class="col">
-                                        <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
-                                            Houses in Stage - I
-                                        </div>
-                                        <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
-                                            Houses in Stage - II
-                                        </div>
-                                        <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
-                                            Houses in Stage - III
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
-                                            Received Tranche - I
-                                        </div>
-                                        <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
-                                            Received Tranche - II
-                                        </div>
-                                        <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
-                                            Received Tranche - III
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row no-gutters">
-                                    <div class="col">
-                                        <div class="pop-info-item">
-                                            <div class="count">60%</div>
-                                            Rural
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="pop-info-item">
-                                            <div class="count">55%</div>
-                                            Women
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
