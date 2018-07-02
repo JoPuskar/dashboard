@@ -1,5 +1,5 @@
 
-		
+		console.log("Top Map");
 		map = L.map("map", {
 				center: [28.169000, 85.014803],
 				zoom: 9
@@ -95,15 +95,14 @@
 	    else {
 	      L.GeoJSON.prototype.addData.call(this, jsonData);
 	    }
-	  }  
+	  }
 	});
 
 	var district = new L.TopoJSON();
-
-	$.getJSON('json/District.json')
+	$.getJSON(district_json)
 	  .done(addTopoData);
 
-	function addTopoData(topoData){  
+	function addTopoData(topoData){
 	  district.addData(topoData);
 	  district.addTo(map);
 	  district.eachLayer(handleLayer);
@@ -227,7 +226,7 @@
 			}
 			gorkha = new L.TopoJSON();
 
-			$.getJSON('json/Gorkha.json')
+			$.getJSON(gorkha_json)
 			  .done(addTopoData);
 
 			function addTopoData(munData){  
@@ -246,7 +245,7 @@
 			}
 			nuwakot = new L.TopoJSON();
 
-			$.getJSON('json/Nuwakot.json')
+			$.getJSON(nuwakot_json)
 			  .done(addTopoData);
 
 			function addTopoData(munData){  

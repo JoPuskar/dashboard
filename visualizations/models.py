@@ -27,3 +27,34 @@ class RecentStory(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class District(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class Gaunpalika(models.Model):
+    district = models.ForeignKey(District, related_name='gaunpalika', on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    is_municipality = models.BooleanField(default=False)
+
+    def __str__(self):
+        if self.is_municipality:
+            return "{} Municipality".format(self.name)
+        return "{} Gaunpalika".format(self.name)
+
+
+class Data(models.Model):
+    gaunpalika = models.ForeignKey(Gaunpalika, related_name='data', on_delete=models.CASCADE)
+    houses_in_stage_i = models.PositiveIntegerField(default=0)
+    houses_in_stage_ii = models.PositiveIntegerField(default=0)
+    houses_in_stage_iii = models.PositiveIntegerField(default=0)
+    received_tranche_i = models.PositiveIntegerField(default=0)
+    received_tranche_ii = models.PositiveIntegerField(default=0)
+    received_tranche_iii = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return "{} data".format(self.gaunpalika.name)

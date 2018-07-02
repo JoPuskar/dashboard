@@ -197,9 +197,14 @@
         <script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
         <script src="{% static 'assets/js/vendor/slick.min.js' %}"><script>
         <script src="{% static 'assets/js/vendor/Chart.bundle.js' %}"></script>
-        <script src="{% static 'assets/js/vendor/Chart.min.js' %}"></script>
-        <script src="{% static 'assets/js/plugins.js' %}"></script>
-        <script>
+            <script src="{% static 'assets/js/vendor/Chart.min.js' %}"></script>
+            <script src="{% static 'assets/js/plugins.js' %}"></script>
+            <script>
+            console.log("Top ")
+            var district_json = "{{ district_json_path }}";
+            var gorkha_json = "{{ gorkha_json_path }}";
+            var nuwakot_json = "{{ nuwakot_json_path }}";
+            console.log(district_json)
         	$(document).ready(function(){
                 $('.story-list').slick({
                   dots: true,
@@ -240,8 +245,9 @@
 
 
         </script>
-		<script>
+            <script>
             var ctx = document.getElementById("housingChart");
+            console.log("Chart");
             var myChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
@@ -314,7 +320,7 @@
         </script>
 
 
-        <!--map js css-->
+            <!--map js css-->
             <link rel="stylesheet" href="{% static 'css/leaflet.css' %}"/>
 
             <script type="text/javascript" src="{% static 'js/leaflet.js' %}"></script>
@@ -323,6 +329,6 @@
             <script src="http://d3js.org/topojson.v1.min.js"></script>
             <script src="http://maps.google.com/maps/api/js?v=3&key=AIzaSyC8uXN1u5FYIaGOUnVK90Rh3wR2Gmyw1uU"></script>
             <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
-        <!--map js end-->
+            <!--map js end-->
     </body>
 </html>

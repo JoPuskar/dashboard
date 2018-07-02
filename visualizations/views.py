@@ -13,6 +13,9 @@ class Dashboard(TemplateView):
         context['housing_values'] = list(HousingCompletion.objects.values_list('value', flat=True))
         context['reconstruction_values'] = list(ReconstructionGrant.objects.values_list('value', flat=True))
         context['recent_story'] = RecentStory.objects.all()
+        context['district_json_path'] = "/static/json/District.json"
+        context['gorkha_json_path'] = "/static/json/Gorkha.json"
+        context['nuwakot_json_path'] = "/static/json/Nuwakot.json"
         return context
 
 
