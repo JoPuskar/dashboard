@@ -98,15 +98,29 @@
             <div class="container">
                 <form>
                     <div class="row">
-                        <div class="col-md-5 col-lg-4">
+                        <div class="col-md-6 col-lg-2">
                             <div class="form-group">
                                 <label>District Selected</label>
                                 <select class="form-control inputDistrictClass" id="inputDistrict">
-                                  <option> All </option>
-                                  <option id = "gorkha">Gorkha</option>
-                                  <option id = "nuwakot">Nuwakot</option>
+                                  <option id="all"> All </option>
+                                  <option value="Gorkha-form" id = "gorkha">Gorkha</option>
+                                  <option value="Nuwakot-form" id = "nuwakot">Nuwakot</option>
                                 </select>
-                              </div>
+                            </div>
+                            <div id = "gorkha-palika-select" class="form-group">
+                                <label>Gaunpalika Selected</label>
+                                <select class="form-control inputDistrictClass" id="inputGorkhaPalika">
+                                  <option id="gorkha-palika"> All </option>
+                                  <option value="bhimsen-form" id = "bhimsen">Bhimsen</option>
+                                </select>
+                            </div>
+                            <div id = "nuwakot-palika-select" class="form-group">
+                                <label>Gaunpalika Selected</label>
+                                <select class="form-control inputDistrictClass" id="inputNuwaPalika">
+                                  <option id="nuwakot-palika"> All </option>
+                                    <option value="tarkeshwor-form" id = "tarkeshwor">Tarkeshwor</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -114,10 +128,10 @@
                     <div class="col-md-7">
                         <div id="map"></div>
                     </div>
-                    <div class="col-md-5">
+                    <div id="Gorkha-form" class="col-md-5">
                         <div class="map-popup">
                             <div class="pop-head">
-                                Tarkeshwar Gaunpalika
+                                Gorkha District
                             </div>
                             <div class="pop-body">
                                 <div class="pop-info-item">
@@ -127,29 +141,200 @@
                                 <div class="row no-gutters">
                                     <div class="col">
                                         <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
+                                            <div class="count">{{gorkha_total_houses_stage_i.hs1}}</div>
                                             Houses in Stage - I
                                         </div>
                                         <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
+                                            <div class="count">{{gorkha_total_houses_stage_ii.hs2}}</div>
                                             Houses in Stage - II
                                         </div>
                                         <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
+                                            <div class="count">{{gorkha_total_houses_stage_iii.hs3}}</div>
                                             Houses in Stage - III
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
+                                            <div class="count">{{gorkha_total_received_tranche_i.rt1}}</div>
                                             Received Tranche - I
                                         </div>
                                         <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
+                                            <div class="count">{{gorkha_total_received_tranche_ii.rt2}}</div>
                                             Received Tranche - II
                                         </div>
                                         <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
+                                            <div class="count">{{gorkha_total_received_tranche_iii.rt3}}</div>
+                                            Received Tranche - III
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col">
+                                        <div class="pop-info-item">
+                                            <div class="count">60%</div>
+                                            Rural
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="pop-info-item">
+                                            <div class="count">55%</div>
+                                            Women
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Nuwakot-form" class="col-md-5">
+                        <div class="map-popup">
+                            <div class="pop-head">
+                                Nuwakot District
+                            </div>
+                            <div class="pop-body">
+                                <div class="pop-info-item">
+                                    <div class="count">265</div>
+                                    Houses Completed
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col">
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_houses_stage_i.hs1}}</div>
+                                            Houses in Stage - I
+                                        </div>
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_houses_stage_ii.hs2}}</div>
+                                            Houses in Stage - II
+                                        </div>
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_houses_stage_iii.hs3}}</div>
+                                            Houses in Stage - III
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_received_tranche_i.rt1}}</div>
+                                            Received Tranche - I
+                                        </div>
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_received_tranche_ii.rt2}}</div>
+                                            Received Tranche - II
+                                        </div>
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_received_tranche_iii.rt3}}</div>
+                                            Received Tranche - III
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col">
+                                        <div class="pop-info-item">
+                                            <div class="count">60%</div>
+                                            Rural
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="pop-info-item">
+                                            <div class="count">55%</div>
+                                            Women
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bhimsen-form" class="col-md-5">
+                        <div class="map-popup">
+                            <div class="pop-head">
+                                Gorkha Bhimsen Palika
+                            </div>
+                            <div class="pop-body">
+                                <div class="pop-info-item">
+                                    <div class="count">265</div>
+                                    Houses Completed
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col">
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_houses_stage_i.hs1}}</div>
+                                            Houses in Stage - I
+                                        </div>
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_houses_stage_ii.hs2}}</div>
+                                            Houses in Stage - II
+                                        </div>
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_houses_stage_iii.hs3}}</div>
+                                            Houses in Stage - III
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_received_tranche_i.rt1}}</div>
+                                            Received Tranche - I
+                                        </div>
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_received_tranche_ii.rt2}}</div>
+                                            Received Tranche - II
+                                        </div>
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_received_tranche_iii.rt3}}</div>
+                                            Received Tranche - III
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col">
+                                        <div class="pop-info-item">
+                                            <div class="count">60%</div>
+                                            Rural
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="pop-info-item">
+                                            <div class="count">55%</div>
+                                            Women
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tarkeshwor-form" class="col-md-5">
+                        <div class="map-popup">
+                            <div class="pop-head">
+                                Tarkershwor Nuwakot Palika
+                            </div>
+                            <div class="pop-body">
+                                <div class="pop-info-item">
+                                    <div class="count">265</div>
+                                    Houses Completed
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col">
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_houses_stage_i.hs1}}</div>
+                                            Houses in Stage - I
+                                        </div>
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_houses_stage_ii.hs2}}</div>
+                                            Houses in Stage - II
+                                        </div>
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_houses_stage_iii.hs3}}</div>
+                                            Houses in Stage - III
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_received_tranche_i.rt1}}</div>
+                                            Received Tranche - I
+                                        </div>
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_received_tranche_ii.rt2}}</div>
+                                            Received Tranche - II
+                                        </div>
+                                        <div class="pop-info-item bg-light">
+                                            <div class="count">{{nuwakot_total_received_tranche_iii.rt3}}</div>
                                             Received Tranche - III
                                         </div>
                                     </div>
@@ -206,6 +391,12 @@
             var nuwakot_json = "{{ nuwakot_json_path }}";
             console.log(district_json)
         	$(document).ready(function(){
+                $('#Nuwakot-form').hide();
+                $('#bhimsen-form').hide();
+                $('#tarkeshwor-form').hide();
+                $('#gorkha-palika-select').hide();
+                $('#nuwakot-palika-select').hide();
+                $("#Gorkha-form").show();
                 $('.story-list').slick({
                   dots: true,
                   infinite: false,
@@ -242,10 +433,9 @@
                   ]
                 });
         	});
-
-
         </script>
-            <script>
+
+        <script>
             var ctx = document.getElementById("housingChart");
             console.log("Chart");
             var myChart = new Chart(ctx, {
@@ -281,7 +471,8 @@
                     }
                 }
             });
-
+        </script>
+        <script>
             var ctx = document.getElementById("reconstructionGrantsReceivedChart");
             var myChart = new Chart(ctx, {
                 type: 'pie',
@@ -314,12 +505,50 @@
                     }
                 }
             });
-
-
-
         </script>
-
-
+        <script>
+            $("#inputDistrict").on("change", function(){
+                console.log("input district");
+                console.log($("#inputDistrict option:selected")[0].id);
+                if ($("#inputDistrict option:selected")[0].id == "gorkha"){
+                    console.log("inside if not");
+                    $('.col-md-5').hide();
+                    $("#nuwakot-palika-select").hide();
+                    $("#gorkha-palika-select").show();
+                    $("#" + $(this).val()).show();
+                }
+                else if ($("#inputDistrict option:selected")[0].id == "nuwakot"){
+                        $('.col-md-5').hide();
+                        $("#gorkha-palika-select").hide();
+                        $("#nuwakot-palika-select").show();
+                        $("#" + $(this).val()).show();
+                }
+                else {
+                    $('.col-md-5').hide();
+                    $("#gorkha-palika-select").hide();
+                    $("#nuwakot-palika-select").hide();
+                    $("#Gorkha-form").show();
+                }
+            });
+            $("#inputGorkhaPalika").on("change", function(){
+                console.log("input palika");
+                console.log($("#inputGorkhaPalika option:selected")[0].id);
+                if ($("#inputGorkhaPalika option:selected")[0].id == "bhimsen"){
+                    console.log("inside palika if not");
+                    $('.col-md-5').hide();
+                    $("#" + $(this).val()).show();
+                }
+            });
+            $("#inputNuwaPalika").on("change", function(){
+                console.log("input palika");
+                console.log($("#inputNuwaPalika option:selected")[0].id);
+                if ($("#inputNuwaPalika option:selected")[0].id == "tarkeshwor"){
+                    console.log("inside palika if not");
+                    $('.col-md-5').hide();
+                    $("#" + $(this).val()).show();
+                }
+            });
+        </script>
             <!--map js css-->
             <link rel="stylesheet" href="{% static 'css/leaflet.css' %}"/>
 
