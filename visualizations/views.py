@@ -22,6 +22,14 @@ class Dashboard(TemplateView):
         context['gorkha_json_path'] = "/static/json/Gorkha.json"
         context['nuwakot_json_path'] = "/static/json/Nuwakot.json"
 
+        context['total_houses_stage_i'] = Data.objects.aggregate(total_hs1=Sum('houses_in_stage_i'))
+        context['total_houses_stage_ii'] = Data.objects.aggregate(total_hs2=Sum('houses_in_stage_ii'))
+        context['total_houses_stage_iii'] = Data.objects.aggregate(total_hs3=Sum('houses_in_stage_iii'))
+
+        context['total_received_tranche_i'] = Data.objects.aggregate(total_tr1=Sum('received_tranche_i'))
+        context['total_received_tranche_ii'] = Data.objects.aggregate(total_tr2=Sum('received_tranche_ii'))
+        context['total_received_tranche_iii'] = Data.objects.aggregate(total_tr3=Sum('received_tranche_iii'))
+
         context['gorkha_total_houses_stage_i'] = Data.objects.filter(gaunpalika__district__id=1).\
                                                 aggregate(hs1=Sum('houses_in_stage_i'))
         context['gorkha_total_houses_stage_ii'] = Data.objects.filter(gaunpalika__district__id=1). \
@@ -49,6 +57,15 @@ class Dashboard(TemplateView):
                                         aggregate(rt2=Sum('received_tranche_ii'))
         context['nuwakot_total_received_tranche_iii'] = Data.objects.filter(gaunpalika__district__id=2). \
                                         aggregate(rt3=Sum('received_tranche_iii'))
+
+        context['data_values_gorkha'] = Data.objects.filter(gaunpalika__district__id=1).values_list('gaunpalika__name', 'houses_in_stage_i',\
+                            'houses_in_stage_ii', 'houses_in_stage_iii', 'received_tranche_i',\
+                            'received_tranche_ii', 'received_tranche_iii')
+        context['data_values_nuwakot'] = Data.objects.filter(gaunpalika__district__id=2).values_list('gaunpalika__name', 'houses_in_stage_i',\
+                            'houses_in_stage_ii', 'houses_in_stage_iii', 'received_tranche_i',\
+                            'received_tranche_ii', 'received_tranche_iii')
+        context['gorkha_data'] = Data.objects.filter(gaunpalika__district__id=1).values_list('gaunpalika__name')
+        context['nuwa_data'] = Data.objects.filter(gaunpalika__district__id=2).values_list('gaunpalika__name')
         return context
 
 
@@ -107,4 +124,11 @@ class RecentStoryDetail(DetailView):
         context['reconstruction_values'] = list(ReconstructionGrant.objects.values_list('value', flat=True))
         context['recent_story'] = RecentStory.objects.all()
         return context
+
+
+class DataDetail(DetailView):
+    model = Data
+    template_name = "dashboard.html"
+    context_object_name = "data"
+
 
