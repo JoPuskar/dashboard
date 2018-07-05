@@ -248,12 +248,12 @@
 			$.getJSON(nuwakot_json)
 			  .done(addTopoData);
 
-			function addTopoData(munData){  
+			function addTopoData(munData){
 			  nuwakot.addData(munData);
 			  nuwakot.addTo(map);
 			  nuwakot.eachLayer(handleMun);
 			  map.fitBounds(nuwakot.getBounds());
-			}	
+			}
 		}
 	}
 
@@ -301,7 +301,7 @@
         	previousMun = e;
 
         });
-        layer.on('mouseover',function(e){console.log("mousein");
+        layer.on('mouseover',function(e){console.log("mousein munci");
 			e.target.setStyle({'weight':'3'});
 			info.update(layer.feature.properties);
 		}).on('mouseout',function(e){
@@ -347,7 +347,31 @@
 			}
 		}
 	});
-	
+
+	$("#inputGorkhaPalika").on('change',function(){ console.log("input gorkha palika");
+		console.log($("#inputGorkhaPalika option:selected")[0].id);
+		var gaupalika = $("#inputGorkhaPalika option:selected")[0].id;
+
+         $.each(gorkha.getLayers(), function (key, data) {
+             console.log(data.feature.properties.FIRST_GaPa.toLowerCase());
+
+             if (data.feature.properties.FIRST_GaPa.toLowerCase() == gaupalika.toLowerCase()) {
+                 map.fitBounds(data.getBounds());
+             }
+         });
+	});
+
+	$("#inputNuwaPalika").on('change',function(){ console.log("input nuwa palika");
+		console.log($("#inputNuwaPalika option:selected")[0].id);
+		var gaupalika = $("#inputNuwaPalika option:selected")[0].id;
+		$.each(nuwakot.getLayers(), function (key, data) {
+             // console.log(data.feature.properties.FIRST_GaPa.toLowerCase());
+
+             if (data.feature.properties.FIRST_GaPa.toLowerCase() == gaupalika.toLowerCase()) {
+                 map.fitBounds(data.getBounds());
+             }
+         });
+	});
 
 
 

@@ -24,6 +24,8 @@ urlpatterns = [
     path('', views.Dashboard.as_view(), name="dashboard"),
     path('visualize/', include('visualizations.urls')),
     path('admin/', admin.site.urls),
+    path('visualizations/api/', include('visualizations.api.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

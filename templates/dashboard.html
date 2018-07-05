@@ -112,7 +112,7 @@
                             <div class="form-group">
                                 <label for="inputDistrict">District Selected</label>
                                 <select class="form-control" id="inputDistrict">
-                                  <option id="none">None</option>
+                                  <option id="all">All</option>
                                   <option value="Gorkha-form" id = "gorkha">Gorkha</option>
                                   <option value="Nuwakot-form" id = "nuwakot">Nuwakot</option>
                                 </select>
@@ -120,15 +120,35 @@
                             <div id = "gorkha-palika-select" class="form-group">
                                 <label>Gaunpalika Selected</label>
                                 <select class="form-control inputDistrictClass" id="inputGorkhaPalika">
-                                  <option id="gorkha-palika"> All </option>
+{#                                  <option id="gorkha-palika"> All </option>#}
+                                  <option value="bhimsen-form" id = "aarughat">Aarughat</option>
+                                  <option value="bhimsen-form" id = "ajirkot">Ajirkot</option>
                                   <option value="bhimsen-form" id = "bhimsen">Bhimsen</option>
+                                  <option value="bhimsen-form" id = "chum nubri">Chum Nubri</option>
+                                  <option value="bhimsen-form" id = "dharche">Dharche</option>
+                                  <option value="bhimsen-form" id = "gandaki">Gandaki</option>
+                                  <option value="bhimsen-form" id = "gorkha">Gorkha</option>
+                                  <option value="bhimsen-form" id = "palungtar">Palungtar</option>
+                                  <option value="bhimsen-form" id = "sahid lakhan">Sahid Lakhan</option>
+                                  <option value="bhimsen-form" id = "siranchok">Siranchok</option>
+                                  <option value="bhimsen-form" id = "sulikot">Sulikot</option>
                                 </select>
                             </div>
                             <div id = "nuwakot-palika-select" class="form-group">
                                 <label>Gaunpalika Selected</label>
                                 <select class="form-control inputDistrictClass" id="inputNuwaPalika">
-                                  <option id="nuwakot-palika"> All </option>
-                                    <option value="tarkeshwor-form" id = "tarkeshwor">Tarkeshwor</option>
+                                  <option value="tarkeshwor-form" id = "tarkeshwar">Tarkeshwor</option>
+                                  <option value="belkotgadhi-form" id = "belkotgadhi">Belko</option>
+                                  <option value="bidur-form" id = "bidur">Bidur</option>
+                                  <option value="dupcheshwar-form" id = "dupcheshwar">Dupcheshwar</option>
+                                  <option value="kakani-form" id = "kakani">Kakani</option>
+                                  <option value="kispang-form" id = "kispang">Kispang</option>
+                                  <option value="likhu-form" id = "likhu">Likhu</option>
+                                  <option value="meghang-form" id = "meghang">Meghang</option>
+                                  <option value="panchakanya-form" id = "panchakanya">Panchakanya</option>
+                                  <option value="shivapuri-form" id = "shivapuri">Shivapuri</option>
+                                  <option value="suryagadhi-form" id = "suryagadhi">Suryagadhi</option>
+                                  <option value="tadi-form" id = "tadi">Tadi</option>
                                 </select>
                             </div>
                         </div>
@@ -474,9 +494,7 @@
             var gorkha_json = "{{ gorkha_json_path }}";
             var nuwakot_json = "{{ nuwakot_json_path }}";
         	$(document).ready(function(){
-                $('#Nuwakot-form').hide();
-                $('#bhimsen-form').hide();
-                $('#tarkeshwor-form').hide();
+                $('.col-md-5').hide();
                 $('#gorkha-palika-select').hide();
                 $('#nuwakot-palika-select').hide();
                 $("#Gorkha-form").show();
