@@ -55,6 +55,11 @@ class Data(models.Model):
     received_tranche_i = models.PositiveIntegerField(default=0)
     received_tranche_ii = models.PositiveIntegerField(default=0)
     received_tranche_iii = models.PositiveIntegerField(default=0)
+    version = models.IntegerField(null=True, blank=True)
+    source_is_fieldSight = models.BooleanField(default=True)
 
     def __str__(self):
         return "{} data".format(self.gaunpalika.name)
+
+    def get_version(self):
+        return self.version
