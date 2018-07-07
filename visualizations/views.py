@@ -26,9 +26,9 @@ class Dashboard(TemplateView):
         context['total_houses_stage_ii'] = Data.objects.aggregate(total_hs2=Sum('houses_in_stage_ii'))
         context['total_houses_stage_iii'] = Data.objects.aggregate(total_hs3=Sum('houses_in_stage_iii'))
 
-        context['total_received_tranche_i'] = Data.objects.aggregate(total_tr1=Sum('received_tranche_i'))
-        context['total_received_tranche_ii'] = Data.objects.aggregate(total_tr2=Sum('received_tranche_ii'))
-        context['total_received_tranche_iii'] = Data.objects.aggregate(total_tr3=Sum('received_tranche_iii'))
+        context['total_received_tranche_i'] = Data.objects.aggregate(total_rt1=Sum('received_tranche_i'))
+        context['total_received_tranche_ii'] = Data.objects.aggregate(total_rt2=Sum('received_tranche_ii'))
+        context['total_received_tranche_iii'] = Data.objects.aggregate(total_rt3=Sum('received_tranche_iii'))
 
         context['gorkha_total_houses_stage_i'] = Data.objects.filter(gaunpalika__district__id=1).\
                                                 aggregate(hs1=Sum('houses_in_stage_i'))
