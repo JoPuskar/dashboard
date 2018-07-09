@@ -71,7 +71,7 @@
 	}
 
 	function style(layer) {
-		console.log(layer);
+		//console.log(layer);
 		return {
 			weight: 2,
 			opacity: 1,
@@ -212,6 +212,33 @@
 
         layer.on('click',function(e){
         	loadMunicipality(layer.feature.properties.DISTRICT);
+        	var distSelected = e.target.feature.properties.DISTRICT.toLowerCase();
+            if(distSelected == 'gorkha') {
+            	//console.log(e.target.feature.properties.DISTRICT.toLowerCase());
+            	$("#gorkha").attr("selected","selected");
+            	$("#nuwakot").removeAttr("selected");
+            	$("#nuwakot-palika-select").css("display","none");
+            	$("#gorkha-palika-select").css("display","block");
+
+            	changeOverall(distSelected);
+
+			//show legend and info div
+            $('.legend').css('display','block');
+            $('.info').css('display','block');
+            }
+			else {
+            	$("#nuwakot").attr("selected","selected");
+            	$("#gorkha").removeAttr("selected");
+            	$("#gorkha-palika-select").css("display","none");
+            	$("#nuwakot-palika-select").css("display","block");
+            	changeOverall(distSelected);
+
+            	//show legend and info div
+            	$('.legend').css('display','block');
+            	$('.info').css('display','block');
+
+            	 }
+
 
         });
 	}
@@ -229,7 +256,7 @@
 			$.getJSON(gorkha_json)
 			  .done(addTopoData);
 
-			function addTopoData(munData){  
+			function addTopoData(munData){
 			  gorkha.addData(munData);
 			  gorkha.addTo(map);
 			  gorkha.eachLayer(handleMun);
@@ -292,16 +319,43 @@
 		layer.bindLabel(layer.feature.properties.FIRST_GaPa);
 
         layer.on('click',function(e){
+        	console.log(e);
+
+			var clickedMun = e.target.feature.properties.FIRST_GaPa;
+			console.log(clickedMun);
+			if(e.target.feature.properties.FIRST_DIST.toLowerCase() == "gorkha"){
+
+				var Element = document.getElementById(clickedMun.toLowerCase());
+				//console.log(Element);
+				Element.setAttribute("selected","selected");
+				gorkhaChange(clickedMun.toLowerCase());
+            	//$("#nuwa-palika-select").css("display","none");
+            	//$("#gorkha-palika-select").css("display","block");
+			}
+			else {
+				var Element = document.getElementById(clickedMun.toLowerCase());
+				//console.log(Element);
+				Element.setAttribute("selected","selected");
+				nuwaChange(clickedMun.toLowerCase());
+			}
+
+
+
+
 
         	map.fitBounds(layer.getBounds());
+            // $('.col-md-5').hide();
+            // $("#" + $(this).val()).show();
         	if(previousMun!=null){
         		//previousMun.target.setStyle({'fillColor':'#00628e'});
         	}
         	//e.target.setStyle({'fillColor':'red'});
         	previousMun = e;
 
+
+
         });
-        layer.on('mouseover',function(e){console.log("mousein munci");
+        layer.on('mouseover',function(e){//console.log("mousein munci");
 			e.target.setStyle({'weight':'3'});
 			info.update(layer.feature.properties);
 		}).on('mouseout',function(e){
@@ -312,8 +366,8 @@
 	}
 
 
-	$("#inputDistrict").on('change',function(){ console.log("input district");
-		console.log($("#inputDistrict option:selected")[0].id);
+	$("#inputDistrict").on('change',function(){ //console.log("input district");
+		//console.log($("#inputDistrict option:selected")[0].id);
 		if($("#inputDistrict option:selected")[0].id == "gorkha"){
 			if(!map.hasLayer(gorkha)){
 				loadMunicipality("GORKHA");
@@ -348,7 +402,7 @@
 		}
 	});
 
-	$("#inputGorkhaPalika").on('change',function(){ console.log("input gorkha palika");
+	$("#inputGorkhaPalika").on('change',function(){ //console.log("input gorkha palika");
 		console.log($("#inputGorkhaPalika option:selected")[0].id);
 		var gaupalika = $("#inputGorkhaPalika option:selected")[0].id;
 
@@ -361,8 +415,8 @@
          });
 	});
 
-	$("#inputNuwaPalika").on('change',function(){ console.log("input nuwa palika");
-		console.log($("#inputNuwaPalika option:selected")[0].id);
+	$("#inputNuwaPalika").on('change',function(){ //console.log("input nuwa palika");
+		//console.log($("#inputNuwaPalika option:selected")[0].id);
 		var gaupalika = $("#inputNuwaPalika option:selected")[0].id;
 		$.each(nuwakot.getLayers(), function (key, data) {
              // console.log(data.feature.properties.FIRST_GaPa.toLowerCase());
@@ -391,7 +445,7 @@
 			to = grades[i + 1];
 
 			labels.push(
-				'<i style="background:' + getColor(from + 1) + '"></i> ' +
+				'<div style="background:' + getColor(from + 1) + '; width: 20px; height:20px; display: inline-block; padding-top:5px;"></div> ' +
 				from + (to ? '&ndash;' + to + "%" : '%+'));
 		}
 

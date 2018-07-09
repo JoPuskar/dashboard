@@ -20,6 +20,15 @@
         #map {
             width: 100%;
             height: 100%;
+        }
+        .legend{
+            background: white;
+            padding: 5px;
+        }
+        .info{
+            background: white;
+            padding:5px;
+        }
     </style>
 </head>
 <body>
@@ -149,7 +158,7 @@
             <div class="col-md-7">
                 <div id="map"></div>
             </div>
-            <div id="Total-form" class="col-md-5">
+            <div id="Total-form" class="col-md-5 details">
                 <div class="map-popup">
                     <div class="pop-head">
                         Total
@@ -206,7 +215,7 @@
                     </div>
                 </div>
             </div>
-            <div id="Gorkha-form" class="col-md-5">
+            <div id="Gorkha-form1" class="col-md-5 details">
                 <div class="map-popup">
                     <div class="pop-head">
                         Gorkha District
@@ -263,7 +272,7 @@
                     </div>
                 </div>
             </div>
-            <div id="Nuwakot-form" class="col-md-5">
+            <div id="Nuwakot-form1" class="col-md-5 details">
                 <div class="map-popup">
                     <div class="pop-head">
                         Nuwakot District
@@ -320,7 +329,7 @@
                     </div>
                 </div>
             </div>{% for data in data_values_gorkha %}
-            <div id="GoPa_{{ forloop.counter0 }}-form" class="col-md-5">
+            <div id="GoPa_{{ forloop.counter0 }}-form" class="col-md-5 details">
                 <div class="map-popup">
                     <div class="pop-head">
                         {{ data.0 }}
@@ -378,7 +387,7 @@
                 </div>
             </div>{% endfor %}
             {% for data in data_values_nuwakot %}
-            <div id="NuPa_{{ forloop.counter0 }}-form" class="col-md-5">
+            <div id="NuPa_{{ forloop.counter0 }}-form" class="col-md-5 details">
                 <div class="map-popup">
                     <div class="pop-head">
                         {{ data.0 }}
@@ -561,10 +570,14 @@
     var gorkha_json = "{{ gorkha_json_path }}";
     var nuwakot_json = "{{ nuwakot_json_path }}";
     $(document).ready(function () {
-        $('.col-md-5').hide();
+        $('.details').hide();
         $('#gorkha-palika-select').hide();
         $('#nuwakot-palika-select').hide();
         $("#Total-form").show();
+        //hide legend and info div
+        $('.legend').css('display','none');
+        $('.info').css('display','none');
+
         $('.story-list').slick({
             dots: true,
             infinite: false,
@@ -679,152 +692,82 @@
     });
 </script>
 <script>
+    //hide legend
+
+    function changeOverall(district){
+        console.log(district);
+        if (district == "gorkha") {
+            console.log("inside if not");
+            $('.details').css('display','none');
+            $("#nuwakot-palika-select").css('display','none');
+            $("#gorkha-palika-select").css('display','block');
+            $("#Gorkha-form1").css('display','block');
+
+            //show legend and info div
+            $('.legend').css('display','block');
+            $('.info').css('display','block');
+        }
+        else if (district == "nuwakot") {
+            $('.details').css('display','none');
+            $("#gorkha-palika-select").css('display','none');
+            $("#nuwakot-palika-select").css('display','block');
+            $("#Nuwakot-form1").css('display','block');
+
+            //show legend and info div
+            $('.legend').css('display','block');
+            $('.info').css('display','block');
+
+
+        }
+        else {
+            $('.details').css('display','none');
+            $("#gorkha-palika-select").css('display','none');
+            $("#nuwakot-palika-select").css('display','none');
+            $("#Total-form").css('display','block');
+            //hide legend and info div
+            $('.legend').css('display','none');
+            $('.info').css('display','none');
+        }
+    }
     $("#inputDistrict").on("change", function () {
         console.log("input district");
         console.log($("#inputDistrict option:selected")[0].id);
-        if ($("#inputDistrict option:selected")[0].id == "gorkha") {
-            console.log("inside if not");
-            $('.col-md-5').hide();
-            $("#nuwakot-palika-select").hide();
-            $("#gorkha-palika-select").show();
-            $("#" + $(this).val()).show();
-        }
-        else if ($("#inputDistrict option:selected")[0].id == "nuwakot") {
-            $('.col-md-5').hide();
-            $("#gorkha-palika-select").hide();
-            $("#nuwakot-palika-select").show();
-            $("#" + $(this).val()).show();
-        }
-        else {
-            $('.col-md-5').hide();
-            $("#gorkha-palika-select").hide();
-            $("#nuwakot-palika-select").hide();
-            $("#Total-form").show();
-        }
+        var distSelected = $("#inputDistrict option:selected")[0].id;
+        changeOverall(distSelected);
     });
+
+
+    function gorkhaChange(selectedMun){
+        var id = $('#inputGorkhaPalika').val();
+            console.log("inside palika if not");
+
+            $('.details').hide();
+            $("#" + id).show();
+
+    }
+
+    function nuwaChange(selectedMun){
+            var id = $('#inputNuwaPalika').val();
+            console.log("inside palika if not");
+            $('.details').hide();
+            $("#" + id).show();
+
+    }
+
     $("#inputGorkhaPalika").on("change", function () {
         console.log("input palika");
         console.log($("#inputGorkhaPalika option:selected")[0].id);
-        if ($("#inputGorkhaPalika option:selected")[0].id == "bhimsen") {
-            console.log("inside palika if not");
+        var selectedMun = $("#inputGorkhaPalika option:selected")[0].id;
+        console.log("#" + $('#inputGorkhaPalika').val());
+        gorkhaChange(selectedMun);
 
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputGorkhaPalika option:selected")[0].id == "ajirkot") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputGorkhaPalika option:selected")[0].id == "aarughat") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputGorkhaPalika option:selected")[0].id == "chum nubri") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputGorkhaPalika option:selected")[0].id == "dharche") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputGorkhaPalika option:selected")[0].id == "gandaki") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputGorkhaPalika option:selected")[0].id == "gorkha") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputGorkhaPalika option:selected")[0].id == "palungtar") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputGorkhaPalika option:selected")[0].id == "sahid lakhan") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputGorkhaPalika option:selected")[0].id == "siranchok") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputGorkhaPalika option:selected")[0].id == "sulikot") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
     });
     $("#inputNuwaPalika").on("change", function () {
-        console.log("input palika");
-        console.log($("#inputNuwaPalika option:selected")[0].id);
-        if ($("#inputNuwaPalika option:selected")[0].id == "tarkeshwar") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputNuwaPalika option:selected")[0].id == "panchakanya") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputNuwaPalika option:selected")[0].id == "belkotgadhi") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputNuwaPalika option:selected")[0].id == "bidur") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputNuwaPalika option:selected")[0].id == "dupcheshwar") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputNuwaPalika option:selected")[0].id == "kakani") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputNuwaPalika option:selected")[0].id == "likhu") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputNuwaPalika option:selected")[0].id == "meghang") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputNuwaPalika option:selected")[0].id == "shivapuri") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputNuwaPalika option:selected")[0].id == "suryagadhi") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputNuwaPalika option:selected")[0].id == "kispang") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
-        if ($("#inputNuwaPalika option:selected")[0].id == "tadi") {
-            console.log("inside palika if not");
-            $('.col-md-5').hide();
-            $("#" + $(this).val()).show();
-        }
+        console.log("input n palika");
+        var selectedMun = $("#inputNuwaPalika option:selected")[0].id;
+        console.log(selectedMun);
+        nuwaChange(selectedMun);
+
     });
 </script>
 <!--map js css-->

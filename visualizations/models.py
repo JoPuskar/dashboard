@@ -63,3 +63,4 @@ class Data(models.Model):
 
     def get_version(self):
         return self.version
+
