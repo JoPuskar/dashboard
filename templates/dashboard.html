@@ -628,9 +628,9 @@
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ["Houses Completed", "Houses in Stage - I", "Houses in Stage - II", "Houses in Stage - III"],
+            labels: {{ housing_label|safe }},
             datasets: [{
-                data: [12, 19, 3, 5],
+                data: {{ housing_values|safe }},
                 backgroundColor: [
                     '#00628e',
                     '#0181b8',
@@ -662,9 +662,9 @@
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Tranche - I", "Tranche - II", "Tranche - III"],
+            labels: {{ reconstruction_label|safe }},
             datasets: [{
-                data: [50, 3, 5],
+                data: {{ reconstruction_values|safe }},
                 backgroundColor: [
                     '#00628e',
                     '#0181b8',
