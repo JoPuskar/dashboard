@@ -57,6 +57,9 @@ class Data(models.Model):
     received_tranche_iii = models.PositiveIntegerField(default=0)
     version = models.IntegerField(null=True, blank=True)
     source_is_fieldSight = models.BooleanField(default=True)
+    total_houses = models.IntegerField(default=0)
+    houses_completed = models.IntegerField(default=0)
+    number_of_women = models.IntegerField(default=0)
 
     def __str__(self):
         return "{} data".format(self.gaunpalika.name)

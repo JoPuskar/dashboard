@@ -455,77 +455,19 @@
                 <a href="#" title="">View All</a>
             </div>
             <div class="story-section padding-top">
-                <div class="story-list">
+                <div class="story-list">{% for story in recent_story %}
                     <div>
                         <div class="story-item">
                             <img src="{% static 'assets/img/img-avatar.jpg' %}" alt="">
                             <div class="user-info">
-                                <h6>Bikrant Giri</h6>
-                                <span>Nagpokhari, Kathmandu, Nepal</span>
+                                <h6>{{ story.name }}</h6>
+                                <span>{{ story.address }}</span>
                             </div>
                             <p>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et justo duo dolores et ea rebum. <a href="#" title="">read more [+]</a>
+                                {{ story.description|truncatechars:150 }} <a href="#" title="">read more [+]</a>
                             </p>
                         </div>
-                    </div>
-                    <div>
-                        <div class="story-item">
-                            <img src="{% static 'assets/img/img-avatar.jpg' %}" alt="">
-                            <div class="user-info">
-                                <h6>Bikrant Giri</h6>
-                                <span>Nagpokhari, Kathmandu, Nepal</span>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et justo duo dolores et ea rebum.
-                            </p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="story-item">
-                            <img src="{% static 'assets/img/img-avatar.jpg' %}" alt="">
-                            <div class="user-info">
-                                <h6>Bikrant Giri</h6>
-                                <span>Nagpokhari, Kathmandu, Nepal</span>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et justo duo dolores et ea rebum.
-                            </p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="story-item">
-                            <img src="{% static 'assets/img/img-avatar.jpg' %}" alt="">
-                            <div class="user-info">
-                                <h6>Bikrant Giri</h6>
-                                <span>Nagpokhari, Kathmandu, Nepal</span>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et justo duo dolores et ea rebum.
-                            </p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="story-item">
-                            <img src="{% static 'assets/img/img-avatar.jpg' %}" alt="">
-                            <div class="user-info">
-                                <h6>Bikrant Giri</h6>
-                                <span>Nagpokhari, Kathmandu, Nepal</span>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et justo duo dolores et ea rebum.
-                            </p>
-                        </div>
-                    </div>
+                    </div>{% endfor %}
                 </div>
             </div>
         </div>

@@ -58,12 +58,13 @@ class Dashboard(TemplateView):
         context['nuwakot_total_received_tranche_iii'] = Data.objects.filter(gaunpalika__district__id=2). \
                                         aggregate(rt3=Sum('received_tranche_iii'))
 
-        context['data_values_gorkha'] = Data.objects.filter(gaunpalika__district__id=1).values_list('gaunpalika__name', 'houses_in_stage_i',\
+        context['data_values_gorkha'] = Data.objects.filter(gaunpalika__district__id=1).values_list('gaunpalika__name',\
+                             'houses_in_stage_i',\
                             'houses_in_stage_ii', 'houses_in_stage_iii', 'received_tranche_i',\
-                            'received_tranche_ii', 'received_tranche_iii')
+                            'received_tranche_ii', 'received_tranche_iii', 'houses_completed',)
         context['data_values_nuwakot'] = Data.objects.filter(gaunpalika__district__id=2).values_list('gaunpalika__name', 'houses_in_stage_i',\
                             'houses_in_stage_ii', 'houses_in_stage_iii', 'received_tranche_i',\
-                            'received_tranche_ii', 'received_tranche_iii')
+                            'received_tranche_ii', 'received_tranche_iii', 'houses_completed',)
         context['gorkha_data'] = Data.objects.filter(gaunpalika__district__id=1).values_list('gaunpalika__name')
         context['nuwa_data'] = Data.objects.filter(gaunpalika__district__id=2).values_list('gaunpalika__name')
         return context
