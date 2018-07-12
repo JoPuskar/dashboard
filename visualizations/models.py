@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+from django.db.models import Sum, Count
 
 
 class HousingCompletion(models.Model):
@@ -59,7 +60,7 @@ class Data(models.Model):
     source_is_fieldSight = models.BooleanField(default=True)
     total_houses = models.IntegerField(default=0)
     houses_completed = models.IntegerField(default=0)
-    number_of_women = models.IntegerField(default=0)
+    women_percentage = models.IntegerField(default=0)
 
     def __str__(self):
         return "{} data".format(self.gaunpalika.name)

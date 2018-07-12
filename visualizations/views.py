@@ -1,4 +1,4 @@
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView
 from .models import HousingCompletion, ReconstructionGrant, RecentStory,\
@@ -22,13 +22,24 @@ class Dashboard(TemplateView):
         context['gorkha_json_path'] = "/static/json/Gorkha.json"
         context['nuwakot_json_path'] = "/static/json/Nuwakot.json"
 
+        context['total_houses_completed'] = Data.objects.aggregate(total_hc=Sum('houses_completed'))
+        context['total_houses_completed'] = Data.objects.aggregate(total_hc=Sum('women_percentage'))
+
         context['total_houses_stage_i'] = Data.objects.aggregate(total_hs1=Sum('houses_in_stage_i'))
         context['total_houses_stage_ii'] = Data.objects.aggregate(total_hs2=Sum('houses_in_stage_ii'))
         context['total_houses_stage_iii'] = Data.objects.aggregate(total_hs3=Sum('houses_in_stage_iii'))
 
+        sum_women_percentage = Data.objects.aggregate(sum_wp=Sum('women_percentage'))
+        denom = Data.objects.aggregate(total=Count('women_percentage'))
+        denom = denom['total']*100
+        context['total_women_percentage'] = round((sum_women_percentage['sum_wp']/denom)*100)
+
         context['total_received_tranche_i'] = Data.objects.aggregate(total_rt1=Sum('received_tranche_i'))
         context['total_received_tranche_ii'] = Data.objects.aggregate(total_rt2=Sum('received_tranche_ii'))
         context['total_received_tranche_iii'] = Data.objects.aggregate(total_rt3=Sum('received_tranche_iii'))
+        # context['percentage_of_women'] = Data.objects.
+
+        context['gorkha_houses_completed'] = Data.objects.filter(gaunpalika__district__id=1).aggregate(hcg=Sum('houses_completed'))
 
         context['gorkha_total_houses_stage_i'] = Data.objects.filter(gaunpalika__district__id=1).\
                                                 aggregate(hs1=Sum('houses_in_stage_i'))
@@ -44,6 +55,13 @@ class Dashboard(TemplateView):
         context['gorkha_total_received_tranche_iii'] = Data.objects.filter(gaunpalika__district__id=1). \
                                         aggregate(rt3=Sum('received_tranche_iii'))
 
+        sum_women_percentage = Data.objects.filter(gaunpalika__district__id=1).aggregate(sum_wp=Sum('women_percentage'))
+        denom = Data.objects.filter(gaunpalika__district__id=1).aggregate(total=Count('women_percentage'))
+        denom = denom['total']*100
+        context['gorkha_women_percentage'] = round((sum_women_percentage['sum_wp']/denom)*100)
+
+        context['nuwakot_houses_completed'] = Data.objects.filter(gaunpalika__district__id=2).aggregate(hcn=Sum('houses_completed'))
+
         context['nuwakot_total_houses_stage_i'] = Data.objects.filter(gaunpalika__district__id=2).\
                                         aggregate(hs1=Sum('houses_in_stage_i'))
         context['nuwakot_total_houses_stage_ii'] = Data.objects.filter(gaunpalika__district__id=2). \
@@ -58,13 +76,18 @@ class Dashboard(TemplateView):
         context['nuwakot_total_received_tranche_iii'] = Data.objects.filter(gaunpalika__district__id=2). \
                                         aggregate(rt3=Sum('received_tranche_iii'))
 
+        sum_women_percentage = Data.objects.filter(gaunpalika__district__id=2).aggregate(sum_wp=Sum('women_percentage'))
+        denom = Data.objects.filter(gaunpalika__district__id=2).aggregate(total=Count('women_percentage'))
+        denom = denom['total']*100
+        context['nuwakot_women_percentage'] = round((sum_women_percentage['sum_wp']/denom)*100)
+
         context['data_values_gorkha'] = Data.objects.filter(gaunpalika__district__id=1).values_list('gaunpalika__name',\
-                             'houses_in_stage_i',\
+                            'houses_completed', 'houses_in_stage_i',\
                             'houses_in_stage_ii', 'houses_in_stage_iii', 'received_tranche_i',\
-                            'received_tranche_ii', 'received_tranche_iii', 'houses_completed',)
-        context['data_values_nuwakot'] = Data.objects.filter(gaunpalika__district__id=2).values_list('gaunpalika__name', 'houses_in_stage_i',\
-                            'houses_in_stage_ii', 'houses_in_stage_iii', 'received_tranche_i',\
-                            'received_tranche_ii', 'received_tranche_iii', 'houses_completed',)
+                            'received_tranche_ii', 'received_tranche_iii', 'women_percentage')
+        context['data_values_nuwakot'] = Data.objects.filter(gaunpalika__district__id=2).values_list('gaunpalika__name','houses_completed',\
+                            'houses_in_stage_i', 'houses_in_stage_ii', 'houses_in_stage_iii', 'received_tranche_i',\
+                            'received_tranche_ii', 'received_tranche_iii', 'women_percentage')
         context['gorkha_data'] = Data.objects.filter(gaunpalika__district__id=1).values_list('gaunpalika__name')
         context['nuwa_data'] = Data.objects.filter(gaunpalika__district__id=2).values_list('gaunpalika__name')
         return context

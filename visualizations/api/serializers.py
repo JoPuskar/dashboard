@@ -21,4 +21,4 @@ class DataSerializers(serializers.ModelSerializer):
         model = Data
         fields = ('gaunpalika_name', 'houses_in_stage_i', 'houses_in_stage_ii', 'houses_in_stage_iii', \
                   'received_tranche_i', 'received_tranche_ii', 'received_tranche_iii',\
-                  'total_houses', 'houses_completed', 'number_of_women',)
+                  'total_houses', 'houses_completed', 'women_percentage',)
