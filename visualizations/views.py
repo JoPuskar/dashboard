@@ -23,7 +23,6 @@ class Dashboard(TemplateView):
         context['nuwakot_json_path'] = "/static/json/Nuwakot.json"
 
         context['total_houses_completed'] = Data.objects.aggregate(total_hc=Sum('houses_completed'))
-        context['total_houses_completed'] = Data.objects.aggregate(total_hc=Sum('women_percentage'))
 
         context['total_houses_stage_i'] = Data.objects.aggregate(total_hs1=Sum('houses_in_stage_i'))
         context['total_houses_stage_ii'] = Data.objects.aggregate(total_hs2=Sum('houses_in_stage_ii'))
@@ -37,7 +36,6 @@ class Dashboard(TemplateView):
         context['total_received_tranche_i'] = Data.objects.aggregate(total_rt1=Sum('received_tranche_i'))
         context['total_received_tranche_ii'] = Data.objects.aggregate(total_rt2=Sum('received_tranche_ii'))
         context['total_received_tranche_iii'] = Data.objects.aggregate(total_rt3=Sum('received_tranche_iii'))
-        # context['percentage_of_women'] = Data.objects.
 
         context['gorkha_houses_completed'] = Data.objects.filter(gaunpalika__district__id=1).aggregate(hcg=Sum('houses_completed'))
 
