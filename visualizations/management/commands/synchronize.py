@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand, CommandError
 
 from visualizations.models import Data
 
-gorkha = requests.get('http://127.0.0.1:8000/visualizations/api/data/')
+gorkha = requests.get('http://rims.southeastasia.cloudapp.azure.com:8085/dataForNaxa')
 
 # nuwakot = requests.get('http://127.0.0.1:8000/visualizations/api/data/')
 # print(r.json())
@@ -17,12 +17,13 @@ class Command(BaseCommand):
         try:
             if gorkha.json():
                 for data in gorkha.json():
-                    Data.objects.filter(gaunpalika__name=data['gaunpalika_name']).update(\
-                        houses_in_stage_i=data['houses_in_stage_i'], houses_in_stage_ii=data['houses_in_stage_ii'],\
-                        houses_in_stage_iii=data['houses_in_stage_iii'], received_tranche_i=data['received_tranche_i'],\
+                    print(data['Municipality'])
+                    Data.objects.filter(gaunpalika__name=data['Municipality']).update(\
+                        houses_in_stage_i=data['house_in_stage_i'], houses_in_stage_ii=data['house_in_stage_ii'],\
+                        houses_in_stage_iii=data['house_in_stage_iii'], received_tranche_i=data['received_tranche_i'],\
                         received_tranche_ii=data['received_tranche_ii'], received_tranche_iii=data['received_tranche_iii'],\
-                        total_houses=data['total_houses'], houses_completed=data['houses_completed'],\
-                        number_of_women=data['number_of_women'], source_is_fieldSight=False)
+                        total_houses=data['total_houses'], houses_completed=0,\
+                        women_percentage=data['women_percentage'], source_is_fieldSight=False)
                     print("here")
 
             # if nuwakot.json():

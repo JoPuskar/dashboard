@@ -115,17 +115,20 @@ class Dashboard(TemplateView):
         sum_women_percentage = Data.objects.aggregate(sum_wp=Sum('women_percentage'))
         denom = Data.objects.aggregate(total=Count('women_percentage'))
         denom = denom['total']*100
-        context['total_women_percentage'] = round((sum_women_percentage['sum_wp']/denom)*100)
+        if denom:
+            context['total_women_percentage'] = round((sum_women_percentage['sum_wp']/denom)*100)
 
         sum_women_percentage = Data.objects.filter(gaunpalika__district__id=1).aggregate(sum_wp=Sum('women_percentage'))
         denom = Data.objects.filter(gaunpalika__district__id=1).aggregate(total=Count('women_percentage'))
         denom = denom['total']*100
-        context['gorkha_women_percentage'] = round((sum_women_percentage['sum_wp']/denom)*100)
+        if denom:
+            context['gorkha_women_percentage'] = round((sum_women_percentage['sum_wp']/denom)*100)
 
         sum_women_percentage = Data.objects.filter(gaunpalika__district__id=2).aggregate(sum_wp=Sum('women_percentage'))
         denom = Data.objects.filter(gaunpalika__district__id=2).aggregate(total=Count('women_percentage'))
         denom = denom['total']*100
-        context['nuwakot_women_percentage'] = round((sum_women_percentage['sum_wp']/denom)*100)
+        if denom:
+            context['nuwakot_women_percentage'] = round((sum_women_percentage['sum_wp']/denom)*100)
 
         context['data_values_gorkha'] = Data.objects.filter(gaunpalika__district__id=1).values_list('gaunpalika__name',\
                             'houses_completed', 'houses_in_stage_i',\
