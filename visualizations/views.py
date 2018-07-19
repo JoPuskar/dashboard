@@ -10,17 +10,6 @@ class Dashboard(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['housing_label'] = list(HousingCompletion.objects.values_list('label', flat=True))
-        context['housing_values'] = list(HousingCompletion.objects.values_list('value', flat=True))
-
-        context['reconstruction_label'] = list(ReconstructionGrant.objects.values_list('label', flat=True))
-        context['reconstruction_values'] = list(ReconstructionGrant.objects.values_list('value', flat=True))
-
-        context['recent_story'] = RecentStory.objects.all()
-
-        context['district_json_path'] = "/static/json/District.json"
-        context['gorkha_json_path'] = "/static/json/Gorkha.json"
-        context['nuwakot_json_path'] = "/static/json/Nuwakot.json"
 
         all_data = {}
         data = Data.objects.all()
@@ -112,6 +101,21 @@ class Dashboard(TemplateView):
 
         context = {'all_data': all_data}
 
+        context['housing_label'] = list(HousingCompletion.objects.values_list('label', flat=True))
+        context['housing_values'] = [total_houses_completed, total_houses_stage_i, total_houses_stage_ii,\
+                                     total_houses_stage_iii]
+
+        context['reconstruction_label'] = list(ReconstructionGrant.objects.values_list('label', flat=True))
+        context['reconstruction_values'] = [total_received_tranche_i, total_received_tranche_ii,\
+                                            total_received_tranche_iii]
+
+        context['recent_story'] = RecentStory.objects.all()
+
+        context['district_json_path'] = "/static/json/District.json"
+        context['gorkha_json_path'] = "/static/json/Gorkha.json"
+        context['nuwakot_json_path'] = "/static/json/Nuwakot.json"
+
+
         sum_women_percentage = Data.objects.aggregate(sum_wp=Sum('women_percentage'))
         denom = Data.objects.aggregate(total=Count('women_percentage'))
         denom = denom['total']*100
@@ -139,9 +143,9 @@ class Dashboard(TemplateView):
                             'houses_in_stage_i', 'houses_in_stage_ii', 'houses_in_stage_iii', 'received_tranche_i',\
                             'received_tranche_ii', 'received_tranche_iii', 'women_percentage')
 
-        context['gorkha_data'] = Data.objects.filter(gaunpalika__district__id=1).values_list('gaunpalika__name')
+        context['gorkha_data'] = Data.objects.filter(gaunpalika__district__name='Gorkha').values_list('gaunpalika__name')
 
-        context['nuwa_data'] = Data.objects.filter(gaunpalika__district__id=2).values_list('gaunpalika__name')
+        context['nuwa_data'] = Data.objects.filter(gaunpalika__district__name='Nuwakot').values_list('gaunpalika__name')
         return context
 
 

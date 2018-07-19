@@ -508,9 +508,11 @@
 <script src="{% static 'assets/js/plugins.js' %}"></script>
 
 <script>
-    var district_json = "{{ district_json_path }}";
+    var district_json = "{{ district_json_path|safe }}";
+    console.log(district_json);
     var gorkha_json = "{{ gorkha_json_path }}";
     var nuwakot_json = "{{ nuwakot_json_path }}";
+    console.log("First");
     $(document).ready(function () {
         $('.details').hide();
         $('#gorkha-palika-select').hide();
