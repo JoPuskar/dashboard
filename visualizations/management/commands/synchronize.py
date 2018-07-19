@@ -7,7 +7,6 @@ from visualizations.models import Data
 gorkha = requests.get('http://rims.southeastasia.cloudapp.azure.com:8085/dataForNaxa')
 
 # nuwakot = requests.get('http://127.0.0.1:8000/visualizations/api/data/')
-# print(r.json())
 
 
 class Command(BaseCommand):

@@ -153,42 +153,42 @@ class HousingCompletionCreate(CreateView):
     model = HousingCompletion
     template_name = "visualizations/housing_completion_create.html"
     fields = '__all__'
-    success_url = reverse_lazy("visualizations:dashboard")
+    success_url = reverse_lazy("dashboard")
 
 
 class HousingCompletionUpdate(UpdateView):
     model = HousingCompletion
     template_name = "visualizations/housing_completion_create.html"
     fields = '__all__'
-    success_url = reverse_lazy("visualizations:dashboard")
+    success_url = reverse_lazy("dashboard")
 
 
 class ReconstructionGrantCreate(CreateView):
     model = ReconstructionGrant
     template_name = "visualizations/reconstruction_grant_create.html"
     fields = '__all__'
-    success_url = reverse_lazy("visualizations:dashboard")
+    success_url = reverse_lazy("dashboard")
 
 
 class ReconstructionGrantUpdate(UpdateView):
     model = ReconstructionGrant
     template_name = "visualizations/housing_completion_create.html"
     fields = '__all__'
-    success_url = reverse_lazy("visualizations:dashboard")
+    success_url = reverse_lazy("dashboard")
 
 
 class RecentStoryCreate(CreateView):
     model = RecentStory
     template_name = "visualizations/recent_story_create.html"
     fields = '__all__'
-    success_url = reverse_lazy("visualizations:dashboard")
+    success_url = reverse_lazy("dashboard")
 
 
 class RecentStoryUpdate(UpdateView):
     model = RecentStory
     template_name = "visualizations/recent_story_create.html"
     fields = '__all__'
-    success_url = reverse_lazy("visualizations:dashboard")
+    success_url = reverse_lazy("dashboard")
 
 
 class RecentStoryDetail(DetailView):
