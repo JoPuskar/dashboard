@@ -11,8 +11,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             districts = ['Gorkha', 'Nuwakot']
-            for district in districts:
-                District.objects.create(name=district)
+            [District.objects.create(name=district) for district in districts]
         except:
             CommandError("Command Error!")
         self.stdout.write(self.style.SUCCESS('Successfully Created Districts!'))
