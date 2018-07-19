@@ -115,7 +115,6 @@ class Dashboard(TemplateView):
         context['gorkha_json_path'] = "/static/json/Gorkha.json"
         context['nuwakot_json_path'] = "/static/json/Nuwakot.json"
 
-
         sum_women_percentage = Data.objects.aggregate(sum_wp=Sum('women_percentage'))
         denom = Data.objects.aggregate(total=Count('women_percentage'))
         denom = denom['total']*100
@@ -134,12 +133,12 @@ class Dashboard(TemplateView):
         if denom:
             context['nuwakot_women_percentage'] = round((sum_women_percentage['sum_wp']/denom)*100)
 
-        context['data_values_gorkha'] = Data.objects.filter(gaunpalika__district__id=1).values_list('gaunpalika__name',\
+        context['data_values_gorkha'] = Data.objects.filter(gaunpalika__district__name='Gorkha').values_list('gaunpalika__name',\
                             'houses_completed', 'houses_in_stage_i',\
                             'houses_in_stage_ii', 'houses_in_stage_iii', 'received_tranche_i',\
                             'received_tranche_ii', 'received_tranche_iii', 'women_percentage')
 
-        context['data_values_nuwakot'] = Data.objects.filter(gaunpalika__district__id=2).values_list('gaunpalika__name','houses_completed',\
+        context['data_values_nuwakot'] = Data.objects.filter(gaunpalika__district__name='Nuwakot').values_list('gaunpalika__name','houses_completed',\
                             'houses_in_stage_i', 'houses_in_stage_ii', 'houses_in_stage_iii', 'received_tranche_i',\
                             'received_tranche_ii', 'received_tranche_iii', 'women_percentage')
 
