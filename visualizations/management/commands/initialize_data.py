@@ -28,4 +28,4 @@ class Command(BaseCommand):
             else:
                 self.stdout.write(self.style.WARNING('{} Gaunpalika Already Exists!'.format(gaunpalika)))
 
-        self.stdout.write(self.style.SUCCESS('Successfully Created Gaunpalika!'))
+        self.stdout.write(self.style.SUCCESS('Successfully Initialize Gaunpalika!'))
