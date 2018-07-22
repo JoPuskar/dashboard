@@ -1,8 +1,16 @@
+
 from django.db.models import Sum, Count
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView
 from .models import HousingCompletion, ReconstructionGrant, RecentStory,\
     District, Gaunpalika, Data
+import twitter
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView
+
+from dashboard import settings
+from .models import HousingCompletion, ReconstructionGrant, RecentStory
+
 
 
 class Dashboard(TemplateView):
@@ -205,9 +213,45 @@ class RecentStoryDetail(DetailView):
         return context
 
 
+
 class DataDetail(DetailView):
     model = Data
     template_name = "dashboard.html"
     context_object_name = "data"
 
+
+
+def get_posts():
+    import facebook
+    graph = facebook.GraphAPI(access_token=" 10211098638174413", version="2.12")
+    return graph
+
+def get_tweets():
+    """
+    returns twitter feed with settings as described below, contains all related twitter settings
+    """
+    api = twitter.Api(consumer_key=settings.CONSUMER_KEY, consumer_secret=settings.CONSUMER_SECERET,
+                      access_token_key=settings.TOKEN, access_token_secret=settings.TOKEN_SECRET)
+
+    # return api.GetUserTimeline(screen_name='nepalearthquake', exclude_replies=True, include_rts=False)  # includes entities
+    return api.GetSearch(term="IndiaInNepal")
+    # return api.search.tweets(q='%23hillarysoqualified')
+
+class Dashboard(TemplateView):
+    template_name = "dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['housing_label'] = list(HousingCompletion.objects.values_list('label', flat=True))
+        context['reconstruction_label'] = list(ReconstructionGrant.objects.values_list('label', flat=True))
+        context['housing_values'] = list(HousingCompletion.objects.values_list('value', flat=True))
+        context['reconstruction_values'] = list(ReconstructionGrant.objects.values_list('value', flat=True))
+        context['recent_story'] = RecentStory.objects.all()
+        context['district_json_path'] = "/static/json/District.json"
+        context['gorkha_json_path'] = "/static/json/Gorkha.json"
+        context['nuwakot_json_path'] = "/static/json/Nuwakot.json"
+        context['tweets'] = get_tweets()
+        # import ipdb
+        # ipdb.set_trace()
+        return context
 

@@ -8,8 +8,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        gorkha_list = ['Aarughat', 'Ajirkot', 'Bhimsen', 'Chum Nubri', 'Dharche', 'Gandaki',\
-                           'Gorkha', 'Palungtar', 'Sahid Lakhan', 'Siranchok', 'Sulikot']
+        gorkha_list = ['Aarughat', 'Ajirkot',  'Dharche', 'Gandaki',\
+                           'Gorkha', 'Palungtar', 'Sahid Lakhan', 'Siranchok']
 
         for gaunpalika in gorkha_list:
             gorkha = District.objects.get(name__exact='Gorkha')
@@ -21,8 +21,8 @@ class Command(BaseCommand):
             else:
                 self.stdout.write(self.style.WARNING('{} Gaunpalika Already Exists!').format(gaunpalika))
 
-        nuwakot_list = ['Belkotgadhi', 'Bidur', 'Dupcheshwar', 'Kakani', 'Kispang', 'Likhu',\
-                           'Meghang', 'Panchakanya', 'Shivapuri', 'Suryagadhi', 'Tadi', 'Tarkeshwar']
+        nuwakot_list = ['Belkotgadhi Municipality', ' Bidur Municipality', 'Dupcheshwore', 'Kakani', 'Kispang', 'Likhu',\
+                           'Meghang', 'Panchakanya', 'Shivapuri', 'Suryagadhi', 'Tadi', 'Tarkeswore']
 
         for gaunpalika in nuwakot_list:
             nuwakot = District.objects.get(name__exact='Nuwakot')
