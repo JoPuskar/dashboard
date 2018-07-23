@@ -11,13 +11,25 @@ from django.views.generic import TemplateView, CreateView, UpdateView, ListView,
 from dashboard import settings
 from .models import HousingCompletion, ReconstructionGrant, RecentStory
 
+def get_tweets():
+    """
+    returns twitter feed with settings as described below, contains all related twitter settings
+    """
+    api = twitter.Api(consumer_key=settings.CONSUMER_KEY, consumer_secret=settings.CONSUMER_SECERET,
+                      access_token_key=settings.TOKEN, access_token_secret=settings.TOKEN_SECRET)
+
+    # return api.GetUserTimeline(screen_name='nepalearthquake', exclude_replies=True, include_rts=False)  # includes entities
+    return api.GetSearch(term="IndiaInNepal")
+    # return api.search.tweets(q='%23hillarysoqualified')
 
 
 class Dashboard(TemplateView):
-    template_name = "dashboard.html"
+    template_name = "visualizations/dashboard.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        dispensed_amount = 0
 
         all_data = {}
         data = Data.objects.all()
@@ -80,6 +92,10 @@ class Dashboard(TemplateView):
                 nuwakot_total_received_tranche_ii += data.received_tranche_ii
                 nuwakot_total_received_tranche_iii += data.received_tranche_iii
 
+        dispensed_amount = (total_received_tranche_i  *  50000) + (total_received_tranche_ii * 150000) + (total_received_tranche_iii * 100000)
+        progress = (dispensed_amount * 100) / (50000*300000)
+        progress = int(progress)
+
         all_data['total_houses_completed'] = total_houses_completed
         all_data['total_houses_stage_i'] = total_houses_stage_i
         all_data['total_houses_stage_ii'] = total_houses_stage_ii
@@ -107,7 +123,7 @@ class Dashboard(TemplateView):
         all_data['nuwakot_total_received_tranche_ii'] = nuwakot_total_received_tranche_ii
         all_data['nuwakot_total_received_tranche_iii'] = nuwakot_total_received_tranche_iii
 
-        context = {'all_data': all_data}
+        context ['all_data'] = all_data
 
         context['housing_label'] = list(HousingCompletion.objects.values_list('label', flat=True))
         context['housing_values'] = [total_houses_completed, total_houses_stage_i, total_houses_stage_ii,\
@@ -153,6 +169,9 @@ class Dashboard(TemplateView):
         context['gorkha_data'] = Data.objects.filter(gaunpalika__district__name='Gorkha').values_list('gaunpalika__name')
 
         context['nuwa_data'] = Data.objects.filter(gaunpalika__district__name='Nuwakot').values_list('gaunpalika__name')
+        context['tweets'] = get_tweets()
+        context['dispensed_amount'] = dispensed_amount
+        context['progress'] = progress
         return context
 
 
@@ -221,37 +240,28 @@ class DataDetail(DetailView):
 
 
 
-def get_posts():
-    import facebook
-    graph = facebook.GraphAPI(access_token=" 10211098638174413", version="2.12")
-    return graph
+# def get_posts():
+#     import facebook
+#     graph = facebook.GraphAPI(access_token=" 10211098638174413", version="2.12")
+#     return graph
+#
 
-def get_tweets():
-    """
-    returns twitter feed with settings as described below, contains all related twitter settings
-    """
-    api = twitter.Api(consumer_key=settings.CONSUMER_KEY, consumer_secret=settings.CONSUMER_SECERET,
-                      access_token_key=settings.TOKEN, access_token_secret=settings.TOKEN_SECRET)
 
-    # return api.GetUserTimeline(screen_name='nepalearthquake', exclude_replies=True, include_rts=False)  # includes entities
-    return api.GetSearch(term="IndiaInNepal")
-    # return api.search.tweets(q='%23hillarysoqualified')
-
-class Dashboard(TemplateView):
-    template_name = "visualizations/dashboard.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['housing_label'] = list(HousingCompletion.objects.values_list('label', flat=True))
-        context['reconstruction_label'] = list(ReconstructionGrant.objects.values_list('label', flat=True))
-        context['housing_values'] = list(HousingCompletion.objects.values_list('value', flat=True))
-        context['reconstruction_values'] = list(ReconstructionGrant.objects.values_list('value', flat=True))
-        context['recent_story'] = RecentStory.objects.all()
-        context['district_json_path'] = "/static/json/District.json"
-        context['gorkha_json_path'] = "/static/json/Gorkha.json"
-        context['nuwakot_json_path'] = "/static/json/Nuwakot.json"
-        context['tweets'] = get_tweets()
-        # import ipdb
-        # ipdb.set_trace()
-        return context
+# class Dashboard(TemplateView):
+#     template_name = "visualizations/dashboard.html"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['housing_label'] = list(HousingCompletion.objects.values_list('label', flat=True))
+#         context['reconstruction_label'] = list(ReconstructionGrant.objects.values_list('label', flat=True))
+#         context['housing_values'] = list(HousingCompletion.objects.values_list('value', flat=True))
+#         context['reconstruction_values'] = list(ReconstructionGrant.objects.values_list('value', flat=True))
+#         context['recent_story'] = RecentStory.objects.all()
+#         context['district_json_path'] = "/static/json/District.json"
+#         context['gorkha_json_path'] = "/static/json/Gorkha.json"
+#         context['nuwakot_json_path'] = "/static/json/Nuwakot.json"
+#         context['tweets'] = get_tweets()
+#         # import ipdb
+#         # ipdb.set_trace()
+#         return context
 

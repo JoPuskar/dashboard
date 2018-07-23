@@ -27,7 +27,7 @@ class Command(BaseCommand):
         for gaunpalika in nuwakot_list:
             nuwakot = District.objects.get(name__exact='Nuwakot')
             if not Gaunpalika.objects.filter(name=gaunpalika).exists():
-                if gaunpalika == 'Belkotgadhi' or gaunpalika == 'Bidur':
+                if gaunpalika == 'Belkotgadhi Municipality' or gaunpalika == 'Bidur Municipality':
                     Gaunpalika.objects.create(district=nuwakot, name=gaunpalika, is_municipality=True)
                 else:
                     Gaunpalika.objects.create(district=nuwakot, name=gaunpalika)

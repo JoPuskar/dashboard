@@ -17,7 +17,7 @@ class Command(BaseCommand):
         try:
             if gorkha_data.json():
                 # print(gorkha_data.json())
-                # [Data.objects.filter(gaunpalika__name=data['Municipality']).update( \
+                    # [Data.objects.filter(gaunpalika__name=data['Municipality']).update( \
                 #     houses_in_stage_i=data['house_in_stage_i'], houses_in_stage_ii=data['house_in_stage_ii'], \
                 #     houses_in_stage_iii=data['house_in_stage_iii'], received_tranche_i=data['received_trache_i'], \
                 #     received_tranche_ii=data['received_trache_ii'], received_tranche_iii=data['received_trache_iii'], \
