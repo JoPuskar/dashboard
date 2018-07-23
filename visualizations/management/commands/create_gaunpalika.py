@@ -21,7 +21,7 @@ class Command(BaseCommand):
             else:
                 self.stdout.write(self.style.WARNING('{} Gaunpalika Already Exists!').format(gaunpalika))
 
-        nuwakot_list = ['Belkotgadhi Municipality', ' Bidur Municipality', 'Dupcheshwore', 'Kakani', 'Kispang', 'Likhu',\
+        nuwakot_list = ['Belkotgadhi Municipality', 'Bidur Municipality', 'Dupcheshwore', 'Kakani', 'Kispang', 'Likhu',\
                            'Meghang', 'Panchakanya', 'Shivapuri', 'Suryagadhi', 'Tadi', 'Tarkeswore']
 
         for gaunpalika in nuwakot_list:
