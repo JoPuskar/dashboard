@@ -5,185 +5,486 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"  lang="en"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-		<link rel="stylesheet" href="{% static 'assets/css/style.css' %}"/>
-        <script src="{% static 'assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
-        <style>
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <script src="{% static 'assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
+    <style>
 
-            #map{
-                width:100%;
-                height:100%;
-            }
-
-            .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
-            .legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
-
-        </style>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        .legend{
+            background: white;
+            padding: 5px;
+        }
+        .info{
+            background: white;
+            padding:5px;
+        }
+    </style>
+</head>
+<body>
+<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.0&appId=171643386807909&autoLogAppEvents=1';
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.0&appId=171643386807909&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
-        <div class="bg-gray module-padding">
-            <div class="container">
-                <div class="module-story">
-                    <div class="story-header">
-                        <h5>Recent Stories</h5>
-                        <a href="#" title="">View All Stories</a> </div>
-                    <div class="story-section padding-top">
-                        <div class="story-list">{% for story in recent_story%}
-                            <div>
-                                <div class="story-item">
-                                    <!--<img src="{{ MEDIA_URL }}{{ story.picture }}" alt="">-->
-                                    <img src="{% static 'assets/img/kulbahadur.png' %}" alt="">
-                                    <div class="user-info">
-                                        <h6>{{ story.name }}</h6>
-                                        <span>{{ story.address }}</span>
-                                    </div>
-                                    <p>
-                                        {{story.description|truncatechars:150}}<a href="{% url 'visualizations:recent_story_detail' story.pk %}" title="">read more [+]</a>
-                                    </p>
-                                </div>
-                            </div>{% endfor %}
-                        </div>
-                    </div>
+<div class="bg-gray">
+    <div class="slider-list">
+        <div>
+            <div class="slide-item">
+                <img src="{% static 'assets/img/img-slide1.jpg' %}" alt="">
+                <div class="slide-caption">
+                    <h5>Forests for life</h5>
+                    <p>
+                        This June, we celebrate forests, an integral part of all lives on planet. In 2018, we reflect on
+                        12 milestones that helped bend the curve in Nepal's conservation landscapes – a possible by
+                        people, for the planet.
+                    </p>
                 </div>
             </div>
         </div>
-        <div class="bg-white module-padding">
-            <div class="container">
-                <div class="stat-wrap">
-                    <div class="stat-head">
-                        <h4><strong>Government of India Support to Nepal Housing Reconstruction Program</strong></h4>
-                        <div class="progress-label">&#8377; 23,589,341 Disbursed</div>
-                        <div class="progress" style="height: 20px;">
-                          <div class="progress-bar bg-primary-gradient" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div class="stat-body bg-gray padding-large margin-top-large">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="chart-wrap">
-                                    <h5><strong>Housing Completion</strong></h5>
-                                    <canvas id="housingChart"></canvas>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="chart-wrap">
-                                    <h5><strong>Reconstruction Grants Received</strong></h5><canvas id="reconstructionGrantsReceivedChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+        <div>
+            <div class="slide-item">
+                <img src="{% static 'assets/img/img-slide2.jpg' %}" alt="">
+                <div class="slide-caption">
+                    <h5>Implementing Partners</h5>
+                    <p>
+                        The program brings together the expertise and experience of international and national NGOs in
+                        the fields of biodiversity conservation, climate change, community livelihoods, governance, and
+                        gender and social inclusion. A consortium of four non-governmental organizations is implementing
+                        the Hariyo Ban Program with WWF serving as the managing partner.
+                    </p>
                 </div>
             </div>
         </div>
-        <div class="bg-gray module-padding">
-            <div class="container">
-                <form>
-                    <div class="row">
-                        <div class="col-md-5 col-lg-4">
-                            <div class="form-group">
-                                <label>District Selected</label>
-                                <select class="form-control inputDistrictClass" id="inputDistrict">
-                                  <option> All </option>
-                                  <option id = "gorkha">Gorkha</option>
-                                  <option id = "nuwakot">Nuwakot</option>
-                                </select>
-                              </div>
-                        </div>
-                    </div>
-                </form>
+    </div>
+</div>
+
+
+<div class="bg-white module-padding">
+    <div class="container">
+        <div class="stat-wrap">
+            <div class="stat-head">
+                <h4><strong>Government of India Support to Nepal Housing Reconstruction Program</strong></h4>
+                <div class="progress-label">&#8377; 23,589,341 Disbursed</div>
+                <div class="progress" style="height: 20px;">
+                    <div class="progress-bar bg-primary-gradient" role="progressbar" style="width: 60%"
+                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="stat-body bg-gray padding-large margin-top-large">
                 <div class="row">
-                    <div class="col-md-7">
-                        <div id="map"></div>
+                    <div class="col-md-6">
+                        <div class="chart-wrap">
+                            <h5><strong>Housing Completion</strong></h5>
+                            <canvas id="housingChart"></canvas>
+                        </div>
                     </div>
-                    <div class="col-md-5">
-                        <div class="map-popup">
-                            <div class="pop-head">
-                                Tarkeshwar Gaunpalika
+                    <div class="col-md-6">
+                        <div class="chart-wrap">
+                            <h5><strong>Reconstruction Grants Received</strong></h5>
+                            <canvas id="reconstructionGrantsReceivedChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="graph-text-info margin-top-large">
+                            <div class="percent-count">50%</div>
+                            Women
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="graph-text-info margin-top-large">
+                            <div class="percent-count">73%</div>
+                            Rural
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-gray module-padding">
+    <div class="container">
+        <form>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="form-group">
+                        <label for="inputDistrict">District Selected</label>
+                        <select class="form-control" id="inputDistrict">
+                            <option value="Total-form" id="total">All</option>
+                            <option value="Gorkha-form" id="gorkha">Gorkha</option>
+                            <option value="Nuwakot-form" id="nuwakot">Nuwakot</option>
+                        </select>
+                    </div>
+                    <div id="gorkha-palika-select" class="form-group">
+                        <label>Gaunpalika Selected</label>
+                        <select class="form-control inputDistrictClass" id="inputGorkhaPalika">
+                            {#                                  <option id="gorkha-palika"> All </option>#}
+                            {% for data in gorkha_data %}
+                            <option value="GoPa_{{ forloop.counter0 }}-form" id="{{ data.0|lower }}">{{ data.0 }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="nuwakot-palika-select" class="form-group">
+                        <label>Gaunpalika Selected</label>
+                        <select class="form-control inputDistrictClass" id="inputNuwaPalika">
+                            {% for data in nuwa_data %}
+                            <option value="NuPa_{{ forloop.counter0 }}-form" id="{{ data.0|lower }}">{{ data.0 }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-7">
+                <div id="map"></div>
+            </div>
+            <div id="Total-form" class="col-md-5 details">
+                <div class="map-popup">
+                    <div class="pop-head">
+                        Total
+                    </div>
+                    <div class="pop-body">
+                        <div class="pop-info-item">
+                            <div class="count">{{ all_data.total_houses_completed }}</div>
+                            Houses Completed
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.total_houses_stage_i }}</div>
+                                    Houses in Stage - I
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.total_houses_stage_ii }}</div>
+                                    Houses in Stage - II
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.total_houses_stage_iii }}</div>
+                                    Houses in Stage - III
+                                </div>
                             </div>
-                            <div class="pop-body">
+                            <div class="col">
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.total_received_tranche_i }}</div>
+                                    Received Tranche - I
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.total_received_tranche_ii }}</div>
+                                    Received Tranche - II
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.total_received_tranche_iii }}</div>
+                                    Received Tranche - III
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col">
                                 <div class="pop-info-item">
-                                    <div class="count">265</div>
-                                    Houses Completed
+                                    <div class="count">60%</div>
+                                    Rural
                                 </div>
-                                <div class="row no-gutters">
-                                    <div class="col">
-                                        <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
-                                            Houses in Stage - I
-                                        </div>
-                                        <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
-                                            Houses in Stage - II
-                                        </div>
-                                        <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
-                                            Houses in Stage - III
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
-                                            Received Tranche - I
-                                        </div>
-                                        <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
-                                            Received Tranche - II
-                                        </div>
-                                        <div class="pop-info-item bg-light">
-                                            <div class="count">300</div>
-                                            Received Tranche - III
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row no-gutters">
-                                    <div class="col">
-                                        <div class="pop-info-item">
-                                            <div class="count">60%</div>
-                                            Rural
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="pop-info-item">
-                                            <div class="count">55%</div>
-                                            Female headed HHs
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="col">
+                                <div class="pop-info-item">
+                                    <div class="count">{{ total_women_percentage }}%</div>
+                                    Women
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="bg-white module-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="social-wrap">
-                            <div class="fb-page" data-href="https://www.facebook.com/naxa.np" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/naxa.np" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/naxa.np">Naxa Pvt. Ltd.</a></blockquote></div>
+            <div id="Gorkha-form1" class="col-md-5 details">
+                <div class="map-popup">
+                    <div class="pop-head">
+                        Gorkha District
+                    </div>
+                    <div class="pop-body">
+                        <div class="pop-info-item">
+                            <div class="count">{{ all_data.gorkha_total_houses_completed }}</div>
+                            Houses Completed
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.gorkha_total_houses_stage_i }}</div>
+                                    Houses in Stage - I
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.gorkha_total_houses_stage_ii }}</div>
+                                    Houses in Stage - II
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.gorkha_total_houses_stage_iii }}</div>
+                                    Houses in Stage - III
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.gorkha_total_received_tranche_i }}</div>
+                                    Received Tranche - I
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.gorkha_total_received_tranche_ii }}</div>
+                                    Received Tranche - II
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.gorkha_total_received_tranche_iii }}</div>
+                                    Received Tranche - III
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <div class="pop-info-item">
+                                    <div class="count">60%</div>
+                                    Rural
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="pop-info-item">
+                                    <div class="count">{{ gorkha_women_percentage }}%</div>
+                                    Women
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                </div>
+            </div>
+            <div id="Nuwakot-form1" class="col-md-5 details">
+                <div class="map-popup">
+                    <div class="pop-head">
+                        Nuwakot District
+                    </div>
+                    <div class="pop-body">
+                        <div class="pop-info-item">
+                            <div class="count">{{ nuwakot_houses_completed.hcn }}</div>
+                            Houses Completed
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.nuwakot_total_houses_stage_i }}</div>
+                                    Houses in Stage - I
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{  all_data.nuwakot_total_houses_stage_ii }}</div>
+                                    Houses in Stage - II
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{  all_data.nuwakot_total_houses_stage_iii }}</div>
+                                    Houses in Stage - III
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.nuwakot_total_received_tranche_i }}</div>
+                                    Received Tranche - I
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.nuwakot_total_received_tranche_ii }}</div>
+                                    Received Tranche - II
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ all_data.nuwakot_total_received_tranche_iii }}</div>
+                                    Received Tranche - III
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <div class="pop-info-item">
+                                    <div class="count">60%</div>
+                                    Rural
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="pop-info-item">
+                                    <div class="count">{{ nuwakot_women_percentage }}%</div>
+                                    Women
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>{% for data in data_values_gorkha %}
+            <div id="GoPa_{{ forloop.counter0 }}-form" class="col-md-5 details">
+                <div class="map-popup">
+                    <div class="pop-head">
+                        {{ data.0 }}
+                    </div>
+                    <div class="pop-body">
+                        <div class="pop-info-item">
+                            <div class="count">{{ data.1 }}</div>
+                            Houses Completed
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ data.2 }}</div>
+                                    Houses in Stage - I
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ data.3 }}</div>
+                                    Houses in Stage - II
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ data.4 }}</div>
+                                    Houses in Stage - III
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ data.5 }}</div>
+                                    Received Tranche - I
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ data.6 }}</div>
+                                    Received Tranche - II
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ data.7 }}</div>
+                                    Received Tranche - III
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <div class="pop-info-item">
+                                    <div class="count">60%</div>
+                                    Rural
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="pop-info-item">
+                                    <div class="count">{{ data.8 }}%</div>
+                                    Women
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>{% endfor %}
+            {% for data in data_values_nuwakot %}
+            <div id="NuPa_{{ forloop.counter0 }}-form" class="col-md-5 details">
+                <div class="map-popup">
+                    <div class="pop-head">
+                        {{ data.0 }}
+                    </div>
+                    <div class="pop-body">
+                        <div class="pop-info-item">
+                            <b>Houses Completed</b>
+                            <div class="count">{{ data.1 }}</div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ data.2 }}</div>
+                                    Houses in Stage - I
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ data.3.hs2 }}</div>
+                                    Houses in Stage - II
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ data.4 }}</div>
+                                    Houses in Stage - III
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ data.5 }}</div>
+                                    Received Tranche - I
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ data.6 }}</div>
+                                    Received Tranche - II
+                                </div>
+                                <div class="pop-info-item bg-light">
+                                    <div class="count">{{ data.7 }}</div>
+                                    Received Tranche - III
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <div class="pop-info-item">
+                                    <div class="count">60%</div>
+                                    Rural
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="pop-info-item">
+                                    <div class="count">{{ data.8 }}%</div>
+                                    Women
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>{% endfor %}
+        </div>
+    </div>
+</div>
+<div class="bg-gray module-padding">
+    <div class="container">
+        <div class="module-story">
+            <div class="story-header">
+                <h5>Stories</h5>
+                <a href="#" title="">View All</a>
+            </div>
+            <div class="story-section padding-top">
+                <div class="story-list">{% for story in recent_story %}
+                    <div>
+                        <div class="story-item">
+                            <img src="{% static 'assets/img/img-avatar.jpg' %}" alt="">
+                            <div class="user-info">
+                                <h6>{{ story.name }}</h6>
+                                <span>{{ story.address }}</span>
+                            </div>
+                            <p>
+                                {{ story.description|truncatechars:150 }} <a href="#" title="">read more [+]</a>
+                            </p>
+                        </div>
+                    </div>{% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-white module-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="social-wrap">
+                    <div class="fb-page" data-href="https://www.facebook.com/naxa.np" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/naxa.np" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/naxa.np">Naxa Pvt. Ltd.</a></blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
                         <div class="block social-block social-twitter" style="overflow-y:scroll; height:500px">
                                     <h1>Twitter</h1>
                                     <ul >
@@ -203,150 +504,236 @@
                                     </ul>
                                 </div>
                     </div>
-                </div>
-            </div>
         </div>
+    </div>
+</div>
 
 
-        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-3.2.1.min.js"><\/script>')</script>-->
-        <script>window.jQuery || document.write('<script src="{% static 'assets/js/vendor/jquery-1.11.2.min.js' %}"><\/script>')</script>
-		<script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
-        <script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
-        <script src="{% static 'assets/js/vendor/slick.min.js' %}"><script>
-        <script src="{% static 'assets/js/vendor/Chart.bundle.js' %}"></script>
-            <script src="{% static 'assets/js/vendor/Chart.min.js' %}"></script>
-            <script src="{% static 'assets/js/plugins.js' %}"></script>
-            <script>
-            console.log("Top ")
-            var district_json = "{{ district_json_path }}";
-            var gorkha_json = "{{ gorkha_json_path }}";
-            var nuwakot_json = "{{ nuwakot_json_path }}";
-            console.log(district_json)
-        	$(document).ready(function(){
-                $('.story-list').slick({
-                  dots: true,
-                  infinite: false,
-                  speed: 300,
-                  slidesToShow: 3,
-                  slidesToScroll: 3,
-                  responsive: [
-                    {
-                      breakpoint: 1024,
-                      settings: {
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-3.2.1.min.js"><\/script>')</script>-->
+<script>window.jQuery || document.write('<script src="{% static 'assets/js/vendor/jquery-1.11.2.min.js' %}"><\/script>')</script>
+<script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/slick.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/Chart.bundle.js' %}"></script>
+<script src="{% static 'assets/js/plugins.js' %}"></script>
+
+<script>
+    var district_json = "{{ district_json_path|safe }}";
+    console.log(district_json);
+    var gorkha_json = "{{ gorkha_json_path }}";
+    var nuwakot_json = "{{ nuwakot_json_path }}";
+    console.log("First");
+    $(document).ready(function () {
+        $('.details').hide();
+        $('#gorkha-palika-select').hide();
+        $('#nuwakot-palika-select').hide();
+        $("#Total-form").show();
+        //hide legend and info div
+        $('.legend').css('display','none');
+        $('.info').css('display','none');
+
+        $('.story-list').slick({
+            dots: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
                         slidesToShow: 3,
                         slidesToScroll: 3,
                         infinite: true,
                         dots: true
-                      }
-                    },
-                    {
-                      breakpoint: 600,
-                      settings: {
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
                         slidesToShow: 2,
                         slidesToScroll: 2
-                      }
-                    },
-                    {
-                      breakpoint: 480,
-                      settings: {
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1
-                      }
-                    }
-                    // You can unslick at a given breakpoint now by adding:
-                    // settings: "unslick"
-                    // instead of a settings object
-                  ]
-                });
-        	});
-
-
-        </script>
-            <script>
-            var ctx = document.getElementById("housingChart");
-            console.log("Chart");
-            var myChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: {{housing_label|safe}},
-                    datasets: [{
-                        label: '# of Votes',
-                        data: {{housing_values}},
-                        backgroundColor: [
-                            '#00628e',
-                            '#0181b8',
-                            '#019cde',
-                            '#04b4ff'
-                        ],
-                        borderColor: [
-                            '#00628e',
-                            '#0181b8',
-                            '#019cde',
-                            '#04b4ff'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    legend: {
-                        position: 'right',
-                        labels:{
-                            fontSize: 14,
-                            fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'",
-                            padding: 20,
-                        }
                     }
                 }
-            });
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+        $('.slider-list').slick({
+            dots: false,
+            infinite: false,
+            speed: 300
 
-            var ctx = document.getElementById("reconstructionGrantsReceivedChart");
-            var myChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: {{reconstruction_label|safe}},
-                    datasets: [{
-                        label: '# of Votes',
-                        data: {{reconstruction_values}},
-                        backgroundColor: [
-                            '#00628e',
-                            '#0181b8',
-                            '#019cde'
-                        ],
-                        borderColor: [
-                            '#00628e',
-                            '#0181b8',
-                            '#019cde'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    legend: {
-                        position: 'right',
-                        labels:{
-                            fontSize: 14,
-                            fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'",
-                            padding: 20,
-                        }
-                    }
+        });
+    });
+
+
+</script>
+<script>
+    var ctx = document.getElementById("housingChart");
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: {{ housing_label|safe }},
+            datasets: [{
+                data: {{ housing_values|safe }},
+                backgroundColor: [
+                    '#00628e',
+                    '#0181b8',
+                    '#019cde',
+                    '#04b4ff'
+                ],
+                borderColor: [
+                    '#00628e',
+                    '#0181b8',
+                    '#019cde',
+                    '#04b4ff'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                position: 'right',
+                labels: {
+                    fontSize: 14,
+                    fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'",
+                    padding: 20,
                 }
-            });
+            }
+        }
+    });
+
+    var ctx = document.getElementById("reconstructionGrantsReceivedChart");
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ reconstruction_label|safe }},
+            datasets: [{
+                data: {{ reconstruction_values|safe }},
+                backgroundColor: [
+                    '#00628e',
+                    '#0181b8',
+                    '#019cde'
+                ],
+                borderColor: [
+                    '#00628e',
+                    '#0181b8',
+                    '#019cde'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false,
+                position: 'top',
+                labels: {
+                    fontSize: 14,
+                    fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'",
+                    padding: 20,
+                }
+            }
+        }
+    });
+</script>
+<script>
+    //hide legend
+
+    function changeOverall(district){
+        console.log(district);
+        if (district == "gorkha") {
+            console.log("inside if not");
+            $('.details').css('display','none');
+            $("#nuwakot-palika-select").css('display','none');
+            $("#gorkha-palika-select").css('display','block');
+            $("#Gorkha-form1").css('display','block');
+
+            //show legend and info div
+            $('.legend').css('display','block');
+            $('.info').css('display','block');
+        }
+        else if (district == "nuwakot") {
+            $('.details').css('display','none');
+            $("#gorkha-palika-select").css('display','none');
+            $("#nuwakot-palika-select").css('display','block');
+            $("#Nuwakot-form1").css('display','block');
+
+            //show legend and info div
+            $('.legend').css('display','block');
+            $('.info').css('display','block');
 
 
+        }
+        else {
+            $('.details').css('display','none');
+            $("#gorkha-palika-select").css('display','none');
+            $("#nuwakot-palika-select").css('display','none');
+            $("#Total-form").css('display','block');
+            //hide legend and info div
+            $('.legend').css('display','none');
+            $('.info').css('display','none');
+        }
+    }
+    $("#inputDistrict").on("change", function () {
+        console.log("input district");
+        console.log($("#inputDistrict option:selected")[0].id);
+        var distSelected = $("#inputDistrict option:selected")[0].id;
+        changeOverall(distSelected);
+    });
 
-        </script>
 
+    function gorkhaChange(selectedMun){
+        var id = $('#inputGorkhaPalika').val();
+            console.log("inside palika if not");
 
-            <!--map js css-->
-            <link rel="stylesheet" href="{% static 'css/leaflet.css' %}"/>
+            $('.details').hide();
+            $("#" + id).show();
 
-            <script type="text/javascript" src="{% static 'js/leaflet.js' %}"></script>
-            <!--<script type="text/javascript" src="./js/jquery.min.js"></script>-->
-            <script type="text/javascript" src="{% static 'js/leaflet.label.js' %}"></script>
-            <script src="http://d3js.org/topojson.v1.min.js"></script>
-            <script src="http://maps.google.com/maps/api/js?v=3&key=AIzaSyC8uXN1u5FYIaGOUnVK90Rh3wR2Gmyw1uU"></script>
-            <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
-            <!--map js end-->
-    </body>
+    }
+
+    function nuwaChange(selectedMun){
+            var id = $('#inputNuwaPalika').val();
+            console.log("inside palika if not");
+            $('.details').hide();
+            $("#" + id).show();
+
+    }
+
+    $("#inputGorkhaPalika").on("change", function () {
+        console.log("input palika");
+        console.log($("#inputGorkhaPalika option:selected")[0].id);
+        var selectedMun = $("#inputGorkhaPalika option:selected")[0].id;
+        console.log("#" + $('#inputGorkhaPalika').val());
+        gorkhaChange(selectedMun);
+
+    });
+    $("#inputNuwaPalika").on("change", function () {
+        console.log("input n palika");
+        var selectedMun = $("#inputNuwaPalika option:selected")[0].id;
+        console.log(selectedMun);
+        nuwaChange(selectedMun);
+
+    });
+</script>
+<!--map js css-->
+<link rel="stylesheet" href="{% static 'css/leaflet.css' %}"/>
+
+<script type="text/javascript" src="{% static 'js/leaflet.js' %}"></script>
+<!--<script type="text/javascript" src="./js/jquery.min.js"></script>-->
+<script type="text/javascript" src="{% static 'js/leaflet.label.js' %}"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="http://maps.google.com/maps/api/js?v=3&key=AIzaSyC8uXN1u5FYIaGOUnVK90Rh3wR2Gmyw1uU"></script>
+<script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+<!--map js end-->
+</body>
 </html>
