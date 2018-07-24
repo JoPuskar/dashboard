@@ -2,8 +2,8 @@
 from django.db.models import Sum, Count
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView
-from .models import HousingCompletion, ReconstructionGrant, RecentStory,\
-    District, Gaunpalika, Data
+from .models import HousingCompletion, ReconstructionGrant, RecentStory, \
+    District, Gaunpalika, Data, RecentStories
 import twitter
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView
@@ -172,6 +172,7 @@ class Dashboard(TemplateView):
         context['tweets'] = get_tweets()
         context['dispensed_amount'] = dispensed_amount
         context['progress'] = progress
+        context['stories'] = RecentStories.objects.all()[:5]
         return context
 
 

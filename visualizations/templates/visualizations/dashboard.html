@@ -49,33 +49,19 @@
 
 <div class="bg-gray">
     <div class="slider-list">
+        {% for slide_item in stories %}
         <div>
             <div class="slide-item">
-                <img src="{% static 'assets/img/img-slide1.jpg' %}" alt="">
+                <img src="{{slide_item.banner.url}}" alt="">
                 <div class="slide-caption">
-                    <h5>Forests for life</h5>
+                    <h5>{{slide_item.title}}</h5>
                     <p>
-                        This June, we celebrate forests, an integral part of all lives on planet. In 2018, we reflect on
-                        12 milestones that helped bend the curve in Nepal's conservation landscapes – a possible by
-                        people, for the planet.
+                       {{slide_item.description}}
                     </p>
                 </div>
             </div>
         </div>
-        <div>
-            <div class="slide-item">
-                <img src="{% static 'assets/img/img-slide2.jpg' %}" alt="">
-                <div class="slide-caption">
-                    <h5>Implementing Partners</h5>
-                    <p>
-                        The program brings together the expertise and experience of international and national NGOs in
-                        the fields of biodiversity conservation, climate change, community livelihoods, governance, and
-                        gender and social inclusion. A consortium of four non-governmental organizations is implementing
-                        the Hariyo Ban Program with WWF serving as the managing partner.
-                    </p>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 
