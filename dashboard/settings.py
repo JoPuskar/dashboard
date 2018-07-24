@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'visualizations',
     'rest_framework',
+    'tinymce'
 ]
 
 MIDDLEWARE = [
