@@ -70,6 +70,54 @@ class Data(models.Model):
     def get_version(self):
         return self.version
 
+    @property
+    def thcp(self):
+        if self.total_houses == 0:
+            return 0
+        return round((self.houses_completed / self.total_houses)*100, 2)
+
+    @property
+    def s1p(self):
+        if self.total_houses == 0:
+            return 0
+        s1p = round((self.houses_in_stage_i / self.total_houses) * 100, 2)
+        return s1p
+
+    @property
+    def s2p(self):
+        if self.total_houses == 0:
+            return 0
+        s2p = round((self.houses_in_stage_ii / self.total_houses) * 100, 2)
+        return s2p
+
+    @property
+    def s3p(self):
+        if self.total_houses == 0:
+            return 0
+        s3p = round((self.houses_in_stage_iii / self.total_houses) * 100, 2)
+        return s3p
+
+    @property
+    def t1p(self):
+        if self.total_houses == 0:
+            return 0
+        t1p = round((self.received_tranche_i / self.total_houses) * 100, 2)
+        return t1p
+
+    @property
+    def t2p(self):
+        if self.total_houses == 0:
+            return 0
+        t2p = round((self.received_tranche_ii / self.total_houses) * 100, 2)
+        return t2p
+
+    @property
+    def t3p(self):
+        if self.total_houses == 0:
+            return 0
+        t3p = round((self.received_tranche_iii / self.total_houses) * 100, 2)
+        return t3p
+
 
 class RecentStories(models.Model):
     title = models.CharField("Title", max_length=20)

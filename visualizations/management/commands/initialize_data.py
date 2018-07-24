@@ -8,8 +8,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        gorkha_list = ['Aarughat', 'Ajirkot',  'Dharche', 'Gandaki',\
-                                   'Gorkha', 'Palungtar', 'Sahid Lakhan', 'Siranchok']
+        gorkha_list = ['Aarughat', 'Ajirkot',  'Bhimsen', 'Chum Nubri', 'Dharche', 'Gandaki',\
+                                   'Gorkha', 'Palungtar', 'Sahid Lakhan', 'Siranchok', 'Sulikot']
 
         for gaunpalika in gorkha_list:
             print(gaunpalika)

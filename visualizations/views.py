@@ -60,6 +60,9 @@ class Dashboard(TemplateView):
         nuwakot_total_received_tranche_ii = 0
         nuwakot_total_received_tranche_iii = 0
 
+        total_houses = 0
+        gorkha_total_houses = 0
+        nuwakot_total_houses = 0
         for data in data:
             total_houses_completed += data.houses_completed
             total_houses_stage_i += data.houses_in_stage_i
@@ -70,9 +73,12 @@ class Dashboard(TemplateView):
             total_received_tranche_ii += data.received_tranche_ii
             total_received_tranche_iii += data.received_tranche_iii
 
+            total_houses += data.total_houses
+
             sum_women_percentage += data.women_percentage
 
             if data.gaunpalika.district.name == 'Gorkha':
+                gorkha_total_houses += data.total_houses
                 gorkha_houses_completed += data.houses_completed
                 gorkha_total_houses_stage_i += data.houses_in_stage_i
                 gorkha_total_houses_stage_ii += data.houses_in_stage_ii
@@ -83,6 +89,7 @@ class Dashboard(TemplateView):
                 gorkha_total_received_tranche_iii += data.received_tranche_iii
 
             if data.gaunpalika.district.name == 'Nuwakot':
+                nuwakot_total_houses += data.total_houses
                 nuwakot_houses_completed += data.houses_completed
                 nuwakot_total_houses_stage_i += data.houses_in_stage_i
                 nuwakot_total_houses_stage_ii += data.houses_in_stage_ii
@@ -105,32 +112,90 @@ class Dashboard(TemplateView):
         all_data['total_received_tranche_ii'] = total_received_tranche_ii
         all_data['total_received_tranche_iii'] = total_received_tranche_iii
 
+        all_data['ths1_percentage'] = round((total_houses_stage_i / total_houses) * 100, 2)
+        all_data['ths2_percentage'] = round((total_houses_stage_ii / total_houses) * 100, 2)
+        all_data['ths3_percentage'] = round((total_houses_stage_iii / total_houses) * 100, 2)
+
+        all_data['trt1_percentage'] = round((total_received_tranche_i / total_houses) * 100, 2)
+        all_data['trt2_percentage'] = round((total_received_tranche_ii / total_houses) * 100,
+                                                   2)
+        all_data['trt3_percentage'] = round((total_received_tranche_iii / total_houses) * 100,
+                                                   2)
+
         all_data['gorkha_total_houses_completed'] = gorkha_houses_completed
+        all_data['gorkha_total_houses'] = gorkha_total_houses
+
+        if gorkha_total_houses is not None:
+            all_data['gorkha_houses_completed_percentage'] = round((gorkha_houses_completed / gorkha_total_houses) * 100, 2)
+            all_data['gorkha_ths1_percentage'] = round((gorkha_total_houses_stage_i/gorkha_total_houses)*100, 2)
+            all_data['gorkha_ths2_percentage'] = round((gorkha_total_houses_stage_ii / gorkha_total_houses) * 100, 2)
+            all_data['gorkha_ths3_percentage'] = round((gorkha_total_houses_stage_iii / gorkha_total_houses) * 100, 2)
+            all_data['gorkha_trt1_percentage'] = round((gorkha_total_received_tranche_i / gorkha_total_houses) * 100, 2)
+            all_data['gorkha_trt2_percentage'] = round((gorkha_total_received_tranche_ii / gorkha_total_houses) * 100,
+                                                        2)
+            all_data['gorkha_trt3_percentage'] = round((gorkha_total_received_tranche_iii / gorkha_total_houses) * 100,
+                                                        2)
+
         all_data['gorkha_total_houses_stage_i'] = gorkha_total_houses_stage_i
+
         all_data['gorkha_total_houses_stage_ii'] = gorkha_total_houses_stage_ii
+
         all_data['gorkha_total_houses_stage_iii'] = gorkha_total_houses_stage_iii
 
         all_data['gorkha_total_received_tranche_i'] = gorkha_total_received_tranche_i
+
         all_data['gorkha_total_received_tranche_ii'] = gorkha_total_received_tranche_ii
         all_data['gorkha_total_received_tranche_iii'] = gorkha_total_received_tranche_iii
 
+        percentage = round((total_houses_completed / total_houses) * (100), 2)
+        all_data['total_houses_completed_percentage'] = percentage
+
+        if nuwakot_total_houses is not None:
+            all_data['nuwakot_houses_completed_percentage'] = round(
+                (nuwakot_houses_completed / nuwakot_total_houses) * 100, 2)
+            all_data['nuwakot_ths1_percentage'] = round((nuwakot_total_houses_stage_i/nuwakot_total_houses)*100, 2)
+            all_data['nuwakot_ths2_percentage'] = round((nuwakot_total_houses_stage_ii / nuwakot_total_houses) * 100, 2)
+            all_data['nuwakot_ths3_percentage'] = round((nuwakot_total_houses_stage_iii / nuwakot_total_houses) * 100, 2)
+            all_data['nuwakot_trt1_percentage'] = round((nuwakot_total_received_tranche_i / nuwakot_total_houses) * 100, 2)
+            all_data['nuwakot_trt2_percentage'] = round((nuwakot_total_received_tranche_ii / nuwakot_total_houses) * 100,
+                                                        2)
+            all_data['nuwakot_trt3_percentage'] = round((nuwakot_total_received_tranche_iii / nuwakot_total_houses) * 100,
+                                                        2)
+
+        all_data['nuwakot_total_houses'] = nuwakot_total_houses
         all_data['nuwakot_total_houses_completed'] = nuwakot_houses_completed
+
         all_data['nuwakot_total_houses_stage_i'] = nuwakot_total_houses_stage_i
+        all_data['nuwakot_ths1_percentage'] = round((nuwakot_total_houses_stage_i / nuwakot_total_houses) * 100, 2)
+
         all_data['nuwakot_total_houses_stage_ii'] = nuwakot_total_houses_stage_ii
+        all_data['nuwakot_ths2_percentage'] = round((nuwakot_total_houses_stage_ii / nuwakot_total_houses) * 100, 2)
+
         all_data['nuwakot_total_houses_stage_iii'] = nuwakot_total_houses_stage_iii
+        all_data['nuwakot_ths3_percentage'] = round((nuwakot_total_houses_stage_iii / nuwakot_total_houses) * 100, 2)
 
         all_data['nuwakot_total_received_tranche_i'] = nuwakot_total_received_tranche_i
+        all_data['nuwakot_trt1_percentage'] = round((nuwakot_total_received_tranche_i / nuwakot_total_houses) * 100, 2)
+
         all_data['nuwakot_total_received_tranche_ii'] = nuwakot_total_received_tranche_ii
+        all_data['nuwakot_trt2_percentage'] = round((nuwakot_total_received_tranche_i / nuwakot_total_houses) * 100,
+                                                    2)
         all_data['nuwakot_total_received_tranche_iii'] = nuwakot_total_received_tranche_iii
+        all_data['nuwakot_trt3_percentage'] = round((nuwakot_total_received_tranche_iii / nuwakot_total_houses) * 100,
+                                                    2)
+
+        all_data['total_housess'] = total_houses
+        percentage = round((total_houses_completed / total_houses) * (100), 2)
+        all_data['total_houses_completed_percentage'] = percentage
 
         context ['all_data'] = all_data
 
         context['housing_label'] = list(HousingCompletion.objects.values_list('label', flat=True))
-        context['housing_values'] = [total_houses_completed, total_houses_stage_i, total_houses_stage_ii,\
+        context['housing_values'] = [total_houses_completed, total_houses_stage_i, total_houses_stage_ii, \
                                      total_houses_stage_iii]
 
         context['reconstruction_label'] = list(ReconstructionGrant.objects.values_list('label', flat=True))
-        context['reconstruction_values'] = [total_received_tranche_i, total_received_tranche_ii,\
+        context['reconstruction_values'] = [total_received_tranche_i, total_received_tranche_ii, \
                                             total_received_tranche_iii]
 
         context['recent_story'] = RecentStory.objects.all()
@@ -157,14 +222,9 @@ class Dashboard(TemplateView):
         if denom:
             context['nuwakot_women_percentage'] = round((sum_women_percentage['sum_wp']/denom)*100)
 
-        context['data_values_gorkha'] = Data.objects.filter(gaunpalika__district__name='Gorkha').values_list('gaunpalika__name',\
-                            'houses_completed', 'houses_in_stage_i',\
-                            'houses_in_stage_ii', 'houses_in_stage_iii', 'received_tranche_i',\
-                            'received_tranche_ii', 'received_tranche_iii', 'women_percentage')
+        context['data_values_gorkha'] = Data.objects.filter(gaunpalika__district__name='Gorkha')
 
-        context['data_values_nuwakot'] = Data.objects.filter(gaunpalika__district__name='Nuwakot').values_list('gaunpalika__name','houses_completed',\
-                            'houses_in_stage_i', 'houses_in_stage_ii', 'houses_in_stage_iii', 'received_tranche_i',\
-                            'received_tranche_ii', 'received_tranche_iii', 'women_percentage')
+        context['data_values_nuwakot'] = Data.objects.filter(gaunpalika__district__name='Nuwakot')
 
         context['gorkha_data'] = Data.objects.filter(gaunpalika__district__name='Gorkha').values_list('gaunpalika__name')
 
