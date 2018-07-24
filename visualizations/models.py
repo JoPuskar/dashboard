@@ -1,5 +1,6 @@
 from django.db import models
-from tinymce.models import HTMLField
+from froala_editor.fields import FroalaField
+
 
 # Create your models here.
 from django.db.models import Sum, Count
@@ -69,10 +70,11 @@ class Data(models.Model):
     def get_version(self):
         return self.version
 
+
 class RecentStories(models.Model):
     title = models.CharField("Title", max_length=20)
     description = models.CharField("Short Description", max_length=20)
-    content = HTMLField()
+    content = FroalaField()
     thumbnail = models.ImageField()
     banner = models.ImageField()
 

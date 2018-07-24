@@ -37,4 +37,5 @@ if settings.DEBUG:
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
         path('^tinymce/', include('tinymce.urls')),
+        path(r'^froala_editor/', include('froala_editor.urls')),
     ] + urlpatterns
