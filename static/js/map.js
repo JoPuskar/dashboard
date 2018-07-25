@@ -70,21 +70,38 @@
 	
 	}
 
-	function style(layer) {
+	function style(layer, completion_status) {
 		//console.log(layer);
-		return {
-			weight: 2,
-			opacity: 1,
-			color: 'white',
-			//dashArray: '3',
-			fillOpacity: 0.7,
-			fillColor: getColor(layer.feature.properties.completed)
-		};
+		var hidegapa = layer.feature.properties.FIRST_GaPa;
+		if(hidegapa == "Chum Nubri" || hidegapa == "Sulikot" || hidegapa == "Bhimsen" || hidegapa == "Shivapuri" || hidegapa == "Panchakanya" || hidegapa == "Langtang National Park" || hidegapa == "Shivapuri Watershed and Wildlife Reserve"){
+			console.log("change color");
+			return {
+				weight: 2,
+				opacity: 0,
+				color: 'black',
+				//dashArray: '3',
+				fillOpacity: 0,
+				fillColor: "#ddd"
+			};
+		}
+		else {
+			console.log("dont change color");
+			return {
+				weight: 2,
+				opacity: 1,
+				color: 'white',
+				//dashArray: '3',
+				fillOpacity: 0.7,
+				fillColor: getColor(completion_status)
+			};
+		}
+
+
 	}
 
 
 
-	L.TopoJSON = L.GeoJSON.extend({  
+	L.TopoJSON = L.GeoJSON.extend({
 	  addData: function(jsonData) {    
 	    if (jsonData.type === "Topology") {
 	      for (key in jsonData.objects) {
@@ -109,11 +126,28 @@
 	  //map.fitBounds(district.getBounds());
 	}
 
-	function handleLayer(layer)
-	{  
 
-		// set some self explanatory attributes
-		
+
+
+	//extract gorkha and nuwakot layers from whole district layer
+		gorkhaLayer = [];
+		nuwaLayer = [];
+		//end
+
+
+
+	function handleLayer(layer)
+	{
+		//console.log(layer);
+		if(layer.feature.properties.DISTRICT == "GORKHA"){
+			gorkhaLayer = layer;
+			console.log(layer);
+		}
+		else if(layer.feature.properties.DISTRICT == "NUWAKOT"){
+			nuwaLayer = layer;
+		}
+
+
 		if(layer.feature.properties.DISTRICT == "GORKHA" || layer.feature.properties.DISTRICT == "NUWAKOT"){
 			layer.setStyle({
 				fillColor : '#00628e',
@@ -193,6 +227,7 @@
 		}
 
 
+
 		//console.log(layer);
 		/*var popUpContent = "";
             popUpContent += '<table style="width:100%;" id="District-popup" class="popuptable">';
@@ -243,13 +278,45 @@
         });
 	}
 
+
+
+		function resetStyle(resetcolor){
+
+		console.log(gorkhaLayer);
+
+		//reset district color after municipality is loaded
+		if(resetcolor == "gorkha"){
+			gorkhaLayer.setStyle({
+				fillColor : '#00628e',
+				fillOpacity: 0,
+				color:'black',
+				weight:1,
+				opacity:1
+			});
+		}
+		else if(resetcolor == "nuwakot"){
+			nuwaLayer.setStyle({
+				fillColor : '#00628e',
+				fillOpacity: 0,
+				color:'black',
+				weight:1,
+				opacity:1
+			});
+		}
+	}
+
 	function loadMunicipality(district){
+
 		if(district == "GORKHA"){
+
+			resetStyle("gorkha");
+
 
 			$("#gorkha").attr("selected","selected");
 
 			if(map.hasLayer(nuwakot)){
 				map.removeLayer(nuwakot);
+				setStyle();
 			}
 			gorkha = new L.TopoJSON();
 
@@ -264,6 +331,8 @@
 			}	
 		}
 		else if(district == "NUWAKOT"){
+
+			resetStyle("nuwakot");
 
 			$("#nuwakot").attr("selected","selected");
 
@@ -288,7 +357,7 @@
 
 	function handleMun(layer){
 
-		layer.setStyle(style(layer));
+		layer.setStyle(style(layer, completion_status));
 		// set some self explanatory attributes
 		/*layer.setStyle
 		({

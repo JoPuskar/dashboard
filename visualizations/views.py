@@ -233,6 +233,7 @@ class Dashboard(TemplateView):
         context['dispensed_amount'] = dispensed_amount
         context['progress'] = progress
         context['stories'] = RecentStories.objects.all()[:5]
+        context['completion_value_gorkha'] = list(Data.objects.filter(gaunpalika__district__name='Gorkha'))
         return context
 
 

@@ -16,7 +16,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             if gorkha_data.json():
-                # print(gorkha_data.json())
+                print(gorkha_data.json())
                     # [Data.objects.filter(gaunpalika__name=data['Municipality']).update( \
                 #     houses_in_stage_i=data['house_in_stage_i'], houses_in_stage_ii=data['house_in_stage_ii'], \
                 #     houses_in_stage_iii=data['house_in_stage_iii'], received_tranche_i=data['received_trache_i'], \
@@ -40,6 +40,7 @@ class Command(BaseCommand):
                         obj.houses_in_stage_iii = d["house_in_stage_iii"]
                         obj.houses_in_stage_iii = d["house_in_stage_iii"]
 
+                        obj.houses_completed = d["houses_completed"]
                         obj.total_houses = d["total_houses"]
                         obj.women_percentage = round(float(d['women_percentage']))
                         print(obj.__dict__)
@@ -67,7 +68,7 @@ class Command(BaseCommand):
                         obj.houses_in_stage_i = d["house_in_stage_i"]
                         obj.houses_in_stage_ii = d["house_in_stage_ii"]
                         obj.houses_in_stage_iii = d["house_in_stage_iii"]
-
+                        obj.houses_completed = d["houses_completed"]
                         obj.total_houses = d["total_houses"]
                         # print(obj.__dict__)
                         obj.save()
