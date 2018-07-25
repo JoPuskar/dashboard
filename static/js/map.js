@@ -452,19 +452,19 @@
             // $('.col-md-5').hide();
             // $("#" + $(this).val()).show();
         	if(previousMun!=null){
-        		//previousMun.target.setStyle({'fillColor':'#00628e'});
+        		previousMun.target.setStyle({'color':'white','weight':1});
         	}
-        	//e.target.setStyle({'fillColor':'red'});
+        	e.target.setStyle({'color':'white','weight':6});
         	previousMun = e;
 
 
 
         });
         layer.on('mouseover',function(e){//console.log("mousein munci");
-			e.target.setStyle({'weight':'3'});
+			//e.target.setStyle({'weight':'3'});
 			info.update(layer.feature.properties , gapa_status);
 		}).on('mouseout',function(e){
-			e.target.setStyle({'weight':'1'});
+			//e.target.setStyle({'weight':'1'});
 			info.update();
 		});
 

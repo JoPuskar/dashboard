@@ -22,7 +22,7 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.WARNING('{} Gaunpalika Already Exists!').format(gaunpalika))
 
         nuwakot_list = ['Belkotgadhi Municipality', 'Bidur Municipality', 'Dupcheshwore', 'Kakani', 'Kispang', 'Likhu',\
-                           'Meghang', 'Panchakanya', 'Shivapuri', 'Suryagadhi', 'Tadi', 'Tarkeswore']
+                           'Meghang', 'Panchakanya', 'Shivapuri', 'Suryagadhi', 'Tadi', 'Tarkeshwar']
 
         for gaunpalika in nuwakot_list:
             nuwakot = District.objects.get(name__exact='Nuwakot')
