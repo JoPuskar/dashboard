@@ -440,7 +440,7 @@
         <div class="module-story">
             <div class="story-header">
                 <h5>Stories</h5>
-                <a href="#" title="">View All</a>
+                <a href="{% url 'visualizations:recent_stories' %}" title="">View All</a>
             </div>
             <div class="story-section padding-top">
                 <div class="story-list">{% for story in recent_story %}

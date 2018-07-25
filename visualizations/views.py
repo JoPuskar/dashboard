@@ -279,19 +279,9 @@ class RecentStoryUpdate(UpdateView):
 
 
 class RecentStoryDetail(DetailView):
-    model = RecentStory
-    template_name = "visualizations/recent_story_detail.html"
+    model = RecentStories
+    template_name = "visualizations/story_detail.html"
     context_object_name = "story"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['housing_label'] = list(HousingCompletion.objects.values_list('label', flat=True))
-        context['reconstruction_label'] = list(ReconstructionGrant.objects.values_list('label', flat=True))
-        context['housing_values'] = list(HousingCompletion.objects.values_list('value', flat=True))
-        context['reconstruction_values'] = list(ReconstructionGrant.objects.values_list('value', flat=True))
-        context['recent_story'] = RecentStory.objects.all()
-        return context
-
 
 
 class DataDetail(DetailView):
@@ -326,3 +316,7 @@ class DataDetail(DetailView):
 #         # ipdb.set_trace()
 #         return context
 
+
+class RecentStoriesView(ListView):
+    model = RecentStories
+    template_name = "visualizations/stories.html"
