@@ -448,11 +448,11 @@
                         <div class="story-item">
                             <img src="{% static 'assets/img/img-avatar.jpg' %}" alt="">
                             <div class="user-info">
-                                <h6>{{ story.name }}</h6>
-                                <span>{{ story.address }}</span>
+                                <h6>{{ story.title }}</h6>
+                                <span>{{ story.description }}</span>
                             </div>
                             <p>
-                                {{ story.description|truncatechars:150 }} <a href="#" title="">read more [+]</a>
+                                {{ story.content|truncatechars:150 }} <a href="#" title="">read more [+]</a>
                             </p>
                         </div>
                     </div>{% endfor %}
@@ -473,7 +473,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-4">
                         <div class="block social-block social-twitter" style="overflow-y:scroll; height:500px">
-                                    <h1>Twitter #IndiaInNepal</h1>
+                                    <h1>Twitter #IndiaInNepalStories</h1>
                                     <ul >
                                         {% for tweet in tweets %}
                                         <li >
@@ -558,8 +558,8 @@
         $('.slider-list').slick({
             dots: false,
             infinite: false,
-            speed: 300
-
+            speed: 300,
+            adaptiveHeight: true
         });
     });
 

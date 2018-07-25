@@ -198,7 +198,7 @@ class Dashboard(TemplateView):
         context['reconstruction_values'] = [total_received_tranche_i, total_received_tranche_ii, \
                                             total_received_tranche_iii]
 
-        context['recent_story'] = RecentStory.objects.all()
+        context['recent_story'] = RecentStories.objects.all()
 
         context['district_json_path'] = "/static/json/District.json"
         context['gorkha_json_path'] = "/static/json/Gorkha.json"
