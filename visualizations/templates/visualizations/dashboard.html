@@ -443,13 +443,13 @@
                 <a href="#" title="">View All</a>
             </div>
             <div class="story-section padding-top">
-                <div class="story-list">{% for story in recent_story %}
+                <div class="story-list">{% for story in stories %}
                     <div>
                         <div class="story-item">
                             <img src="{% static 'assets/img/img-avatar.jpg' %}" alt="">
                             <div class="user-info">
-                                <h6>{{ story.name }}</h6>
-                                <span>{{ story.address }}</span>
+                                <h6>{{ story.title }}</h6>
+                                <span>{{ story.thumbnail }}</span>
                             </div>
                             <p>
                                 {{ story.description|truncatechars:150 }} <a href="#" title="">read more [+]</a>
