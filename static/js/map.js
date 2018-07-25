@@ -51,9 +51,9 @@
 		return this._div;
 	};
 
-	info.update = function (props) {
-		this._div.innerHTML = (props ? '<b>' + props.FIRST_GaPa+' '+  
-			 props.FIRST_Type + '</b><br />' + props.completed + '% Completed'
+	info.update = function (props, gapa_status) {
+		this._div.innerHTML = (props ? '<b>' + props.FIRST_GaPa+' '+
+			 props.FIRST_Type + '</b><br />' + gapa_status + '% Completed'
 			: 'Hover over a municipality');
 	};
 
@@ -62,11 +62,11 @@
 
 	// get color depending on population density value
 	function getColor(d) {
-		return d > 80 ? '#2c7a9e' :
-				d > 60  ? '#55b4e0' :
-				d > 40  ? '#7ac4e6' :
-				d > 20  ? '#98cfe8' :
-							'#b5d0dc' ;
+		return d > 80 ? '#123140' :
+				d > 60  ? '#24627F' :
+				d > 40  ? '#3481A3' :
+				d > 20  ? '#3CBAC2' :
+							'#5AE2FF' ;
 	
 	}
 
@@ -141,7 +141,7 @@
 		//console.log(layer);
 		if(layer.feature.properties.DISTRICT == "GORKHA"){
 			gorkhaLayer = layer;
-			console.log(layer);
+			//console.log(layer);
 		}
 		else if(layer.feature.properties.DISTRICT == "NUWAKOT"){
 			nuwaLayer = layer;
@@ -249,6 +249,14 @@
         	loadMunicipality(layer.feature.properties.DISTRICT);
         	var distSelected = e.target.feature.properties.DISTRICT.toLowerCase();
             if(distSelected == 'gorkha') {
+            	nuwaLayer.setStyle({
+					fillColor : '#00628e',
+					fillOpacity: 0.8,
+					color:'black',
+					weight:1,
+					opacity:0.6
+				});
+
             	//console.log(e.target.feature.properties.DISTRICT.toLowerCase());
             	$("#gorkha").attr("selected","selected");
             	$("#nuwakot").removeAttr("selected");
@@ -262,6 +270,15 @@
             $('.info').css('display','block');
             }
 			else {
+
+            	gorkhaLayer.setStyle({
+					fillColor : '#00628e',
+					fillOpacity: 0.8,
+					color:'black',
+					weight:1,
+					opacity:0.6
+				});
+
             	$("#nuwakot").attr("selected","selected");
             	$("#gorkha").removeAttr("selected");
             	$("#gorkha-palika-select").css("display","none");
@@ -282,28 +299,28 @@
 
 		function resetStyle(resetcolor){
 
-		console.log(gorkhaLayer);
+			//console.log(gorkhaLayer);
 
-		//reset district color after municipality is loaded
-		if(resetcolor == "gorkha"){
-			gorkhaLayer.setStyle({
-				fillColor : '#00628e',
-				fillOpacity: 0,
-				color:'black',
-				weight:1,
-				opacity:1
-			});
+			//reset district color after municipality is loaded
+			if(resetcolor == "gorkha"){
+				gorkhaLayer.setStyle({
+					fillColor : '#00628e',
+					fillOpacity: 0,
+					color:'black',
+					weight:1,
+					opacity:1
+				});
+			}
+			else if(resetcolor == "nuwakot"){
+				nuwaLayer.setStyle({
+					fillColor : '#00628e',
+					fillOpacity: 0,
+					color:'black',
+					weight:1,
+					opacity:1
+				});
+			}
 		}
-		else if(resetcolor == "nuwakot"){
-			nuwaLayer.setStyle({
-				fillColor : '#00628e',
-				fillOpacity: 0,
-				color:'black',
-				weight:1,
-				opacity:1
-			});
-		}
-	}
 
 	function loadMunicipality(district){
 
@@ -316,7 +333,7 @@
 
 			if(map.hasLayer(nuwakot)){
 				map.removeLayer(nuwakot);
-				setStyle();
+				//setStyle();
 			}
 			gorkha = new L.TopoJSON();
 
@@ -357,7 +374,26 @@
 
 	function handleMun(layer){
 
-		layer.setStyle(style(layer, completion_status));
+		var gapa_status = 0;
+
+		if(layer.feature.properties.FIRST_DIST.toLowerCase() == "gorkha") {
+			for(var i = 0; i<completion_status_gorkha.length;i++) {
+				if(completion_status_gorkha[i][layer.feature.properties.FIRST_GaPa] != undefined) {
+                    gapa_status = completion_status_gorkha[i][layer.feature.properties.FIRST_GaPa];
+                    //console.log(completion_status_gorkha);
+                }
+            }
+        }
+        else {
+			for(var i = 0; i<completion_status_nuwakot.length;i++) {
+				if(completion_status_nuwakot[i][layer.feature.properties.FIRST_GaPa] != undefined) {
+                    gapa_status = completion_status_nuwakot[i][layer.feature.properties.FIRST_GaPa];
+                    //console.log(completion_status_nuwakot);
+                }
+            }
+		}
+
+		layer.setStyle(style(layer, gapa_status));
 		// set some self explanatory attributes
 		/*layer.setStyle
 		({
@@ -426,7 +462,7 @@
         });
         layer.on('mouseover',function(e){//console.log("mousein munci");
 			e.target.setStyle({'weight':'3'});
-			info.update(layer.feature.properties);
+			info.update(layer.feature.properties , gapa_status);
 		}).on('mouseout',function(e){
 			e.target.setStyle({'weight':'1'});
 			info.update();

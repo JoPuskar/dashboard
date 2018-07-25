@@ -510,13 +510,20 @@
     //console.log(district_json);
     var gorkha_json = "{{ gorkha_json_path }}";
     var nuwakot_json = "{{ nuwakot_json_path }}";
-    {#var completion_status_nuwakot = "{{ data_values_nuwakot }}";#}
-    {#var completion_status_gorkha = "{{ completion_value_gorkha }}";#}
-    {#console.log(completion_status_gorkha);#}
-    {#for(i=0; i<completion_status_gorkha.length; i++){#}
-    {#    console.log(completion_status_gorkha);#}
-    {#}#}
-    {#console.log(completion_status_gorkha);#}
+
+    var completion_status_gorkha = [];
+    var completion_status_nuwakot = [];
+
+    {% for d in completion_value_gorkha %}
+        completion_status_gorkha.push({ '{{ d.gaunpalika.name }}':'{{ d.thcp }}'});
+    {% endfor %}
+
+    {% for d in completion_value_nuwakot %}
+        completion_status_nuwakot.push({'{{ d.gaunpalika.name }}':'{{ d.thcp }}'});
+    {% endfor %}
+
+    console.log(completion_status_gorkha);
+
     console.log("First");
     $(document).ready(function () {
         $('.details').hide();
