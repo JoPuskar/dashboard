@@ -62,11 +62,11 @@
 
 	// get color depending on population density value
 	function getColor(d) {
-		return d > 80 ? '#123140' :
-				d > 60  ? '#24627F' :
-				d > 40  ? '#3481A3' :
-				d > 20  ? '#3CBAC2' :
-							'#5AE2FF' ;
+		return d > 80 ? '#00bd00' :
+				d > 60  ? '#e1ff00' :
+				d > 40  ? '#ffff00' :
+				d > 20  ? '#ffbf00' :
+							'#ff8000' ;
 	
 	}
 
