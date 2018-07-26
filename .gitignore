@@ -55,4 +55,7 @@ package-lock.json
 #mediafiles
 media/
 
+#a-staticfiles
+a-static/
+
 webpack-stats-local.json

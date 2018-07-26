@@ -77,7 +77,7 @@ class Data(models.Model):
     def thcp(self):
         if self.total_houses == 0:
             return 0
-        return round((self.houses_completed / self.total_houses)*100, 2)
+        return round((self.houses_completed / self.total_houses) * 100, 2)
 
     @property
     def s1p(self):

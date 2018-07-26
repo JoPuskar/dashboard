@@ -93,14 +93,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="graph-text-info margin-top-large">
-                            <div class="percent-count">50%</div>
+                            <div class="percent-count">{{ total_women_percentage }}%</div>
                             Female headed HHs
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="graph-text-info margin-top-large">
-                            <div class="percent-count">73%</div>
-                            Rural
                         </div>
                     </div>
                 </div>
@@ -383,7 +377,7 @@
                     <div class="pop-body">
                         <div class="pop-info-item">
                             <b>Houses Completed</b>
-                            <div class="count">{{ data.houses_in_stage_i }} ({{ data.thcp }}%)</div>
+                            <div class="count">{{ data.houses_completed }} ({{ data.thcp }}%)</div>
                         </div>
                         <div class="row no-gutters">
                             <div class="col">
