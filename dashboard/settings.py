@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'tinymce',
     'froala_editor',
     'stdimage',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

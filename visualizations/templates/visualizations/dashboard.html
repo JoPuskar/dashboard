@@ -452,7 +452,7 @@
                                 <span>{{ story.description }}</span>
                             </div>
                             <p>
-                                {{ story.content|truncatechars:150 }} <a href="#" title="">read more [+]</a>
+                                {{ story.content|truncatechars:200|safe }} <a href="#" title="">read more [+]</a>
                             </p>
                         </div>
                     </div>{% endfor %}
