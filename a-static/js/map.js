@@ -51,9 +51,9 @@
 		return this._div;
 	};
 
-	info.update = function (props) {
-		this._div.innerHTML = (props ? '<b>' + props.FIRST_GaPa+' '+  
-			 props.FIRST_Type + '</b><br />' + props.completed + '% Completed'
+	info.update = function (props, gapa_status) {
+		this._div.innerHTML = (props ? '<b>' + props.FIRST_GaPa+' '+
+			 props.FIRST_Type + '</b><br />' + gapa_status + '% Completed'
 			: 'Hover over a municipality');
 	};
 
@@ -62,29 +62,46 @@
 
 	// get color depending on population density value
 	function getColor(d) {
-		return d > 80 ? '#2c7a9e' :
-				d > 60  ? '#55b4e0' :
-				d > 40  ? '#7ac4e6' :
-				d > 20  ? '#98cfe8' :
-							'#b5d0dc' ;
+		return d > 80 ? '#00bd00' :
+				d > 60  ? '#e1ff00' :
+				d > 40  ? '#ffff00' :
+				d > 20  ? '#ffbf00' :
+							'#ff8000' ;
 	
 	}
 
-	function style(layer) {
+	function style(layer, completion_status) {
 		//console.log(layer);
-		return {
-			weight: 2,
-			opacity: 1,
-			color: 'white',
-			//dashArray: '3',
-			fillOpacity: 0.7,
-			fillColor: getColor(layer.feature.properties.completed)
-		};
+		var hidegapa = layer.feature.properties.FIRST_GaPa;
+		if(hidegapa == "Chum Nubri" || hidegapa == "Sulikot" || hidegapa == "Bhimsen" || hidegapa == "Shivapuri" || hidegapa == "Panchakanya" || hidegapa == "Langtang National Park" || hidegapa == "Shivapuri Watershed and Wildlife Reserve"){
+			console.log("change color");
+			return {
+				weight: 2,
+				opacity: 0,
+				color: 'black',
+				//dashArray: '3',
+				fillOpacity: 0,
+				fillColor: "#ddd"
+			};
+		}
+		else {
+			console.log("dont change color");
+			return {
+				weight: 2,
+				opacity: 1,
+				color: 'white',
+				//dashArray: '3',
+				fillOpacity: 0.7,
+				fillColor: getColor(completion_status)
+			};
+		}
+
+
 	}
 
 
 
-	L.TopoJSON = L.GeoJSON.extend({  
+	L.TopoJSON = L.GeoJSON.extend({
 	  addData: function(jsonData) {    
 	    if (jsonData.type === "Topology") {
 	      for (key in jsonData.objects) {
@@ -109,11 +126,28 @@
 	  //map.fitBounds(district.getBounds());
 	}
 
-	function handleLayer(layer)
-	{  
 
-		// set some self explanatory attributes
-		
+
+
+	//extract gorkha and nuwakot layers from whole district layer
+		gorkhaLayer = [];
+		nuwaLayer = [];
+		//end
+
+
+
+	function handleLayer(layer)
+	{
+		//console.log(layer);
+		if(layer.feature.properties.DISTRICT == "GORKHA"){
+			gorkhaLayer = layer;
+			//console.log(layer);
+		}
+		else if(layer.feature.properties.DISTRICT == "NUWAKOT"){
+			nuwaLayer = layer;
+		}
+
+
 		if(layer.feature.properties.DISTRICT == "GORKHA" || layer.feature.properties.DISTRICT == "NUWAKOT"){
 			layer.setStyle({
 				fillColor : '#00628e',
@@ -193,6 +227,7 @@
 		}
 
 
+
 		//console.log(layer);
 		/*var popUpContent = "";
             popUpContent += '<table style="width:100%;" id="District-popup" class="popuptable">';
@@ -214,6 +249,14 @@
         	loadMunicipality(layer.feature.properties.DISTRICT);
         	var distSelected = e.target.feature.properties.DISTRICT.toLowerCase();
             if(distSelected == 'gorkha') {
+            	nuwaLayer.setStyle({
+					fillColor : '#00628e',
+					fillOpacity: 0.8,
+					color:'black',
+					weight:1,
+					opacity:0.6
+				});
+
             	//console.log(e.target.feature.properties.DISTRICT.toLowerCase());
             	$("#gorkha").attr("selected","selected");
             	$("#nuwakot").removeAttr("selected");
@@ -227,6 +270,15 @@
             $('.info').css('display','block');
             }
 			else {
+
+            	gorkhaLayer.setStyle({
+					fillColor : '#00628e',
+					fillOpacity: 0.8,
+					color:'black',
+					weight:1,
+					opacity:0.6
+				});
+
             	$("#nuwakot").attr("selected","selected");
             	$("#gorkha").removeAttr("selected");
             	$("#gorkha-palika-select").css("display","none");
@@ -243,13 +295,45 @@
         });
 	}
 
+
+
+		function resetStyle(resetcolor){
+
+			//console.log(gorkhaLayer);
+
+			//reset district color after municipality is loaded
+			if(resetcolor == "gorkha"){
+				gorkhaLayer.setStyle({
+					fillColor : '#00628e',
+					fillOpacity: 0,
+					color:'black',
+					weight:1,
+					opacity:1
+				});
+			}
+			else if(resetcolor == "nuwakot"){
+				nuwaLayer.setStyle({
+					fillColor : '#00628e',
+					fillOpacity: 0,
+					color:'black',
+					weight:1,
+					opacity:1
+				});
+			}
+		}
+
 	function loadMunicipality(district){
+
 		if(district == "GORKHA"){
+
+			resetStyle("gorkha");
+
 
 			$("#gorkha").attr("selected","selected");
 
 			if(map.hasLayer(nuwakot)){
 				map.removeLayer(nuwakot);
+				//setStyle();
 			}
 			gorkha = new L.TopoJSON();
 
@@ -264,6 +348,8 @@
 			}	
 		}
 		else if(district == "NUWAKOT"){
+
+			resetStyle("nuwakot");
 
 			$("#nuwakot").attr("selected","selected");
 
@@ -288,7 +374,26 @@
 
 	function handleMun(layer){
 
-		layer.setStyle(style(layer));
+		var gapa_status = 0;
+
+		if(layer.feature.properties.FIRST_DIST.toLowerCase() == "gorkha") {
+			for(var i = 0; i<completion_status_gorkha.length;i++) {
+				if(completion_status_gorkha[i][layer.feature.properties.FIRST_GaPa] != undefined) {
+                    gapa_status = completion_status_gorkha[i][layer.feature.properties.FIRST_GaPa];
+                    //console.log(completion_status_gorkha);
+                }
+            }
+        }
+        else {
+			for(var i = 0; i<completion_status_nuwakot.length;i++) {
+				if(completion_status_nuwakot[i][layer.feature.properties.FIRST_GaPa] != undefined) {
+                    gapa_status = completion_status_nuwakot[i][layer.feature.properties.FIRST_GaPa];
+                    //console.log(completion_status_nuwakot);
+                }
+            }
+		}
+
+		layer.setStyle(style(layer, gapa_status));
 		// set some self explanatory attributes
 		/*layer.setStyle
 		({
@@ -347,19 +452,19 @@
             // $('.col-md-5').hide();
             // $("#" + $(this).val()).show();
         	if(previousMun!=null){
-        		//previousMun.target.setStyle({'fillColor':'#00628e'});
+        		previousMun.target.setStyle({'color':'white','weight':1});
         	}
-        	//e.target.setStyle({'fillColor':'red'});
+        	e.target.setStyle({'color':'white','weight':6});
         	previousMun = e;
 
 
 
         });
         layer.on('mouseover',function(e){//console.log("mousein munci");
-			e.target.setStyle({'weight':'3'});
-			info.update(layer.feature.properties);
+			//e.target.setStyle({'weight':'3'});
+			info.update(layer.feature.properties , gapa_status);
 		}).on('mouseout',function(e){
-			e.target.setStyle({'weight':'1'});
+			//e.target.setStyle({'weight':'1'});
 			info.update();
 		});
 

@@ -1,6 +1,9 @@
 from django.db import models
 from froala_editor.fields import FroalaField
 
+from stdimage.models import StdImageField
+from ckeditor.fields import RichTextField
+from stdimage.validators import MinSizeValidator, MaxSizeValidator
 
 # Create your models here.
 from django.db.models import Sum, Count
@@ -122,8 +125,8 @@ class Data(models.Model):
 class RecentStories(models.Model):
     title = models.CharField("Title", max_length=20)
     description = models.CharField("Short Description", max_length=20)
-    content = FroalaField()
-    thumbnail = models.ImageField()
-    banner = models.ImageField()
+    content = RichTextField()
+    thumbnail = StdImageField(validators=[MinSizeValidator(100, 100)])
+    banner = StdImageField(validators=[MinSizeValidator(1600, 600)])
 
 
