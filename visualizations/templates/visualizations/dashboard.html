@@ -508,11 +508,11 @@
     var completion_status_gorkha = [];
     var completion_status_nuwakot = [];
 
-    {% for d in completion_value_gorkha %}
+    {% for d in data_values_gorkha %}
         completion_status_gorkha.push({ '{{ d.gaunpalika.name }}':'{{ d.thcp }}'});
     {% endfor %}
 
-    {% for d in completion_value_nuwakot %}
+    {% for d in data_values_nuwakot %}
         completion_status_nuwakot.push({'{{ d.gaunpalika.name }}':'{{ d.thcp }}'});
     {% endfor %}
 
