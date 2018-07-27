@@ -125,4 +125,8 @@ class RecentStories(models.Model):
     thumbnail = StdImageField(validators=[MinSizeValidator(100, 100)])
     banner = StdImageField(validators=[MinSizeValidator(1600, 600)])
 
+    def __str__(self):
+        return  self.title
+
+
 
