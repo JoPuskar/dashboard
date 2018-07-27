@@ -132,7 +132,7 @@ class RecentStories(models.Model):
     banner = StdImageField(validators=[MinSizeValidator(1600, 600)])
 
     def __str__(self):
-        return  self.title
+        return self.title
 
 
 
