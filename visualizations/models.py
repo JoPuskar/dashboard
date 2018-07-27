@@ -119,8 +119,8 @@ class Data(models.Model):
 
 
 class RecentStories(models.Model):
-    title = models.CharField("Title", max_length=20)
-    description = models.CharField("Short Description", max_length=20)
+    title = models.CharField("Title", max_length=255)
+    description = models.CharField("Short Description", max_length=255)
     content = RichTextField()
     thumbnail = StdImageField(validators=[MinSizeValidator(100, 100)])
     banner = StdImageField(validators=[MinSizeValidator(1600, 600)])
