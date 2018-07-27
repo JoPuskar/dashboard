@@ -8,7 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            housing = ['Houses Completed', 'Houses in Stage I', 'Houses in Stage II', 'Houses in Stage III']
+            housing = ['Houses Completed', 'Houses in Stage III', 'Houses in Stage II', 'Houses in Stage I']
             reconstruction = ['Received Tranche - I', 'Received Tranche - II', 'Received Tranche - III']
             for l in housing:
                 HousingCompletion.objects.get_or_create(label=l)
