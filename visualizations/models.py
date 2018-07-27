@@ -44,9 +44,15 @@ class Gaunpalika(models.Model):
     is_municipality = models.BooleanField(default=False)
 
     def __str__(self):
-        if self.is_municipality:
-            return "{} Municipality".format(self.name)
-        return "{} Gaunpalika".format(self.name)
+        if self.district.name == 'Nuwakot':
+            if self.is_municipality:
+                return self.name
+            else:
+                return "{} Gaunpalika".format(self.name)
+        else:
+            if self.is_municipality:
+                return "{} Municipality".format(self.name)
+            return "{} Gaunpalika".format(self.name)
 
 
 class Data(models.Model):

@@ -121,7 +121,7 @@
                         <select class="form-control inputDistrictClass" id="inputGorkhaPalika">
                             {#                                  <option id="gorkha-palika"> All </option>#}
                             {% for data in gorkha_data %}
-                            <option value="GoPa_{{ forloop.counter0 }}-form" id="{{ data.0|lower }}">{{ data.0 }}</option>
+                            <option value="GoPa_{{ forloop.counter0 }}-form" id="{{ data.0|lower }}_m">{{ data.0 }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -129,7 +129,7 @@
                         <label>Gaunpalika Selected</label>
                         <select class="form-control inputDistrictClass" id="inputNuwaPalika">
                             {% for data in nuwa_data %}
-                            <option value="NuPa_{{ forloop.counter0 }}-form" id="{{ data.0|lower }}">{{ data.0 }}</option>
+                            <option value="NuPa_{{ forloop.counter0 }}-form" id="{{ data.0|lower }}_m">{{ data.0 }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -688,19 +688,21 @@
 
 
     function gorkhaChange(selectedMun){
-        var id = $('#inputGorkhaPalika').val();
-            console.log("inside palika if not");
 
-            $('.details').hide();
-            $("#" + id).show();
+        var id = $('#inputGorkhaPalika').val();
+
+            console.log(id);
+
+            $('.details').css('display','none');
+            $("#" + id).css('display','block');
 
     }
 
     function nuwaChange(selectedMun){
             var id = $('#inputNuwaPalika').val();
             console.log("inside palika if not");
-            $('.details').hide();
-            $("#" + id).show();
+            $('.details').css('display','none');
+            $("#" + id).css('display','block');
 
     }
 
@@ -708,7 +710,7 @@
         console.log("input palika");
         console.log($("#inputGorkhaPalika option:selected")[0].id);
         var selectedMun = $("#inputGorkhaPalika option:selected")[0].id;
-        console.log("#" + $('#inputGorkhaPalika').val());
+        {#console.log("#" + $('#inputGorkhaPalika').val());#}
         gorkhaChange(selectedMun);
 
     });

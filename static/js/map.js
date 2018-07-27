@@ -371,6 +371,7 @@
 	}
 
 	var previousMun = null;
+	var previousMunText = "";
 
 	function handleMun(layer){
 
@@ -424,24 +425,45 @@
 		layer.bindLabel(layer.feature.properties.FIRST_GaPa);
 
         layer.on('click',function(e){
-        	console.log(e);
+        	//console.log(e);
 
-			var clickedMun = e.target.feature.properties.FIRST_GaPa;
-			console.log(clickedMun);
+			var clickedMun = e.target.feature.properties.FIRST_GaPa+"_m";
+			console.log(e.target.feature.properties);
 			if(e.target.feature.properties.FIRST_DIST.toLowerCase() == "gorkha"){
 
+				if(previousMunText != ""){
+					var previousElement = document.getElementById(previousMunText.toLowerCase());
+
+					previousElement.removeAttribute("selected");
+				}
+
 				var Element = document.getElementById(clickedMun.toLowerCase());
-				//console.log(Element);
-				Element.setAttribute("selected","selected");
+
+				Element.setAttribute("selected", "selected");
 				gorkhaChange(clickedMun.toLowerCase());
+				console.log(clickedMun);
+				console.log("gorkhachange called");
             	//$("#nuwa-palika-select").css("display","none");
             	//$("#gorkha-palika-select").css("display","block");
+
+				previousMunText = clickedMun.toLowerCase();
 			}
 			else {
+
+				if(previousMunText != ""){
+					var previousElement = document.getElementById(previousMunText.toLowerCase());
+
+					previousElement.removeAttribute("selected");
+				}
+
 				var Element = document.getElementById(clickedMun.toLowerCase());
 				//console.log(Element);
+
 				Element.setAttribute("selected","selected");
 				nuwaChange(clickedMun.toLowerCase());
+				console.log("nuwachange called");
+
+				previousMunText = clickedMun.toLowerCase();
 			}
 
 
@@ -477,7 +499,7 @@
 			if(!map.hasLayer(gorkha)){
 				loadMunicipality("GORKHA");
 			}
-			
+			console.log("Test");
 			if(map.hasLayer(nuwakot)){
 				map.removeLayer(nuwakot);
 			}
@@ -507,26 +529,32 @@
 		}
 	});
 
-	$("#inputGorkhaPalika").on('change',function(){ //console.log("input gorkha palika");
-		console.log($("#inputGorkhaPalika option:selected")[0].id);
-		var gaupalika = $("#inputGorkhaPalika option:selected")[0].id;
+	$("#inputGorkhaPalika").on('change',function(){
+	    console.log("input gorkha palika");
+
+		var selected_gaupalika = $("#inputGorkhaPalika option:selected")[0].id.toLowerCase();
 
          $.each(gorkha.getLayers(), function (key, data) {
-             console.log(data.feature.properties.FIRST_GaPa.toLowerCase());
-
-             if (data.feature.properties.FIRST_GaPa.toLowerCase() == gaupalika.toLowerCase()) {
+             var gaunpalika = data.feature.properties.FIRST_GaPa.toLowerCase();
+             gaunpalika = gaunpalika+"_m";
+             console.log(selected_gaupalika + "Selected");
+             console.log(gaunpalika);
+             if (gaunpalika == selected_gaupalika) {
                  map.fitBounds(data.getBounds());
              }
          });
 	});
 
-	$("#inputNuwaPalika").on('change',function(){ //console.log("input nuwa palika");
-		//console.log($("#inputNuwaPalika option:selected")[0].id);
-		var gaupalika = $("#inputNuwaPalika option:selected")[0].id;
-		$.each(nuwakot.getLayers(), function (key, data) {
-             // console.log(data.feature.properties.FIRST_GaPa.toLowerCase());
+	$("#inputNuwaPalika").on('change',function(){
 
-             if (data.feature.properties.FIRST_GaPa.toLowerCase() == gaupalika.toLowerCase()) {
+		var selected_gaupalika = $("#inputNuwaPalika option:selected")[0].id;
+		$.each(nuwakot.getLayers(), function (key, data) {
+
+             var gaunpalika = data.feature.properties.FIRST_GaPa.toLowerCase();
+             gaunpalika = gaunpalika+"_m";
+             console.log(selected_gaupalika + "Selected");
+             console.log(gaunpalika);
+             if (gaunpalika == selected_gaupalika) {
                  map.fitBounds(data.getBounds());
              }
          });
