@@ -7,5 +7,7 @@ Set up the project by installing the requirements.
 There are some management commands to create data and get you going straightaway.
 1. python manage.py create_districts
 2. python manage.py create_gaunpalika
+3. python manage.py create_labels
+4. python manage.py create_women_nuwakot
 3. python manage.py initialize_data
 4. python manage.py synchronize
