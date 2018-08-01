@@ -19,6 +19,5 @@ task_track_started = True
 
 @app.task(bind=True)
 def debug_task(self):
-    print("Task")
     print('Request: {0!r}'.format(self.request))
     print(self.AsyncResult(self.request.id).state)
