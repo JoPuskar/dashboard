@@ -8,7 +8,7 @@ import stdimage.validators
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('visualizations', '0013_recentstories_content'),
+        ('visualizations', '0012_remove_recentstories_content'),
     ]
 
     operations = [

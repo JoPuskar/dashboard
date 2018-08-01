@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'visualizations',
     'rest_framework',
     'tinymce',
-    'froala_editor',
     'stdimage',
     'ckeditor',
     'django_celery_beat',
