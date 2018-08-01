@@ -155,7 +155,7 @@ CELERY_TIMEZONE = 'Asia/Katmandu'
 CELERY_BEAT_SCHEDULE = {
     'synchronize': {
         'task': 'visualizations.tasks.synchronize_every_day',
-        'schedule': crontab(minute='*/1'),
+        'schedule': crontab(minute=1, hours=00),
     }
 }
 
