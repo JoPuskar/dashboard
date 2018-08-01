@@ -15,6 +15,7 @@ import os
 from celery.schedules import crontab
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -154,7 +155,7 @@ CELERY_TIMEZONE = 'Asia/Katmandu'
 CELERY_BEAT_SCHEDULE = {
     'synchronize': {
         'task': 'visualizations.tasks.synchronize_every_day',
-        'schedule': crontab(minute=1, hour=00,)
+        'schedule': crontab(minute='*/1'),
     }
 }
 
