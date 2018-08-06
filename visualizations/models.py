@@ -56,6 +56,10 @@ class Gaunpalika(models.Model):
 
 
 class Data(models.Model):
+    """
+    Stores a single data entry, related to :model:`District` and
+    :model:`Gaunpaika`.
+    """
     gaunpalika = models.ForeignKey(Gaunpalika, related_name='data', on_delete=models.CASCADE)
     houses_in_stage_i = models.PositiveIntegerField(default=0)
     houses_in_stage_ii = models.PositiveIntegerField(default=0)
