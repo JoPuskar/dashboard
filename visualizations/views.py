@@ -1,15 +1,11 @@
-
+import twitter
 from django.db.models import Sum, Count
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, UpdateView, DetailView
-from .models import HousingCompletion, ReconstructionGrant, RecentStory, \
-    District, Gaunpalika, Data, RecentStories
-import twitter
-from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView
+from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, ListView
 
 from dashboard import settings
-from .models import HousingCompletion, ReconstructionGrant, RecentStory
+from .models import HousingCompletion, ReconstructionGrant, RecentStory, Data, RecentStories
+
 
 def get_tweets():
     """
@@ -20,10 +16,13 @@ def get_tweets():
 
     # return api.GetUserTimeline(screen_name='nepalearthquake', exclude_replies=True, include_rts=False)  # includes entities
     return api.GetSearch(term="IndiaInNepal")
-    # return api.search.tweets(q='%23hillarysoqualified')
 
 
 class Dashboard(TemplateView):
+    """
+    :returns total houses, houses completed, houses in stage i, ii & iii, receieved tranche i, ii & iii, women
+    percentage, district json path and other context values
+    """
     template_name = "visualizations/dashboard.html"
 
     def get_context_data(self, **kwargs):
@@ -236,6 +235,9 @@ class Dashboard(TemplateView):
 
 
 class HousingCompletionCreate(CreateView):
+    """
+    CreateView HousingCompletion
+    """
     model = HousingCompletion
     template_name = "visualizations/housing_completion_create.html"
     fields = '__all__'
@@ -243,6 +245,9 @@ class HousingCompletionCreate(CreateView):
 
 
 class HousingCompletionUpdate(UpdateView):
+    """
+    UpdateView for HousingCompletion
+    """
     model = HousingCompletion
     template_name = "visualizations/housing_completion_create.html"
     fields = '__all__'
@@ -250,6 +255,10 @@ class HousingCompletionUpdate(UpdateView):
 
 
 class ReconstructionGrantCreate(CreateView):
+    """
+    CreateView for ReconstructionGrant
+    """
+
     model = ReconstructionGrant
     template_name = "visualizations/reconstruction_grant_create.html"
     fields = '__all__'
@@ -257,6 +266,10 @@ class ReconstructionGrantCreate(CreateView):
 
 
 class ReconstructionGrantUpdate(UpdateView):
+    """
+    UpdateView for ReconstructionGrant
+    """
+
     model = ReconstructionGrant
     template_name = "visualizations/housing_completion_create.html"
     fields = '__all__'
@@ -264,6 +277,10 @@ class ReconstructionGrantUpdate(UpdateView):
 
 
 class RecentStoryCreate(CreateView):
+    """
+    CreateView for RecentStory
+    """
+
     model = RecentStory
     template_name = "visualizations/recent_story_create.html"
     fields = '__all__'
@@ -271,6 +288,10 @@ class RecentStoryCreate(CreateView):
 
 
 class RecentStoryUpdate(UpdateView):
+    """
+    UpdateView for RecentStory
+    """
+
     model = RecentStory
     template_name = "visualizations/recent_story_create.html"
     fields = '__all__'
@@ -278,16 +299,23 @@ class RecentStoryUpdate(UpdateView):
 
 
 class RecentStoryDetail(DetailView):
+    """
+    DetailView for RecentStories
+    """
+
     model = RecentStories
     template_name = "visualizations/story_detail.html"
     context_object_name = "story"
 
 
 class DataDetail(DetailView):
+    """
+    DetailView for DataDetail
+    """
+
     model = Data
     template_name = "dashboard.html"
     context_object_name = "data"
-
 
 
 # def get_posts():
@@ -317,5 +345,9 @@ class DataDetail(DetailView):
 
 
 class RecentStoriesView(ListView):
+    """
+    ListView for RecentStories
+    """
+
     model = RecentStories
     template_name = "visualizations/stories.html"
