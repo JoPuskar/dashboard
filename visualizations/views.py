@@ -19,13 +19,15 @@ def get_tweets():
 
 
 class Dashboard(TemplateView):
-    """
-    :returns total houses, houses completed, houses in stage i, ii & iii, receieved tranche i, ii & iii, women
-    percentage, district json path and other context values
-    """
+    """ TemplateView for Dashboard"""
+
     template_name = "visualizations/dashboard.html"
 
     def get_context_data(self, **kwargs):
+        """
+        :returns total houses, houses completed, houses in stage i, ii & iii, receieved tranche i, ii & iii, women
+        percentage, district json path and other context values
+        """
         context = super().get_context_data(**kwargs)
 
         dispensed_amount = 0
