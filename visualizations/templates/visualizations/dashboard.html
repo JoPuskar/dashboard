@@ -52,11 +52,11 @@
         {% for slide_item in stories %}
         <div>
             <div class="slide-item">
-                <img src="{{slide_item.banner.url}}" alt="">
+                <a href="{% url 'visualizations:recent_story_detail' slide_item.id %}"><img src="{{slide_item.banner.url}}" alt=""></a>
                 <div class="slide-caption">
-                    <h5>{{slide_item.title}}</h5>
+                    <h5><a href="{% url 'visualizations:recent_story_detail' slide_item.id %}" title="" style="color:white;">{{slide_item.title}}</a></h5>
                     <p>
-                       {{slide_item.description}}
+                        {{slide_item.description|truncatechars:100}}<a href="{% url 'visualizations:recent_story_detail' slide_item.id %}" title="" style="color:white; font-size:80%;">... read more</a>
                     </p>
                 </div>
             </div>
