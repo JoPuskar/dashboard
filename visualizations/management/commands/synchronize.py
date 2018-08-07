@@ -59,7 +59,7 @@ class Command(BaseCommand):
                         gaunpalika = d['Municipality']
                         if gaunpalika == "None":
                             continue
-                        # print(gaunpalika)
+                        print(gaunpalika)
                         obj = Data.objects.get(gaunpalika__name=gaunpalika)
                         obj.received_tranche_i = d["received_trache_i"]
                         obj.received_tranche_ii = d["received_trache_ii"]

@@ -11,9 +11,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='recentstories',
             name='content',
             field=ckeditor.fields.RichTextField(),
+            preserve_default=False,
         ),
     ]
