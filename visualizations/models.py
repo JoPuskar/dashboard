@@ -139,4 +139,34 @@ class RecentStories(models.Model):
         return self.title
 
 
+class Event(models.Model):
+    title = models.CharField(max_length=300)
+    description = models.TextField()
+    image = models.ImageField(upload_to='event/')
+    created = models.DateTimeField()
+    updated = models.DateTimeField()
+
+    def __str__(self):
+        return self.title
+
+
+class Contact(models.Model):
+    partner_name = models.CharField(max_length=300)
+    address = models.CharField(max_length=300)
+    email = models.EmailField()
+    website = models.URLField()
+    logo = models.ImageField(upload_to='contact/')
+
+    def __str__(self):
+        return self.partner_name
+
+
+class Training(models.Model):
+    title = models.CharField(max_length=300)
+    description = models.TextField()
+    image = models.ImageField(upload_to='training/')
+
+    def __str__(self):
+        return self.title
+
 

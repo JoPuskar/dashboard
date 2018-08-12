@@ -15,7 +15,7 @@ def get_tweets():
                       access_token_key=settings.TOKEN, access_token_secret=settings.TOKEN_SECRET)
 
     # return api.GetUserTimeline(screen_name='nepalearthquake', exclude_replies=True, include_rts=False)  # includes entities
-    return api.GetSearch(term="IndiaInNepal")
+    return api.GetSearch(term="IndiaInNepalReconstruction")
 
 
 class Dashboard(TemplateView):
