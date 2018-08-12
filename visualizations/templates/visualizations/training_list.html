@@ -1,0 +1,49 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+<!-- details card section starts from here -->
+<section class="details-card">
+    <div class="container">
+        <div class="row">
+            {% for training in trainings %}
+
+
+                <div class="col-md-4">
+                    <div class="card-content">
+                        <div class="card-img">
+                            {% if training.image %}
+                                <img src="{{ training.image.url }}" alt="">
+
+                             {% else %}
+                                <img src="https://placeimg.com/380/230/nature" alt="">
+
+                            {% endif %}
+                        </div>
+                        <div class="card-desc">
+                            <h3>{{ training.title }}</h3>
+                            <p>{{ training.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+    </div>
+    </div>
+</section>
+<!-- details card section starts from here -->
+</body>
+</html>
+
+
+

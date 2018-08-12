@@ -1,0 +1,61 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+<!-- details card section starts from here -->
+<section class="details-card">
+    <div class="container">
+        <div class="row">
+            {% for event in events %}
+
+            <div class="col-md-12">
+                <div class="card-content eve">
+                  <div class="row">
+
+                    <div class="col-md-4 card-img">
+                        {% if event.image %}
+                            <img src="{{ event.image.url }}" alt="">
+
+                            {% else %}
+                                 <img src="https://placeimg.com/380/230/nature" alt="">
+                        {% endif %}
+                       <!--  <span><h4>heading</h4></span> -->
+                    </div>
+                    <div class="col-md-8 card-desc">
+
+                             <h3>{{ event.title }}</h3>
+                            <p>{{ event.description }}</p>
+                           <!--  <a href="#" class="">Read More</a> -->
+                            <p class="text-right time"> {{ event.updated }}</p>
+                           <!--  <a href="#" class="btn-card">Read</a>    -->
+
+
+
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+                      {% endfor %}
+
+        </div>
+    </div>
+
+</section>
+<!-- details card section starts from here -->
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+<!-- details card section starts from here -->
+<section class="details-card">
+    <div class="container">
+        <div class="row">
+            {% for contact in contacts %}
+
+
+                <div class="col-md-12">
+                    <div class="card-content eve text-center">
+                        {% if contact.logo %}
+                            <img src="{{ contact.logo.url }}">
+
+                            {% else %}
+                        <img src="{% static 'assets/img/undp.png' %}" class="contact_img">
+
+                        {% endif %}
+                        <h3>{{ contact.partner_name }}</h3>
+
+                        <p class="text-center w-75 m-auto">{{ contact.address }}</p>
+                        <p class="text-center w-75 m-auto"><i class="fa fa-envelope"></i> {{ contact.email }}</p>
+                        <p class="text-center w-75 m-auto"><i class="fa fa-phone"></i> {{ contact.phone }}</p>
+                        <p class="text-center w-75 m-auto"><i class="fa fa-globe"></i> {{ contact.website }}</p>
+                        <br>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
+
+
+
+

@@ -17,6 +17,8 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <script src="{% static 'assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
     <style>
 
         #map {
@@ -65,7 +67,20 @@
     </div>
 </div>
 
-
+ <div class="sub-nav">
+<nav class="navbar navbar-light bg-gray sub">
+  <a class="navbar-brand sub-menu" href="#"><i class="fa fa-home"></i></a>
+  <a class="navbar-brand sub-menu" href="{% url 'visualizations:about' %}">About Us</a>
+<!--   <a class="navbar-brand sub-menu" href="#">UNDP</a>
+  <a class="navbar-brand sub-menu" href="#">UNOPS</a>
+  <a class="navbar-brand sub-menu" href="photo.php">Photos</a> -->
+  <a class="navbar-brand sub-menu" href="#">Media</a>
+  <a class="navbar-brand sub-menu" href="#">IEC Materials</a>
+  <a class="navbar-brand sub-menu" href="{% url 'visualizations:event' %}">Events</a>
+  <a class="navbar-brand sub-menu" href={% url 'visualizations:training' %}>Trainings</a>
+  <a class="navbar-brand sub-menu" href="{% url 'visualizations:contact' %}">Contact</a>
+</nav>
+</div>
 <div class="bg-white module-padding">
     <div class="container">
         <div class="stat-wrap">
@@ -468,21 +483,7 @@
             <div class="col-md-4">
                         <div class="block social-block social-twitter" style="overflow-y:scroll; height:500px">
                                     <h1>Twitter #IndiaInNepalStories</h1>
-                                    <ul >
-                                        {% for tweet in tweets %}
-                                        <li >
-                                            <div class="tweet-meta clearfix" >
-                                                <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}" target="_blank">
-                                                    <img src="{{ tweet.user.profile_image_url }}" width="48" height="48" />
-                                                    <h2>{{ tweet.user.name }}<br /></h2>
-                                                    <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
-                                                </a>
-                                            </div>
-                                            <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
-                                        </li>
-                                        {% endfor %}
 
-                                    </ul>
                                 </div>
                     </div>
         </div>

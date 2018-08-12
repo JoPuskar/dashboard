@@ -4,18 +4,20 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, ListView
 
 from dashboard import settings
-from .models import HousingCompletion, ReconstructionGrant, RecentStory, Data, RecentStories
+from .models import HousingCompletion, ReconstructionGrant, RecentStory, Data, RecentStories, Event, Contact, Training
 
 
 def get_tweets():
     """
     returns twitter feed with settings as described below, contains all related twitter settings
     """
-    api = twitter.Api(consumer_key=settings.CONSUMER_KEY, consumer_secret=settings.CONSUMER_SECERET,
-                      access_token_key=settings.TOKEN, access_token_secret=settings.TOKEN_SECRET)
+    # api = twitter.Api(consumer_key=settings.CONSUMER_KEY, consumer_secret=settings.CONSUMER_SECERET,
+    #                   access_token_key=settings.TOKEN, access_token_secret=settings.TOKEN_SECRET)
+    api = 'hello'
 
     # return api.GetUserTimeline(screen_name='nepalearthquake', exclude_replies=True, include_rts=False)  # includes entities
-    return api.GetSearch(term="IndiaInNepalReconstruction")
+    # return api.GetSearch(term="IndiaInNepalReconstruction")
+    return api
 
 
 class Dashboard(TemplateView):
@@ -353,3 +355,22 @@ class RecentStoriesView(ListView):
 
     model = RecentStories
     template_name = "visualizations/stories.html"
+
+
+class EventsListView(ListView):
+    model = Event
+    context_object_name = 'events'
+
+
+class TrainingListView(ListView):
+    model = Training
+    context_object_name = 'trainings'
+
+
+class ContactListView(ListView):
+    model = Contact
+    context_object_name = 'contacts'
+
+
+class AboutView(TemplateView):
+    template_name = 'visualizations/about.html'
