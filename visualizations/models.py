@@ -1,8 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 from stdimage.models import StdImageField
 from ckeditor.fields import RichTextField
 from stdimage.validators import MinSizeValidator
+
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class HousingCompletion(models.Model):
@@ -12,6 +15,9 @@ class HousingCompletion(models.Model):
     def __str__(self):
         return self.label
 
+    class Meta:
+        verbose_name_plural = 'Housing Completion'
+
 
 class ReconstructionGrant(models.Model):
     label = models.CharField(max_length=120)
@@ -19,6 +25,9 @@ class ReconstructionGrant(models.Model):
 
     def __str__(self):
         return self.label
+
+    class Meta:
+        verbose_name_plural = 'Reconstruction Grant'
 
 
 class RecentStory(models.Model):
@@ -37,6 +46,9 @@ class District(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = 'District'
+
 
 class Gaunpalika(models.Model):
     district = models.ForeignKey(District, related_name='gaunpalika', on_delete=models.CASCADE)
@@ -53,6 +65,9 @@ class Gaunpalika(models.Model):
             if self.is_municipality:
                 return "{} Municipality".format(self.name)
             return "{} Gaunpalika".format(self.name)
+
+    class Meta:
+        verbose_name_plural = 'Gaunpalika'
 
 
 class Data(models.Model):
@@ -75,6 +90,9 @@ class Data(models.Model):
 
     def __str__(self):
         return "{} data".format(self.gaunpalika.name)
+
+    class Meta:
+        verbose_name_plural = 'Data'
 
     def get_version(self):
         return self.version
@@ -138,35 +156,49 @@ class RecentStories(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name_plural = 'Recent Stories'
+
 
 class Event(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=300)
     description = models.TextField()
     image = models.ImageField(upload_to='event/')
-    created = models.DateTimeField()
-    updated = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name_plural = 'Event'
 
 
 class Contact(models.Model):
     partner_name = models.CharField(max_length=300)
-    address = models.CharField(max_length=300)
-    email = models.EmailField()
-    website = models.URLField()
-    logo = models.ImageField(upload_to='contact/')
+    address = models.CharField(max_length=300, blank=True)
+    email = models.EmailField(blank=True)
+    website = models.URLField(blank=True)
+    phone = PhoneNumberField(blank=True)
+    logo = models.ImageField(upload_to='contact/', blank=True)
 
     def __str__(self):
         return self.partner_name
 
+    class Meta:
+        verbose_name_plural = 'Contact'
+
 
 class Training(models.Model):
     title = models.CharField(max_length=300)
-    description = models.TextField()
-    image = models.ImageField(upload_to='training/')
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='training/', blank=True)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name_plural = 'Training'
 
 

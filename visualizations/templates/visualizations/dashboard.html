@@ -148,34 +148,34 @@
                     <div class="pop-body">
                         <div class="pop-info-item">
                             Houses Completed
-                            <div class="count">{{ all_data.total_houses_completed }} ({{ all_data.total_houses_completed_percentage }}%)</div>
+                            <div class="count">{{ all_data.total_houses_completed }} ({{ all_data.total_houses_completed_percentage|floatformat:"0" }}%)</div>
                         </div>
                         <div class="row no-gutters">
                             <div class="col">
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.total_houses_stage_i }} ({{ all_data.ths1_percentage }}%)</div>
+                                    <div class="count">{{ all_data.total_houses_stage_i }} ({{ all_data.ths1_percentage|floatformat:"0" }}%)</div>
                                     Houses in Stage - I
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.total_houses_stage_ii }} ({{ all_data.ths1_percentage }}%)</div>
+                                    <div class="count">{{ all_data.total_houses_stage_ii }} ({{ all_data.ths1_percentage|floatformat:"0" }}%)</div>
                                     Houses in Stage - II
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.total_houses_stage_iii }} ({{ all_data.ths3_percentage }}%)</div>
+                                    <div class="count">{{ all_data.total_houses_stage_iii }} ({{ all_data.ths3_percentage|floatformat:"0" }}%)</div>
                                     Houses in Stage - III
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.total_received_tranche_i }} ({{ all_data.trt1_percentage }}%)</div>
+                                    <div class="count">{{ all_data.total_received_tranche_i }} ({{ all_data.trt1_percentage|floatformat:"0" }}%)</div>
                                     Received Tranche - I
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.total_received_tranche_ii }} ({{ all_data.trt2_percentage }}%)</div>
+                                    <div class="count">{{ all_data.total_received_tranche_ii }} ({{ all_data.trt2_percentage|floatformat:"0"  }}%)</div>
                                     Received Tranche - II
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.total_received_tranche_iii }} ({{ all_data.trt3_percentage }}%)</div>
+                                    <div class="count">{{ all_data.total_received_tranche_iii }} ({{ all_data.trt3_percentage|floatformat:"0" }}%)</div>
                                     Received Tranche - III
                                 </div>
                             </div>

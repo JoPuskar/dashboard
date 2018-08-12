@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'stdimage',
     'ckeditor',
     'django_celery_beat',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
