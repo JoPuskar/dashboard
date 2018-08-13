@@ -4,18 +4,19 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, ListView
 
 from dashboard import settings
-from .models import HousingCompletion, ReconstructionGrant, RecentStory, Data, RecentStories, Event, Contact, Training
+from .models import HousingCompletion, ReconstructionGrant, RecentStory, Data, RecentStories, Event, Contact, Training, Media, ProjectStakeholders, DispensedAmount
 
 
 def get_tweets():
     """
     returns twitter feed with settings as described below, contains all related twitter settings
     """
-    api = twitter.Api(consumer_key=settings.CONSUMER_KEY, consumer_secret=settings.CONSUMER_SECERET,
-                      access_token_key=settings.TOKEN, access_token_secret=settings.TOKEN_SECRET)
-
+    # api = twitter.Api(consumer_key=settings.CONSUMER_KEY, consumer_secret=settings.CONSUMER_SECERET,
+    #                   access_token_key=settings.TOKEN, access_token_secret=settings.TOKEN_SECRET)
+    api= 'helo'
     # return api.GetUserTimeline(screen_name='nepalearthquake', exclude_replies=True, include_rts=False)  # includes entities
-    return api.GetSearch(term="IndiaInNepalReconstruction")
+    # return api.GetSearch(term="IndiaInNepalReconstruction")
+    return api
 
 
 class Dashboard(TemplateView):
@@ -30,7 +31,6 @@ class Dashboard(TemplateView):
         """
         context = super().get_context_data(**kwargs)
 
-        dispensed_amount = 0
 
         all_data = {}
         data = Data.objects.all()
@@ -100,7 +100,8 @@ class Dashboard(TemplateView):
                 nuwakot_total_received_tranche_ii += data.received_tranche_ii
                 nuwakot_total_received_tranche_iii += data.received_tranche_iii
 
-        dispensed_amount = (total_received_tranche_i  *  50000) + (total_received_tranche_ii * 150000) + (total_received_tranche_iii * 100000)
+        dispensed_amount_obj = DispensedAmount.objects.all()[0]
+        dispensed_amount = dispensed_amount_obj.amount
         progress = (dispensed_amount * 100) / (50000*300000)
         progress = int(progress)
 
@@ -198,7 +199,7 @@ class Dashboard(TemplateView):
         context['reconstruction_values'] = [total_received_tranche_i, total_received_tranche_ii, \
                                             total_received_tranche_iii]
 
-        context['recent_story'] = RecentStories.objects.all()
+        context['recent_story'] = RecentStories.objects.order_by('-updated')
 
         context['district_json_path'] = "/static/json/District.json"
         context['gorkha_json_path'] = "/static/json/Gorkha.json"
@@ -232,7 +233,8 @@ class Dashboard(TemplateView):
         context['tweets'] = get_tweets()
         context['dispensed_amount'] = dispensed_amount
         context['progress'] = progress
-        context['stories'] = RecentStories.objects.all()[:5]
+        context['stories'] = RecentStories.objects.order_by('-updated')[:5]
+        context['project_stakeholders'] = ProjectStakeholders.objects.all()
         return context
 
 
@@ -354,6 +356,9 @@ class RecentStoriesView(ListView):
     model = RecentStories
     template_name = "visualizations/stories.html"
 
+    def get_queryset(self):
+        return RecentStories.objects.order_by('-updated')
+
 
 class EventsListView(ListView):
     model = Event
@@ -372,3 +377,11 @@ class ContactListView(ListView):
 
 class AboutView(TemplateView):
     template_name = 'visualizations/about.html'
+
+
+class MediaView(ListView):
+    model = Media
+    context_object_name = 'media'
+
+
+

@@ -25,6 +25,10 @@ section{
 	width: 100%;
 	height: auto;
 	display: block;
+    max-width: 350px;
+    max-height: 211.83px;
+    min-width: 350px;
+    min-height: 211.83px;
 }
 
 .card-img span {
@@ -115,6 +119,61 @@ a.btn-card {
 img.contact_img {
     height: 100px;
     padding-top: 20px;
+    max-height: 100px;
 }
 
 
+/*media*/
+button.btn.btn-outline-black.waves-effect.filter {
+    margin-left: 15px;
+    margin-top: 50px;
+}
+
+img.img-fluid.media {
+    max-height: 235px;
+    margin-bottom: 10px;
+}
+
+button.btn.btn-outline-black.waves-effect.filter.active {
+    background-color: #00628e;
+    color: #fff;
+}
+button.btn.btn-outline-black.waves-effect.filter:active {
+    background-color: #00628e;
+    color: #fff;
+}
+button.btn.btn-outline-black.waves-effect.filter:hover {
+    background-color: #00628e;
+    color: #fff;
+}
+button.btn.btn-outline-black.waves-effect.filter:focus {
+    background-color: #00628e;
+    color: #fff;
+}
+
+iframe.video{
+    height: 230px;
+    width: 350px;
+    max-height:230px;
+    max-width: 350px; 
+}
+
+p.media-dsc {
+    font-size: 10px;
+    float: right;
+    color: gray;
+    margin-right: 10px;
+}
+
+video.media-vdo {
+    height: 274px;
+    margin-top: -39px;
+    width: 350px;
+}
+
+audio.media-audio {
+    margin-top: -43px;
+    position: absolute;
+    max-width: 350px;
+    min-width: 350px;
+}

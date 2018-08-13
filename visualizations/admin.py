@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from visualizations.models import HousingCompletion, ReconstructionGrant, RecentStories,\
-    District, Gaunpalika, Data, Contact, Training, Event
+    District, Gaunpalika, Data, Contact, Training, Event, Media, ProjectStakeholders, DispensedAmount
 
 admin.site.site_header = 'EOI'
 admin.site.index_title = 'EOI CMS'
@@ -34,7 +34,7 @@ class ContactAdmin(admin.ModelAdmin):
 
 
 class RecentStoriesAdmin(admin.ModelAdmin):
-    list_display = ['title', 'description', 'content', 'thumbnail', 'banner']
+    list_display = ['title', 'description', 'thumbnail', 'banner']
 
 
 class GaunpalikaAdmin(admin.ModelAdmin):
@@ -58,4 +58,8 @@ admin.site.register(RecentStories, RecentStoriesAdmin)
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(Training, TrainingAdmin)
 admin.site.register(Event, EventAdmin)
+admin.site.register(Media)
+admin.site.register(ProjectStakeholders)
+admin.site.register(DispensedAmount)
+
 

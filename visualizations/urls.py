@@ -18,5 +18,6 @@ urlpatterns = [
     path('contacts', views.ContactListView.as_view(), name="contact"),
     path('events', views.EventsListView.as_view(), name="event"),
     path('about', views.AboutView.as_view(), name="about"),
+    path('media', views.MediaView.as_view(), name="media"),
 
 ]

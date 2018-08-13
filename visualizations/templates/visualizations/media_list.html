@@ -1,0 +1,83 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+<div class="container">
+    <!-- Grid row -->
+    <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-12 d-flex justify-content-center mb-5">
+
+            <button type="button" class="btn btn-outline-black waves-effect filter active show" data-toggle="pill">All
+            </button>
+            <button type="button" class="btn btn-outline-black waves-effect filter" data-toggle="pill">Photo</button>
+            <button type="button" class="btn btn-outline-black waves-effect filter" data-toggle="pill">Video</button>
+            <button type="button" class="btn btn-outline-black waves-effect filter" data-toggle="pill">Audio</button>
+
+
+        </div>
+        <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+    <!-- Grid row -->
+    <div>
+
+        <div class="row">
+            <div class="col-md-4 ">
+                <video class="media-vdo" controls>
+                    <source src="{%  static 'assets/video/test.mp4" type="video/mp4' %}">
+                    <source src="assets/video/test.mp4" type="video/ogg">
+                    Your browser does not support HTML5 video.
+                </video>
+
+                <h6 class="text-center"> Video 1</h6>
+                <p class="media-dsc">14 Aug,2018</p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 ">
+                <img class="img-fluid media"
+                     src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
+                     alt="Card image cap">
+                <audio controls class="media-audio">
+                    <source src="assets/audio/test.ogg" type="audio/ogg">
+                    <source src="assets/audio/test.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <h6 class="text-center"> Audio 2</h6>
+                <p class="media-dsc">14 Aug,2018</p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 ">
+                <img class="img-fluid media"
+                     src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
+                     alt="Card image cap">
+                <h6 class="text-center"> Photo 3</h6>
+                <p class="media-dsc">14 Aug,2018</p>
+            </div>
+        </div>
+    </div>
+    <!-- Grid row -->
+</div>
+</body>
+</html>
+
+
+

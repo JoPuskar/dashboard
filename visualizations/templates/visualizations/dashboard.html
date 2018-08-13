@@ -57,8 +57,16 @@
         {% for slide_item in stories %}
             <div>
                 <div class="slide-item">
+                    {% if slide_item.use_banner %}
                     <a href="{% url 'visualizations:recent_story_detail' slide_item.id %}"><img
                             src="{{ slide_item.banner.url }}" alt=""></a>
+
+                        {% else %}
+
+                        <a href="{% url 'visualizations:recent_story_detail' slide_item.id %}"><img
+                            src="{{ slide_item.banner.url }}" alt=""></a>
+
+                    {% endif %}
                     <div class="slide-caption">
                         <h5><a href="{% url 'visualizations:recent_story_detail' slide_item.id %}" title=""
                                style="color:white;">{{ slide_item.title }}</a></h5>
@@ -81,7 +89,7 @@
         <!--   <a class="navbar-brand sub-menu" href="#">UNDP</a>
           <a class="navbar-brand sub-menu" href="#">UNOPS</a>
           <a class="navbar-brand sub-menu" href="photo.php">Photos</a> -->
-        <a class="navbar-brand sub-menu" href="#">Media</a>
+        <a class="navbar-brand sub-menu" href="{% url 'visualizations:media' %}">Media</a>
         <a class="navbar-brand sub-menu" href="#">IEC Materials</a>
         <a class="navbar-brand sub-menu" href="{% url 'visualizations:event' %}">Events</a>
         <a class="navbar-brand sub-menu" href={% url 'visualizations:training' %}>Trainings</a>
@@ -92,12 +100,9 @@
     <div class="container">
         <div class="stat-wrap">
             <div class="stat-head">
-                <h4><strong>Nepal Housing Reconstruction Program</strong></h4>
+                <h4><strong>Government of India Support to Nepal Housing Reconstruction Program</strong></h4>
                 <div class="progress-label">&#8377; {{ dispensed_amount|intcomma }} Disbursed</div>
-                <div class="progress" style="height: 20px;">
-                    <div class="progress-bar bg-primary-gradient" role="progressbar" style="width: {{ progress }}%"
-                         aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
+
             </div>
             <div class="stat-body bg-gray padding-large margin-top-large">
                 <div class="row">
@@ -182,19 +187,19 @@
                                     <div class="count">{{ all_data.total_houses_stage_i }}
                                         ({{ all_data.ths1_percentage|floatformat:"0" }}%)
                                     </div>
-                                    Houses in Stage - I
+                                    Foundation and Plinth
                                 </div>
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.total_houses_stage_ii }}
                                         ({{ all_data.ths1_percentage|floatformat:"0" }}%)
                                     </div>
-                                    Houses in Stage - II
+                                    Walls and Lintel
                                 </div>
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.total_houses_stage_iii }}
                                         ({{ all_data.ths3_percentage|floatformat:"0" }}%)
                                     </div>
-                                    Houses in Stage - III
+                                    Roof and completion
                                 </div>
                             </div>
                             <div class="col">
@@ -526,43 +531,42 @@
 <div class="bg-white module-padding">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="social-wrap">
-                    <div class="fb-page" data-href="https://www.facebook.com/IndiaInNepal/" data-tabs="timeline"
-                         data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
-                         data-show-facepile="true">
-                        <blockquote cite="https://www.facebook.com/IndiaInNepal/" class="fb-xfbml-parse-ignore"><a
-                                href="https://www.facebook.com/IndiaInNepal/">Embassy of India in Nepal</a></blockquote>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-4">
-                <div class="block social-block social-twitter" style="overflow-y:scroll; height:500px">
-                    <h1>Twitter #IndiaInNepalStories</h1>
-                    <ul>
-                        {% for tweet in tweets %}
-                            <li>
-                                <div class="tweet-meta clearfix">
-                                    <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}"
-                                       target="_blank">
-                                        <img src="{{ tweet.user.profile_image_url }}" width="48" height="48"/>
-                                        <h2>{{ tweet.user.name }}<br/></h2>
-                                        <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
-                                    </a>
-                                </div>
-                                <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
-                            </li>
-                        {% endfor %}
-                    </ul>
 
 
-                </div>
+            <div class="col-md-12">
+                <a class="twitter-timeline" data-height="500"
+                   href="#">
+
+                    <h1>Twitter #IndiaInNepalStories</h1></a>
+
+
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<div class="bg-gray module-padding">
+    <div class="container">
+
+        <!-- project Stakeholders -->
+
+        <h3 class="text-center partner">Project Stakeholders</h3>
+        <div class="row">
+            {% for project_stakeholder in project_stakeholders %}
+                <div class="col-md-3 text-center"><a href="#"><img src="{{ project_stakeholder.logo.url }}" class="stake"></a></div>
+
+            {% endfor %}
+
+
         </div>
     </div>
 </div>
-
 
 <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-3.2.1.min.js"><\/script>')</script>-->

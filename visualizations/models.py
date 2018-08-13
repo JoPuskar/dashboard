@@ -1,11 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 from stdimage.models import StdImageField
 from ckeditor.fields import RichTextField
 from stdimage.validators import MinSizeValidator
 
 from phonenumber_field.modelfields import PhoneNumberField
+
+MEDIA_CHOICES = (
+    ("AUDIO", "Audio"),
+    ("VIDEO", "Video"),
+    ("IMAGE", "Image"),
+
+)
 
 
 class HousingCompletion(models.Model):
@@ -152,6 +160,9 @@ class RecentStories(models.Model):
     content = RichTextField()
     thumbnail = StdImageField(validators=[MinSizeValidator(100, 100)])
     banner = StdImageField(validators=[MinSizeValidator(1600, 600)])
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    use_banner = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
@@ -202,3 +213,31 @@ class Training(models.Model):
         verbose_name_plural = 'Training'
 
 
+class DispensedAmount(models.Model):
+    amount = models.FloatField(default=0)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = 'Dispensed Amount'
+
+
+class Media(models.Model):
+    category = models.CharField(choices=MEDIA_CHOICES, max_length=300, default=MEDIA_CHOICES[0][0])
+    file = models.FileField(upload_to='media/', null=True, blank=True)
+    title = models.CharField(max_length=300)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Media'
+
+
+class ProjectStakeholders(models.Model):
+    logo = models.ImageField(upload_to='project_stakeholders/')
+
+    class Meta:
+        verbose_name_plural = 'Project Stakeholders'
