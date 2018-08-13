@@ -69,6 +69,7 @@
                                     <h6 class="text-center"> {{ media.title }}</h6>
                                     <p class="media-dsc">{{ media.updated }}</p>
                                 </div>
+
                             {% endif %}
                             <!-- Grid column -->
 
@@ -104,6 +105,9 @@
                                     <p class="media-dsc">{{ media.updated }}</p>
                                 </div>
                             {% endif %}
+
+                             {% empty %}
+                                <p>No media found.</p>
                         {% endfor %}
 
 
@@ -126,6 +130,8 @@
                         <h6 class="text-center"> {{ image.title }}</h6>
                         <p class="media-dsc">{{ image.updated }}</p>
                     </div>
+                    {% empty %}
+                    <p>No Image Found.</p>
                 {% endfor %}
 
             </div>
@@ -146,6 +152,8 @@
                         <h6 class="text-center"> {{ video.title }}</h6>
                         <p class="media-dsc">{{ video.updated }}</p>
                     </div>
+                    {% empty %}
+                    <p>No Video Found.</p>
                 {% endfor %}
 
             </div>
@@ -168,6 +176,8 @@
                         <h6 class="text-center"> {{ audio.title }}</h6>
                         <p class="media-dsc">{{ audio.updated }}</p>
                     </div>
+                    {% empty %}
+                    <p>No Audio Found.</p>
                 {% endfor %}
 
             </div>
