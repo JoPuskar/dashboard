@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, ListView
 
 from dashboard import settings
-from .models import HousingCompletion, ReconstructionGrant, RecentStory, Data, RecentStories, Event, Contact, Training, Media, ProjectStakeholders, DispensedAmount
+from .models import HousingCompletion, ReconstructionGrant, RecentStory, Data, RecentStories, Event, Contact, Training, Media, ProjectStakeholders, DispensedAmount, AboutUs
 
 
 def get_tweets():
@@ -235,6 +235,7 @@ class Dashboard(TemplateView):
         context['progress'] = progress
         context['stories'] = RecentStories.objects.order_by('-updated')[:5]
         context['project_stakeholders'] = ProjectStakeholders.objects.all()
+
         return context
 
 
@@ -364,6 +365,9 @@ class EventsListView(ListView):
     model = Event
     context_object_name = 'events'
 
+    def get_queryset(self):
+        return Event.objects.order_by('-updated')
+
 
 class TrainingListView(ListView):
     model = Training
@@ -375,13 +379,28 @@ class ContactListView(ListView):
     context_object_name = 'contacts'
 
 
-class AboutView(TemplateView):
+class AboutView(ListView):
+    model = AboutUs
     template_name = 'visualizations/about.html'
+    context_object_name = 'about'
 
 
 class MediaView(ListView):
     model = Media
-    context_object_name = 'media'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['media_list'] = Media.objects.all().order_by('-updated')
+        context['audios'] = Media.objects.filter(category='AUDIO').order_by('-updated')
+        context['videos'] = Media.objects.filter(category='VIDEO').order_by('-updated')
+        context['images'] = Media.objects.filter(category='IMAGE').order_by('-updated')
+
+        return context
+
+
+
+
+
 
 
 

@@ -241,3 +241,14 @@ class ProjectStakeholders(models.Model):
 
     class Meta:
         verbose_name_plural = 'Project Stakeholders'
+
+
+class AboutUs(models.Model):
+    image = models.ImageField(upload_to='about/', null=True, blank=True)
+    content = RichTextField()
+
+    def __str__(self):
+        return self.content[:15]
+
+    class Meta:
+        verbose_name_plural = 'About Us'
