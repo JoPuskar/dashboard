@@ -58,13 +58,13 @@
             <div>
                 <div class="slide-item">
                     {% if slide_item.use_banner %}
-                    <a href="{% url 'visualizations:recent_story_detail' slide_item.id %}"><img
-                            src="{{ slide_item.banner.url }}" alt=""></a>
+                        <a href="{% url 'visualizations:recent_story_detail' slide_item.id %}"><img
+                                src="{{ slide_item.banner.url }}" alt=""></a>
 
-                        {% else %}
+                    {% else %}
 
                         <a href="{% url 'visualizations:recent_story_detail' slide_item.id %}"><img
-                            src="{{ slide_item.banner.url }}" alt=""></a>
+                                src="{{ slide_item.banner.url }}" alt=""></a>
 
                     {% endif %}
                     <div class="slide-caption">
@@ -102,6 +102,11 @@
             <div class="stat-head">
                 <h4><strong>Government of India Support to Nepal Housing Reconstruction Program</strong></h4>
                 <div class="progress-label">&#8377; {{ dispensed_amount|intcomma }} Disbursed</div>
+
+                <div class="progress" style="height: 20px;">
+                    <div class="progress-bar bg-primary-gradient" role="progressbar" style="width: {{ progress }}%"
+                         aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
 
             </div>
             <div class="stat-body bg-gray padding-large margin-top-large">
@@ -539,8 +544,22 @@
 
                     <h1>Twitter #IndiaInNepalStories</h1></a>
 
-
-                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <ul>
+                    {% for tweet in tweets %}
+                        <li>
+                            <div class="tweet-meta clearfix">
+                                <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}"
+                                   target="_blank">
+                                    <img src="{{ tweet.user.profile_image_url }}" width="48" height="48"/>
+                                    <h2>{{ tweet.user.name }}<br/></h2>
+                                    <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
+                                </a>
+                            </div>
+                            <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
 
 
@@ -559,7 +578,8 @@
         <h3 class="text-center partner">Project Stakeholders</h3>
         <div class="row">
             {% for project_stakeholder in project_stakeholders %}
-                <div class="col-md-3 text-center"><a href="#"><img src="{{ project_stakeholder.logo.url }}" class="stake"></a></div>
+                <div class="col-md-3 text-center"><a href="#"><img src="{{ project_stakeholder.logo.url }}"
+                                                                   class="stake"></a></div>
 
             {% endfor %}
 

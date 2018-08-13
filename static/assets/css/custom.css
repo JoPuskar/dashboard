@@ -177,3 +177,14 @@ audio.media-audio {
     max-width: 350px;
     min-width: 350px;
 }
+
+/*media*/
+ul#pills-tab{
+    margin-left: 400px;
+    margin-top: 10px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #00628e;
+}

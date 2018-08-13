@@ -11,12 +11,12 @@ def get_tweets():
     """
     returns twitter feed with settings as described below, contains all related twitter settings
     """
-    # api = twitter.Api(consumer_key=settings.CONSUMER_KEY, consumer_secret=settings.CONSUMER_SECERET,
-    #                   access_token_key=settings.TOKEN, access_token_secret=settings.TOKEN_SECRET)
-    api= 'helo'
+    api = twitter.Api(consumer_key=settings.CONSUMER_KEY, consumer_secret=settings.CONSUMER_SECERET,
+                      access_token_key=settings.TOKEN, access_token_secret=settings.TOKEN_SECRET)
+    # api= 'helo'
     # return api.GetUserTimeline(screen_name='nepalearthquake', exclude_replies=True, include_rts=False)  # includes entities
-    # return api.GetSearch(term="IndiaInNepalReconstruction")
-    return api
+    return api.GetSearch(term="IndiaInNepalReconstruction")
+    # return api
 
 
 class Dashboard(TemplateView):
