@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from visualizations.models import HousingCompletion, ReconstructionGrant, RecentStories,\
-    District, Gaunpalika, Data, Contact, Training, Event, Media, ProjectStakeholders, DispensedAmount, AboutUs
+    District, Gaunpalika, Data, Contact, Training, Event, Media, ProjectStakeholders, DispensedAmount, AboutUs, TotalAmount
 
 admin.site.site_header = 'EOI'
 admin.site.index_title = 'EOI CMS'
@@ -62,5 +62,4 @@ admin.site.register(Media)
 admin.site.register(ProjectStakeholders)
 admin.site.register(DispensedAmount)
 admin.site.register(AboutUs)
-
-
+admin.site.register(TotalAmount)

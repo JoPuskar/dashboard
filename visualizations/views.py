@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, ListView
 
 from dashboard import settings
-from .models import HousingCompletion, ReconstructionGrant, RecentStory, Data, RecentStories, Event, Contact, Training, Media, ProjectStakeholders, DispensedAmount, AboutUs
+from .models import HousingCompletion, ReconstructionGrant, RecentStory, Data, RecentStories, Event, Contact, Training, Media, ProjectStakeholders, DispensedAmount, AboutUs, TotalAmount
 
 
 def get_tweets():
@@ -102,7 +102,8 @@ class Dashboard(TemplateView):
 
         dispensed_amount_obj = DispensedAmount.objects.all()[0]
         dispensed_amount = dispensed_amount_obj.amount
-        progress = (dispensed_amount * 100) / (50000*300000)
+        total_amount_obj = TotalAmount.objects.all()[0]
+        progress = (dispensed_amount * 100) / total_amount_obj.amount
         progress = int(progress)
 
         all_data['total_houses_completed'] = total_houses_completed

@@ -218,8 +218,21 @@ class DispensedAmount(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.amount
+
     class Meta:
         verbose_name_plural = 'Dispensed Amount'
+
+
+class TotalAmount(models.Model):
+    amount = models.FloatField()
+
+    def __str__(self):
+        return self.amount
+
+    class Meta:
+        verbose_name_plural = 'Total Amount'
 
 
 class Media(models.Model):
