@@ -85,12 +85,12 @@
 <div class="sub-nav">
     <nav class="navbar navbar-light bg-gray sub">
         <a class="navbar-brand sub-menu" href="#"><i class="fa fa-home"></i></a>
-        <a class="navbar-brand sub-menu" href="{% url 'visualizations:about' %}">About Us</a>
+        <a class="navbar-brand sub-menu" href="{% url 'visualizations:about' %}">About</a>
         <!--   <a class="navbar-brand sub-menu" href="#">UNDP</a>
           <a class="navbar-brand sub-menu" href="#">UNOPS</a>
           <a class="navbar-brand sub-menu" href="photo.php">Photos</a> -->
         <a class="navbar-brand sub-menu" href="{% url 'visualizations:media' %}">Media</a>
-        <a class="navbar-brand sub-menu" href="#">IEC Materials</a>
+        <a class="navbar-brand sub-menu" href="#">Materials</a>
         <a class="navbar-brand sub-menu" href="{% url 'visualizations:event' %}">Events</a>
         <a class="navbar-brand sub-menu" href={% url 'visualizations:training' %}>Trainings</a>
         <a class="navbar-brand sub-menu" href="{% url 'visualizations:contact' %}">Contact</a>
@@ -254,26 +254,26 @@
                         <div class="pop-info-item">
                             Houses Completed
                             <div class="count">{{ all_data.gorkha_total_houses_completed }}
-                                ({{ all_data.gorkha_houses_completed_percentage }}%)
+                                ({{ all_data.gorkha_houses_completed_percentage|floatformat:"0"}}%)
                             </div>
                         </div>
                         <div class="row no-gutters">
                             <div class="col">
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.gorkha_total_houses_stage_i }}
-                                        ({{ all_data.gorkha_ths1_percentage }}%)
+                                        ({{ all_data.gorkha_ths1_percentage|floatformat:"0"}}%)
                                     </div>
                                     Houses in Stage - I
                                 </div>
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.gorkha_total_houses_stage_ii }}
-                                        ({{ all_data.gorkha_ths2_percentage }}%)
+                                        ({{ all_data.gorkha_ths2_percentage|floatformat:"0"}}%)
                                     </div>
                                     Houses in Stage - II
                                 </div>
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.gorkha_total_houses_stage_iii }}
-                                        ({{ all_data.gorkha_ths3_percentage }}%)
+                                        ({{ all_data.gorkha_ths3_percentage|floatformat:"0"}}%)
                                     </div>
                                     Houses in Stage - III
                                 </div>
@@ -281,19 +281,19 @@
                             <div class="col">
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.gorkha_total_received_tranche_i }}
-                                        ({{ all_data.gorkha_trt1_percentage }}%)
+                                        ({{ all_data.gorkha_trt1_percentage|floatformat:"0"}}%)
                                     </div>
                                     Received Tranche - I
                                 </div>
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.gorkha_total_received_tranche_ii }}
-                                        ({{ all_data.gorkha_trt2_percentage }}%)
+                                        ({{ all_data.gorkha_trt2_percentage|floatformat:"0"}}%)
                                     </div>
                                     Received Tranche - II
                                 </div>
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.gorkha_total_received_tranche_iii }}
-                                        ({{ all_data.gorkha_trt3_percentage }}%)
+                                        ({{ all_data.gorkha_trt3_percentage|floatformat:"0"}}%)
                                     </div>
                                     Received Tranche - III
                                 </div>
@@ -325,26 +325,26 @@
                         <div class="pop-info-item">
                             Houses Completed
                             <div class="count">{{ all_data.nuwakot_total_houses_completed }}
-                                ({{ all_data.nuwakot_houses_completed_percentage }}%)
+                                ({{ all_data.nuwakot_houses_completed_percentage|floatformat:"0"}}%)
                             </div>
                         </div>
                         <div class="row no-gutters">
                             <div class="col">
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.nuwakot_total_houses_stage_i }}
-                                        ({{ all_data.nuwakot_ths1_percentage }}%)
+                                        ({{ all_data.nuwakot_ths1_percentage|floatformat:"0"}}%)
                                     </div>
                                     Houses in Stage - I
                                 </div>
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.nuwakot_total_houses_stage_ii }}
-                                        ({{ all_data.nuwakot_ths2_percentage }}%)
+                                        ({{ all_data.nuwakot_ths2_percentage|floatformat:"0" }}%)
                                     </div>
                                     Houses in Stage - II
                                 </div>
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.nuwakot_total_houses_stage_iii }}
-                                        ({{ all_data.nuwakot_ths3_percentage }}%)
+                                        ({{ all_data.nuwakot_ths3_percentage|floatformat:"0"  }}%)
                                     </div>
                                     Houses in Stage - III
                                 </div>
@@ -352,19 +352,19 @@
                             <div class="col">
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.nuwakot_total_received_tranche_i }}
-                                        ({{ all_data.nuwakot_trt1_percentage }}%)
+                                        ({{ all_data.nuwakot_trt1_percentage|floatformat:"0"}}%)
                                     </div>
                                     Received Tranche - I
                                 </div>
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.nuwakot_total_received_tranche_ii }}
-                                        ({{ all_data.nuwakot_trt2_percentage }}%)
+                                        ({{ all_data.nuwakot_trt2_percentage|floatformat:"0"}}%)
                                     </div>
                                     Received Tranche - II
                                 </div>
                                 <div class="pop-info-item bg-light">
                                     <div class="count">{{ all_data.nuwakot_total_received_tranche_iii }}
-                                        ({{ all_data.nuwakot_trt3_percentage }}%)
+                                        ({{ all_data.nuwakot_trt3_percentage|floatformat:"0"}}%)
                                     </div>
                                     Received Tranche - III
                                 </div>
@@ -379,7 +379,7 @@
                             </div>
                             <div class="col">
                                 <div class="pop-info-item">
-                                    <div class="count">{{ nuwakot_women_percentage }}%</div>
+                                    <div class="count">{{ nuwakot_women_percentage|floatformat:"0"}}%</div>
                                     Women
                                 </div>
                             </div>
@@ -395,34 +395,34 @@
                     <div class="pop-body">
                         <div class="pop-info-item">
                             Houses Completed
-                            <div class="count">{{ data.houses_completed }} ({{ data.thcp }}%)</div>
+                            <div class="count">{{ data.houses_completed }} ({{ data.thcp|floatformat:"0"}}%)</div>
                         </div>
                         <div class="row no-gutters">
                             <div class="col">
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ data.houses_in_stage_i }} ({{ data.s1p }}%)</div>
+                                    <div class="count">{{ data.houses_in_stage_i }} ({{ data.s1p|floatformat:"0"}}%)</div>
                                     Houses in Stage - I
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ data.houses_in_stage_ii }} ({{ data.s2p }}%)</div>
+                                    <div class="count">{{ data.houses_in_stage_ii }} ({{ data.s2p|floatformat:"0"}}%)</div>
                                     Houses in Stage - II
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ data.houses_in_stage_iii }} ({{ data.s3p }}%)</div>
+                                    <div class="count">{{ data.houses_in_stage_iii }} ({{ data.s3p|floatformat:"0"}}%)</div>
                                     Houses in Stage - III
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ data.received_tranche_i }} ({{ data.t1p }}%)</div>
+                                    <div class="count">{{ data.received_tranche_i }} ({{ data.t1p|floatformat:"0"}}%)</div>
                                     Received Tranche - I
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ data.received_tranche_ii }} ({{ data.t2p }}%)</div>
+                                    <div class="count">{{ data.received_tranche_ii }} ({{ data.t2p|floatformat:"0"}}%)</div>
                                     Received Tranche - II
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ data.received_tranche_iii }} ({{ data.t3p }}%)</div>
+                                    <div class="count">{{ data.received_tranche_iii }} ({{ data.t3p|floatformat:"0"}}%)</div>
                                     Received Tranche - III
                                 </div>
                             </div>
@@ -436,7 +436,7 @@
                             </div>
                             <div class="col">
                                 <div class="pop-info-item">
-                                    <div class="count">{{ data.women_percentage }}%</div>
+                                    <div class="count">{{ data.women_percentage|floatformat:"0"}}%</div>
                                     Women
                                 </div>
                             </div>
@@ -453,34 +453,34 @@
                         <div class="pop-body">
                             <div class="pop-info-item">
                                 <b>Houses Completed</b>
-                                <div class="count">{{ data.houses_completed }} ({{ data.thcp }}%)</div>
+                                <div class="count">{{ data.houses_completed }} ({{ data.thcp|floatformat:"0"}}%)</div>
                             </div>
                             <div class="row no-gutters">
                                 <div class="col">
                                     <div class="pop-info-item bg-light">
-                                        <div class="count">{{ data.houses_in_stage_i }} ({{ data.s1p }}%)</div>
+                                        <div class="count">{{ data.houses_in_stage_i }} ({{ data.s1p|floatformat:"0" }}%)</div>
                                         Houses in Stage - I
                                     </div>
                                     <div class="pop-info-item bg-light">
-                                        <div class="count">{{ data.houses_in_stage_ii }} ({{ data.s2p }}%)</div>
+                                        <div class="count">{{ data.houses_in_stage_ii }} ({{ data.s2p|floatformat:"0" }}%)</div>
                                         Houses in Stage - II
                                     </div>
                                     <div class="pop-info-item bg-light">
-                                        <div class="count">{{ data.houses_in_stage_iii }} ({{ data.s3p }}%)</div>
+                                        <div class="count">{{ data.houses_in_stage_iii }} ({{ data.s3p|floatformat:"0"}}%)</div>
                                         Houses in Stage - III
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="pop-info-item bg-light">
-                                        <div class="count">{{ data.received_tranche_i }} ({{ data.t1p }}%)</div>
+                                        <div class="count">{{ data.received_tranche_i }} ({{ data.t1p|floatformat:"0"}}%)</div>
                                         Received Tranche - I
                                     </div>
                                     <div class="pop-info-item bg-light">
-                                        <div class="count">{{ data.received_tranche_ii }} ({{ data.t2p }}%)</div>
+                                        <div class="count">{{ data.received_tranche_ii }} ({{ data.t2p|floatformat:"0"}}%)</div>
                                         Received Tranche - II
                                     </div>
                                     <div class="pop-info-item bg-light">
-                                        <div class="count">{{ data.received_tranche_iii }} ({{ data.t3p }}%)</div>
+                                        <div class="count">{{ data.received_tranche_iii }} ({{ data.t3p|floatformat:"0"}}%)</div>
                                         Received Tranche - III
                                     </div>
                                 </div>
@@ -494,7 +494,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="pop-info-item">
-                                        <div class="count">{{ data.women_percentage }}%</div>
+                                        <div class="count">{{ data.women_percentage|floatformat:"0"}}%</div>
                                         Women
                                     </div>
                                 </div>
