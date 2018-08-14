@@ -237,7 +237,12 @@ class Media(models.Model):
 
 
 class ProjectStakeholders(models.Model):
+    name = models.CharField(max_length=300, null=True, blank=True)
     logo = models.ImageField(upload_to='project_stakeholders/')
+    role = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name_plural = 'Project Stakeholders'
