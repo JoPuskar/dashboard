@@ -71,9 +71,9 @@
                         <h3><a href="{% url 'visualizations:recent_story_detail' slide_item.id %}" title=""
                                style="color:white;">{{ slide_item.title }}</a></h3>
                         <p>
-                            {{ slide_item.description|truncatechars:100 }}<a
+                            {{ slide_item.description|truncatechars:100 }}...<a
                                 href="{% url 'visualizations:recent_story_detail' slide_item.id %}" title=""
-                                style="color:white; font-size:70%;">... read more</a>
+                                style="color:white; font-size:70%;">read more</a>
                         </p>
                     </div>
                 </div>
