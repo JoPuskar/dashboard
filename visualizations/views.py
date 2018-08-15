@@ -202,7 +202,8 @@ class Dashboard(TemplateView):
 
         context['recent_story'] = RecentStories.objects.order_by('-updated')
 
-        context['district_json_path'] = "/static/json/District.json"
+        context['district_json_path'] = "/static/json/gorkhaNuwakot.json"
+        context['district_nepal'] = "/static/json/District.json"
         context['gorkha_json_path'] = "/static/json/Gorkha.json"
         context['nuwakot_json_path'] = "/static/json/Nuwakot.json"
 
@@ -373,6 +374,11 @@ class EventsListView(ListView):
 class TrainingListView(ListView):
     model = Training
     context_object_name = 'trainings'
+
+
+class TrainingDetailView(DetailView):
+    model = Training
+    context_object_name = 'training'
 
 
 class ContactListView(ListView):

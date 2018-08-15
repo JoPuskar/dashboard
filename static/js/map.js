@@ -115,13 +115,55 @@
 	  }
 	});
 
+	var nepal_district = new L.TopoJSON();
+	$.getJSON(district_nepal)
+	  .done(addTopoDataDistrict);
+
+	function addTopoDataDistrict(topoData){
+	  nepal_district.addData(topoData);
+	  nepal_district.addTo(map);
+	  nepal_district.eachLayer(handleNepalDistrict);
+	  //map.fitBounds(district.getBounds());
+	}
+
+
+	function handleNepalDistrict(layer)
+	{
+			layer.setStyle({
+				fillColor : 'red',
+				fillOpacity: 0,
+				color:'black',
+				weight:1,
+				opacity:0.6
+			});
+
+
+		layer.bindLabel(layer.feature.properties.DISTRICT);
+
+        layer.on('click',function(e){
+
+			layer.bindPopup(layer.feature.properties.DISTRICT);
+
+
+        });
+	}
+
+
+
+
+
+
+
 	var district = new L.TopoJSON();
 	$.getJSON(district_json)
 	  .done(addTopoData);
 
 	function addTopoData(topoData){
 	  district.addData(topoData);
-	  district.addTo(map);
+	  setTimeout(function(){
+	  		district.addTo(map);
+	  }, 1000);
+
 	  district.eachLayer(handleLayer);
 	  //map.fitBounds(district.getBounds());
 	}
@@ -495,7 +537,8 @@
 
 	$("#inputDistrict").on('change',function(){ //console.log("input district");
 		//console.log($("#inputDistrict option:selected")[0].id);
-		if($("#inputDistrict option:selected")[0].id == "gorkha"){
+		var distSelected = $("#inputDistrict option:selected")[0].id;
+		if(distSelected == "gorkha"){
 			if(!map.hasLayer(gorkha)){
 				loadMunicipality("GORKHA");
 			}
@@ -503,16 +546,33 @@
 			if(map.hasLayer(nuwakot)){
 				map.removeLayer(nuwakot);
 			}
-			
+
+
+
+            	nuwaLayer.setStyle({
+					fillColor : '#00628e',
+					fillOpacity: 0.8,
+					color:'black',
+					weight:1,
+					opacity:0.6
+				});
+
 		}
-		else if($("#inputDistrict option:selected")[0].id == "nuwakot"){
+		else if(distSelected == "nuwakot"){
 			if(!map.hasLayer(nuwakot)){
 				loadMunicipality("NUWAKOT");
 			}
 			if(map.hasLayer(gorkha)){
 				map.removeLayer(gorkha);
 			}
-			
+
+			gorkhaLayer.setStyle({
+					fillColor : '#00628e',
+					fillOpacity: 0.8,
+					color:'black',
+					weight:1,
+					opacity:0.6
+				});
 			
 		}
 		else{
