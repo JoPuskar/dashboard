@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils import timezone
 
 from stdimage.models import StdImageField
 from ckeditor.fields import RichTextField
@@ -155,6 +154,7 @@ class Data(models.Model):
 
 
 class RecentStories(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField("Title", max_length=255)
     description = models.CharField("Short Description", max_length=255)
     content = RichTextField()
@@ -187,6 +187,7 @@ class Event(models.Model):
 
 
 class Contact(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     partner_name = models.CharField(max_length=300)
     address = models.CharField(max_length=300, blank=True)
     email = models.EmailField(blank=True)
@@ -202,9 +203,12 @@ class Contact(models.Model):
 
 
 class Training(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=300)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='training/', blank=True)
+    created = models.DateTimeField(auto_now_add=True, null=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
@@ -236,6 +240,7 @@ class TotalAmount(models.Model):
 
 
 class Media(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     category = models.CharField(choices=MEDIA_CHOICES, max_length=300, default=MEDIA_CHOICES[0][0])
     file = models.FileField(upload_to='media/', null=True, blank=True)
     title = models.CharField(max_length=300)

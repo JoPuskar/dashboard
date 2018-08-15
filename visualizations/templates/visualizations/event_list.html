@@ -33,7 +33,7 @@
                     <div class="col-md-8 card-desc">
 
                              <h3>{{ event.title }}</h3>
-                            <p>{{ event.description|truncatechars:150 }} <a href="{% url 'visualizations:event_detail' event.pk %}">Read More</a></p>
+                            <p>{{ event.description|truncatechars:250 }} <a href="{% url 'visualizations:event_detail' event.pk %}">Read More</a></p>
                             <p class="text-right time"> {{ event.updated }}</p>
 
 

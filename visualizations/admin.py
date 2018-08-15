@@ -14,7 +14,7 @@ class DataAdmin(admin.ModelAdmin):
 
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ['title', 'description', 'image', 'created_by', 'created', 'updated']
+    list_display = ['title', 'image', 'created_by', 'created', 'updated']
     exclude = ('created_by',)
 
     def get_queryset(self, request):
@@ -32,9 +32,35 @@ class EventAdmin(admin.ModelAdmin):
 class ContactAdmin(admin.ModelAdmin):
     list_display = ['partner_name', 'address', 'email', 'website', 'phone', 'logo']
 
+    exclude = ('created_by',)
+
+    def get_queryset(self, request):
+        qs = super(ContactAdmin, self).get_queryset(request)
+        if not request.user.is_superuser:
+            qs = qs.filter(created_by=request.user)
+
+        return qs
+
+    def save_model(self, request, obj, form, change):
+        obj.created_by = request.user
+        super().save_model(request, obj, form, change)
+
 
 class RecentStoriesAdmin(admin.ModelAdmin):
     list_display = ['title', 'description', 'thumbnail', 'banner']
+
+    exclude = ('created_by',)
+
+    def get_queryset(self, request):
+        qs = super(RecentStoriesAdmin, self).get_queryset(request)
+        if not request.user.is_superuser:
+            qs = qs.filter(created_by=request.user)
+
+        return qs
+
+    def save_model(self, request, obj, form, change):
+        obj.created_by = request.user
+        super().save_model(request, obj, form, change)
 
 
 class GaunpalikaAdmin(admin.ModelAdmin):
@@ -47,6 +73,19 @@ class HousingCompletionAdmin(admin.ModelAdmin):
 
 class TrainingAdmin(admin.ModelAdmin):
     list_display = ['title', 'description', 'image']
+
+    exclude = ('created_by',)
+
+    def get_queryset(self, request):
+        qs = super(TrainingAdmin, self).get_queryset(request)
+        if not request.user.is_superuser:
+            qs = qs.filter(created_by=request.user)
+
+        return qs
+
+    def save_model(self, request, obj, form, change):
+        obj.created_by = request.user
+        super().save_model(request, obj, form, change)
 
 
 admin.site.register(HousingCompletion, HousingCompletionAdmin)
