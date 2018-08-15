@@ -73,7 +73,7 @@
                         <p>
                             {{ slide_item.description|truncatechars:100 }}...<a
                                 href="{% url 'visualizations:recent_story_detail' slide_item.id %}" title=""
-                                style="color:white; font-size:70%;">read more</a>
+                                style="color:white;">read more</a>
                         </p>
                     </div>
                 </div>
@@ -558,20 +558,21 @@
                    href="#">
 
                     <h1>Twitter #IndiaInNepalStories</h1></a>
+                <div class="row">
 
-                {% for tweet in tweets %}
-                    <div class="col-sm-4">
-                        <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}"
-                           target="_blank">
-                            <img src="{{ tweet.user.profile_image_url }}" width="48" height="48"/>
-                            <h2>{{ tweet.user.name }}<br/></h2>
-                            <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
-                        </a>
-                        <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
-                    </div>
+                    {% for tweet in tweets %}
+                        <div class="col-sm-4">
+                            <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}"
+                               target="_blank">
+                                <img src="{{ tweet.user.profile_image_url }}" width="48" height="48"/>
+                                <h2>{{ tweet.user.name }}<br/></h2>
+                                <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
+                            </a>
+                            <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
+                        </div>
 
-                {% endfor %}
-
+                    {% endfor %}
+                </div>
 
             </div>
 
