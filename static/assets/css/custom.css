@@ -29,6 +29,7 @@ section{
     max-height: 211.83px;
     min-width: 350px;
     min-height: 211.83px;
+    padding: 10px;
 }
 
 .card-img span {
@@ -172,10 +173,10 @@ video.media-vdo {
 }
 
 audio.media-audio {
-    margin-top: -43px;
+    margin-top: -42px;
     position: absolute;
-    max-width: 350px;
-    min-width: 350px;
+    max-width: 340px;
+    min-width: 340px;
 }
 
 /*media*/
@@ -187,4 +188,14 @@ ul#pills-tab{
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     color: #fff;
     background-color: #00628e;
+}
+
+.bg-gray{
+    background-color: #ecf0f1;
+}
+
+img.event-img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 500px;
 }

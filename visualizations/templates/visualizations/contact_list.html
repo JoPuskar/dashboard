@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,32 +16,48 @@
 <body>
 <!-- details card section starts from here -->
 <section class="details-card">
+    <h2 class="title text-center">Contacts</h2>
+    <br/>
     <div class="container">
         <div class="row">
             {% for contact in contacts %}
 
-
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="card-content eve text-center">
                         {% if contact.logo %}
-                            <img src="{{ contact.logo.url }}">
 
-                            {% else %}
-                        <img src="{% static 'assets/img/undp.png' %}" class="contact_img">
+                            <img src="{{ contact.logo.url }}" class="contact_img">
+                        {% else %}
+
+                            <img src="{% static 'assets/img/undp.png' %}" class="contact_img">
 
                         {% endif %}
-                        <h3>{{ contact.partner_name }}</h3>
+                        {% if contact.partner_name %}
+                            <h3>{{ contact.partner_name }}</h3>
 
-                        <p class="text-center w-75 m-auto">{{ contact.address }}</p>
-                        <p class="text-center w-75 m-auto"><i class="fa fa-envelope"></i> {{ contact.email }}</p>
-                        <p class="text-center w-75 m-auto"><i class="fa fa-phone"></i> {{ contact.phone }}</p>
-                        <p class="text-center w-75 m-auto"><i class="fa fa-globe"></i> {{ contact.website }}</p>
+                        {% endif %}
+                        {% if contact.address %}
+                            <p class="text-center w-75 m-auto">{{ contact.address }}</p>
+
+                        {% endif %}
+                        {% if contact.email %}
+                            <p class="text-center w-75 m-auto"><i class="fa fa-envelope"></i> {{ contact.email }}</p>
+
+                        {% endif %}
+                        {% if contact.phone %}
+                            <p class="text-center w-75 m-auto"><i class="fa fa-phone"></i> {{ contact.phone }}</p>
+
+                        {% endif %}
+                        {% if contact.address %}
+                            <p class="text-center w-75 m-auto"><i class="fa fa-globe"></i> {{ contact.website }}</p>
+
+                        {% endif %}
                         <br>
                     </div>
                 </div>
+                {% empty %}
+                <h2>No Contacts</h2>
             {% endfor %}
-
-
         </div>
     </div>
 </section>
@@ -49,5 +66,18 @@
 </html>
 
 
-
+<script type="text/javascript">
+    $(function () {
+        var selectedClass = "";
+        $(".filter").click(function () {
+            selectedClass = $(this).attr("data-rel");
+            $("#gallery").fadeTo(100, 0.1);
+            $("#gallery div").not("." + selectedClass).fadeOut().removeClass('animation');
+            setTimeout(function () {
+                $("." + selectedClass).fadeIn().addClass('animation');
+                $("#gallery").fadeTo(300, 1);
+            }, 300);
+        });
+    });
+</script>
 
