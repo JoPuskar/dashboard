@@ -371,6 +371,11 @@ class EventsListView(ListView):
         return Event.objects.order_by('-updated')
 
 
+class EventDetailView(DetailView):
+    model = Event
+    context_object_name = 'event'
+
+
 class TrainingListView(ListView):
     model = Training
     context_object_name = 'trainings'

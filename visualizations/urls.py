@@ -18,6 +18,7 @@ urlpatterns = [
     path('training-detail/<int:pk>', views.TrainingDetailView.as_view(), name="training_detail"),
     path('contacts', views.ContactListView.as_view(), name="contact"),
     path('events', views.EventsListView.as_view(), name="event"),
+    path('event-detail/<int:pk>', views.EventDetailView.as_view(), name="event_detail"),
     path('about', views.AboutView.as_view(), name="about"),
     path('media', views.MediaView.as_view(), name="media"),
 

@@ -31,7 +31,7 @@
                         </div>
                         <div class="card-desc">
                             <h3>{{ training.title }}</h3>
-                            <p>{{ training.description }}</p>
+                            <p>{{ training.description|truncatechars:150  }} <a href="{% url 'visualizations:training_detail' training.pk %}">Read More</a></p>
                         </div>
                     </div>
                 </div>
