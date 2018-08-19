@@ -24,9 +24,9 @@
 
                 <div class="col-md-6">
                     <div class="card-content eve text-center">
-                        {% if contact.logo %}
+                        {% if contact.partner_name.logo %}
 
-                            <img src="{{ contact.logo.url }}" class="contact_img">
+                            <img src="{{ contact.partner_name.logo.url }}" class="contact_img">
                         {% else %}
 
                             <img src="{% static 'assets/img/undp.png' %}" class="contact_img">

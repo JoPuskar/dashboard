@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+<!-- details card section starts from here -->
+<section class="details-card">
+     <h2 class="title text-center">Materials</h2>
+    <br/>
+    <div class="container">
+        <div class="row">
+            {% for material in materials %}
+
+            <div class="col-md-2">
+                <div class="card-content">
+
+                        <img src="{% static 'assets/img/pdf.png' %}" alt="" class="mx-auto d-block mate">
+                       <!--  <span><h4>heading</h4></span> -->
+
+                    <div class="card-desc materialcard">
+                        <h6>{{ material.title }}</h6>
+                        <p><a href="{{ material.document.url }}"><i class="fa fa-download"></i></a> <span class="dates"> Date: {{ material.created|date:"d M Y" }}</span></p>
+                    </div>
+                </div>
+            </div>
+                {% empty %}
+                <p>No Materials.</p>
+                        {% endfor %}
+
+        </div>
+    </div>
+</section>
+<!-- details card section starts from here -->
+</body>
+</html>
+
+
+

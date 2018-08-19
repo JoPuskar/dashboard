@@ -9,8 +9,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         staff_group, created = Group.objects.get_or_create(name="Staff")
 
-        contact_perm = ContentType.objects.get(app_label='visualizations', model='contact')
-        perms = Permission.objects.filter(content_type=contact_perm)
+        project_stakeholders_perm = ContentType.objects.get(app_label='visualizations', model='projectstakeholders')
+        perms = Permission.objects.filter(content_type=project_stakeholders_perm)
         for p in perms:
             staff_group.permissions.add(p)
 

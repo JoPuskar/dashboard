@@ -54,7 +54,7 @@ section{
          line-height: 0;
 }
 .card-desc {
-	padding: 1.25rem;
+	padding: 1rem;
 }
 
 .card-desc h3 {
@@ -199,3 +199,32 @@ img.event-img {
     max-width: 100%;
     max-height: 500px;
 }
+
+/*materials*/
+img.mate {
+    max-height: 150px;
+}
+
+span.dates {
+    float: right;
+    font-size: 12px;
+}
+
+.card-desc.materialcard {
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+img.part {
+    height: 165px;
+    padding: 18px;
+}
+
+.part-desc.pull-right {
+    padding-bottom: 10px;
+}
+
+p.time {
+    font-size: 12px;
+    }

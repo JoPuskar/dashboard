@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from visualizations.models import HousingCompletion, ReconstructionGrant, RecentStories,\
-    District, Gaunpalika, Data, Contact, Training, Event, Media, ProjectStakeholders, DispensedAmount, AboutUs, TotalAmount
+    District, Gaunpalika, Data, Contact, Training, Event, Media, ProjectStakeholders, DispensedAmount, AboutUs, TotalAmount, Materials
 
 admin.site.site_header = 'EOI'
 admin.site.index_title = 'EOI CMS'
@@ -29,21 +29,8 @@ class EventAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
-class ContactAdmin(admin.ModelAdmin):
-    list_display = ['partner_name', 'address', 'email', 'website', 'phone', 'logo']
-
-    exclude = ('created_by',)
-
-    def get_queryset(self, request):
-        qs = super(ContactAdmin, self).get_queryset(request)
-        if not request.user.is_superuser:
-            qs = qs.filter(created_by=request.user)
-
-        return qs
-
-    def save_model(self, request, obj, form, change):
-        obj.created_by = request.user
-        super().save_model(request, obj, form, change)
+class ContactAdminInline(admin.StackedInline):
+    model = Contact
 
 
 class RecentStoriesAdmin(admin.ModelAdmin):
@@ -88,17 +75,50 @@ class TrainingAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
+class ProjectStakeholdersAdmin(admin.ModelAdmin):
+    inlines = [ContactAdminInline]
+
+    exclude = ('created_by',)
+
+    def get_queryset(self, request):
+        qs = super(ProjectStakeholdersAdmin, self).get_queryset(request)
+        if not request.user.is_superuser:
+            qs = qs.filter(created_by=request.user)
+
+        return qs
+
+    def save_model(self, request, obj, form, change):
+        obj.created_by = request.user
+        super().save_model(request, obj, form, change)
+
+
+class MaterialsAdmin(admin.ModelAdmin):
+
+    exclude = ('created_by',)
+
+    def get_queryset(self, request):
+        qs = super(MaterialsAdmin, self).get_queryset(request)
+        if not request.user.is_superuser:
+            qs = qs.filter(created_by=request.user)
+
+        return qs
+
+    def save_model(self, request, obj, form, change):
+        obj.created_by = request.user
+        super().save_model(request, obj, form, change)
+
+
 admin.site.register(HousingCompletion, HousingCompletionAdmin)
 admin.site.register(ReconstructionGrant)
 admin.site.register(District)
 admin.site.register(Gaunpalika, GaunpalikaAdmin)
 admin.site.register(Data, DataAdmin)
 admin.site.register(RecentStories, RecentStoriesAdmin)
-admin.site.register(Contact, ContactAdmin)
 admin.site.register(Training, TrainingAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Media)
-admin.site.register(ProjectStakeholders)
+admin.site.register(ProjectStakeholders, ProjectStakeholdersAdmin)
 admin.site.register(DispensedAmount)
 admin.site.register(AboutUs)
 admin.site.register(TotalAmount)
+admin.site.register(Materials, MaterialsAdmin)

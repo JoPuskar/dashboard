@@ -4,7 +4,8 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, ListView
 
 from dashboard import settings
-from .models import HousingCompletion, ReconstructionGrant, RecentStory, Data, RecentStories, Event, Contact, Training, Media, ProjectStakeholders, DispensedAmount, AboutUs, TotalAmount
+from .models import HousingCompletion, ReconstructionGrant, RecentStory, Data, RecentStories, Event, Contact, Training, \
+    Media, ProjectStakeholders, DispensedAmount, AboutUs, TotalAmount, Materials
 
 
 def get_tweets():
@@ -410,9 +411,13 @@ class MediaView(ListView):
         return context
 
 
+class MaterialsListView(ListView):
+    model = Materials
+    context_object_name = 'materials'
 
 
-
-
-
+class ProjectStakeholdersListView(ListView):
+    model = ProjectStakeholders
+    template_name = 'visualizations/project_stakeholders_list.html'
+    context_object_name = 'project_stakeholders'
 

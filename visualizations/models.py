@@ -186,22 +186,6 @@ class Event(models.Model):
         verbose_name_plural = 'Event'
 
 
-class Contact(models.Model):
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    partner_name = models.CharField(max_length=300)
-    address = models.CharField(max_length=300, blank=True)
-    email = models.EmailField(blank=True)
-    website = models.URLField(blank=True)
-    phone = PhoneNumberField(blank=True)
-    logo = models.ImageField(upload_to='contact/', blank=True)
-
-    def __str__(self):
-        return self.partner_name
-
-    class Meta:
-        verbose_name_plural = 'Contact'
-
-
 class Training(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=300)
@@ -255,9 +239,11 @@ class Media(models.Model):
 
 
 class ProjectStakeholders(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=300, null=True, blank=True)
     logo = models.ImageField(upload_to='project_stakeholders/')
     role = models.TextField(null=True, blank=True)
+    description = RichTextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -275,3 +261,31 @@ class AboutUs(models.Model):
 
     class Meta:
         verbose_name_plural = 'About Us'
+
+
+class Contact(models.Model):
+    partner_name = models.OneToOneField(ProjectStakeholders, related_name="project_stakeholders", on_delete=models.CASCADE, null=True, blank=True)
+    address = models.CharField(max_length=300, blank=True)
+    email = models.EmailField(blank=True)
+    website = models.URLField(blank=True)
+    phone = PhoneNumberField(blank=True)
+
+    def __str__(self):
+        return self.partner_name.name
+
+    class Meta:
+        verbose_name_plural = 'Contact'
+
+
+class Materials(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=300)
+    document = models.FileField(upload_to='materials/')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Materials'

@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+<!-- details card section starts from here -->
+
+<section class="details-card">
+    <h2 class="title text-center">Partners</h2>
+    <br/>
+    <div class="container">
+        <div class="row">
+            {% for project_stakeholder in project_stakeholders %}
+
+                <div class="col-md-12">
+                    <div class="card-content eve">
+                        <div class="row">
+
+
+                            <div class="col-md-4">
+                                {% if project_stakeholder.logo %}
+                                    <img src="{{ project_stakeholder.logo.url }}" alt="" class="part">
+
+                                {% endif %}
+                                <!--  <span><h4>heading</h4></span> -->
+                            </div>
+                            <div class="col-md-8 card-desc">
+                                {% if project_stakeholder.name %}
+                                    <h3>{{ project_stakeholder.name }}</h3>
+
+                                {% endif %}
+                                {% if project_stakeholder.role %}
+
+                                    <h6>Role: {{ project_stakeholder.role }}</h6>
+                                {% endif %}
+                                {% if project_stakeholder.description %}
+
+
+                                    <p>{{ project_stakeholder.description|safe }}</p>
+                                {% endif %}
+                            </div>
+
+                            <br>
+                        </div>
+                        <div class="part-desc pull-right">
+                            {% if project_stakeholder.project_stakeholders.address %}
+
+                                <p class="text-center w-75 m-auto">{{ project_stakeholder.project_stakeholders.address }}</p>
+                            {% endif %}
+                            {% if project_stakeholder.project_stakeholders.email %}
+
+                                <p class="text-center w-75 m-auto"><i
+                                        class="fa fa-envelope"></i> {{ project_stakeholder.project_stakeholders.email }}
+                                </p>
+                            {% endif %}
+                            {% if project_stakeholder.project_stakeholders.phone %}
+
+                                <p class="text-center w-75 m-auto"><i
+                                        class="fa fa-phone"></i> {{ project_stakeholder.project_stakeholders.phone }}
+                                </p>
+                            {% endif %}
+                            {% if project_stakeholder.project_stakeholders.website %}
+
+                                <p class="text-center w-75 m-auto"><i
+                                        class="fa fa-globe"></i> {{ project_stakeholder.project_stakeholders.website }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+    </div>
+    </div>
+
+</section>
+
+<!-- details card section starts from here -->
+</body>
+</html>
+
+
+
+
