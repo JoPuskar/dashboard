@@ -589,7 +589,7 @@
         <!-- project Stakeholders -->
 
         <h3 class="text-center partner">Project Stakeholders</h3>
-        <div class="row">
+        <div class="row autoplay">
             {% for project_stakeholder in project_stakeholders %}
                 <div class="col-md-3 text-center"><a href="#"><img src="{{ project_stakeholder.logo.url }}"
                                                                    class="stake"></a></div>
@@ -845,6 +845,15 @@
 
     });
 </script>
+<script type="text/javascript">
+    $('.autoplay').slick({
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+});
+</script>
+
 <!--map js css-->
 <link rel="stylesheet" href="{% static 'css/leaflet.css' %}"/>
 
