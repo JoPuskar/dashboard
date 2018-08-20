@@ -558,7 +558,7 @@
                 <a class="twitter-timeline" data-height="500"
                    href="#">
 
-                    <h1>Twitter #IndiaInNepalStories</h1></a>
+                    <h3>Twitter #IndiaInNepalStories</h3></a>
                 <div class="row">
 
                     {% for tweet in tweets %}
@@ -566,7 +566,7 @@
                             <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}"
                                target="_blank">
                                 <img src="{{ tweet.user.profile_image_url }}" width="48" height="48"/>
-                                <h2>{{ tweet.user.name }}<br/></h2>
+                                <h5>{{ tweet.user.name }}<br/></h5>
                                 <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
                             </a>
                             <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
