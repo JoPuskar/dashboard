@@ -12,8 +12,12 @@
 </head>
 <body>
 <!-- details card section starts from here -->
+{% include 'visualizations/navbar.html' %}
+
 <section class="details-card">
     <div class="container">
+        <h2 class="title text-center">Trainings</h2>
+
         <div class="row">
             {% for training in trainings %}
 
@@ -45,6 +49,7 @@
     </div>
 </section>
 <!-- details card section starts from here -->
+
 </body>
 </html>
 

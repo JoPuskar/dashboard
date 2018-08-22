@@ -15,6 +15,7 @@
 </head>
 <body>
 <!-- details card section starts from here -->
+{% include 'visualizations/navbar.html' %}
 <section class="details-card">
     <h2 class="title text-center">Contacts</h2>
     <br/>
@@ -48,8 +49,8 @@
                             <p class="text-center w-75 m-auto"><i class="fa fa-phone"></i> {{ contact.phone }}</p>
 
                         {% endif %}
-                        {% if contact.address %}
-                            <p class="text-center w-75 m-auto"><i class="fa fa-globe"></i> {{ contact.website }}</p>
+                        {% if contact.website %}
+                            <p class="text-center w-75 m-auto"><i class="fa fa-globe"></i> <a href="{{ contact.website }}">website</a></p>
 
                         {% endif %}
                         <br>

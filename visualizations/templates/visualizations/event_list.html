@@ -12,7 +12,11 @@
 </head>
 <body>
 <!-- details card section starts from here -->
+{% include 'visualizations/navbar.html' %}
+
 <section class="details-card">
+    <h2 class="title text-center">Events</h2>
+
     <div class="container">
         <div class="row">
             {% for event in events %}

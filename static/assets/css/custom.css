@@ -1,7 +1,7 @@
 /* card details start  */
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Condensed:400,400i,700,700i');
 section{
-    padding: 100px 0;
+    padding: 25px 0;
 }
 .details-card {
 	background: #ecf0f1;
@@ -131,7 +131,11 @@ button.btn.btn-outline-black.waves-effect.filter {
 }
 
 img.img-fluid.media {
-    max-height: 235px;
+   
+    min-width: 340px;
+    max-height: 226.66px;
+    max-width: 340px;
+    min-height: 226.66px;
     margin-bottom: 10px;
 }
 
@@ -167,16 +171,20 @@ p.media-dsc {
 }
 
 video.media-vdo {
-    height: 274px;
-    margin-top: -39px;
-    width: 350px;
+        min-width: 340px;
+    max-height: 255px;
+    max-width: 340px;
+    min-height: 226.66px;
+    margin-bottom: 10px;
+    height: 255px;
+    margin-top: -30px;
 }
 
 audio.media-audio {
-    margin-top: -42px;
+    margin-top: -65px;
     position: absolute;
     max-width: 340px;
-    min-width: 340px;
+    min-width: auto;
 }
 
 /*media*/
@@ -225,6 +233,15 @@ img.part {
     padding-bottom: 10px;
 }
 
+p.partdes {
+    padding: 15px;
+    text-align: justify;
+}
+
 p.time {
     font-size: 12px;
     }
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(0, 98, 142) !important;
+}

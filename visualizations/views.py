@@ -416,8 +416,8 @@ class MaterialsListView(ListView):
     context_object_name = 'materials'
 
 
-class ProjectStakeholdersListView(ListView):
+class ProjectStakeholdersDetailView(DetailView):
     model = ProjectStakeholders
-    template_name = 'visualizations/project_stakeholders_list.html'
-    context_object_name = 'project_stakeholders'
+    template_name = 'visualizations/project_stakeholders_detail.html'
+    context_object_name = 'project_stakeholder'
 

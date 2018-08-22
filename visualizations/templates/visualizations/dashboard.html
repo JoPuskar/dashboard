@@ -83,21 +83,54 @@
 </div>
 
 <div class="sub-nav">
-    <nav class="navbar navbar-light bg-gray sub">
-        <a class="navbar-brand sub-menu" href="#"><i class="fa fa-home"></i></a>
-        <a class="navbar-brand sub-menu" href="{% url 'visualizations:about' %}">About</a>
-        <!--   <a class="navbar-brand sub-menu" href="#">UNDP</a>
-          <a class="navbar-brand sub-menu" href="#">UNOPS</a>
-          <a class="navbar-brand sub-menu" href="photo.php">Photos</a> -->
-        <a class="navbar-brand sub-menu" href="{% url 'visualizations:media' %}">Media</a>
-        <a class="navbar-brand sub-menu" href="{% url 'visualizations:materials' %}">Materials</a>
-        <a class="navbar-brand sub-menu" href="{% url 'visualizations:event' %}">Events</a>
-        <a class="navbar-brand sub-menu" href={% url 'visualizations:training' %}>Trainings</a>
-        <a class="navbar-brand sub-menu" href={% url 'visualizations:partners' %}>Partners</a>
-        <a class="navbar-brand sub-menu" href="{% url 'visualizations:contact' %}">Contact</a>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'dashboard' %}"><i class="fas fa-home"></i><span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'visualizations:about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'visualizations:media' %}">Media</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'visualizations:materials' %}">Materials</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'visualizations:event' %}">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'visualizations:training' %}">Training</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Partners
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for partner in partners %}
+                          <a class="dropdown-item" href="{% url 'visualizations:partner_detail' partner.pk %}">{{ partner.name }}</a>
+
+                      {% endfor %}
+
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'visualizations:contact' %}">Contact</a>
+                </li>
+
+            </ul>
+
+
+        </div>
     </nav>
-</div>
-<div class="bg-white module-padding">
+</div><div class="bg-white module-padding">
     <div class="container">
         <div class="stat-wrap">
             <div class="stat-head">
@@ -525,7 +558,7 @@
     <div class="container">
         <div class="module-story">
             <div class="story-header">
-                <h5>Stories</h5>
+                <h5>#IndiaInNepalReconstruction</h5>
                 <a href="{% url 'visualizations:recent_stories' %}" title="">View All</a>
             </div>
             <div class="story-section padding-top">
@@ -847,11 +880,11 @@
 </script>
 <script type="text/javascript">
     $('.autoplay').slick({
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 2000,
-});
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    });
 </script>
 
 <!--map js css-->
@@ -864,5 +897,6 @@
 <script src="http://maps.google.com/maps/api/js?v=3&key=AIzaSyC8uXN1u5FYIaGOUnVK90Rh3wR2Gmyw1uU"></script>
 <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
 <!--map js end-->
+
 </body>
 </html>
