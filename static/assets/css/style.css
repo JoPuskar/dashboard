@@ -14,3 +14,8 @@ Version: 1.0
 .navbar-light .navbar-nav .nav-link {
     color: rgb(0, 98, 142) !important;
 }
+
+.story-item{
+        min-height: 325px;
+        max-height: 325px
+}
