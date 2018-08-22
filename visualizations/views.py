@@ -391,6 +391,9 @@ class ContactListView(ListView):
     model = Contact
     context_object_name = 'contacts'
 
+    def get_queryset(self):
+        return Contact.objects.order_by('-updated')
+
 
 class AboutView(ListView):
     model = AboutUs

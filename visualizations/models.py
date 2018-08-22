@@ -244,6 +244,7 @@ class ProjectStakeholders(models.Model):
     logo = models.ImageField(upload_to='project_stakeholders/')
     role = models.TextField(null=True, blank=True)
     description = RichTextField(null=True, blank=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -269,6 +270,7 @@ class Contact(models.Model):
     email = models.EmailField(blank=True)
     website = models.URLField(blank=True)
     phone = PhoneNumberField(blank=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.partner_name.name
