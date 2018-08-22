@@ -2,6 +2,6 @@ from .models import ProjectStakeholders
 
 
 def partners_processor(request):
-    partners = ProjectStakeholders.objects.all()
+    partners = ProjectStakeholders.objects.order_by('-updated')
 
-    return {'partners': partners }
+    return {'partners': partners}

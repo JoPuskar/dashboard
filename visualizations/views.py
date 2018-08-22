@@ -237,7 +237,7 @@ class Dashboard(TemplateView):
         context['dispensed_amount'] = dispensed_amount
         context['progress'] = progress
         context['stories'] = RecentStories.objects.order_by('-updated')[:5]
-        context['project_stakeholders'] = ProjectStakeholders.objects.all()
+        context['project_stakeholders'] = ProjectStakeholders.objects.order_by('-updated')
 
         return context
 
