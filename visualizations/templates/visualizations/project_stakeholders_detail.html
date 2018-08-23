@@ -20,13 +20,15 @@
         <div class="row">
 
             <div class="col-md-12">
-                <div class="card-content eve text-center">
+                <div class="card-content eve stakep">
+                <div class="text-center part-logo">
                     {% if project_stakeholder.logo %}
                         <img src="{{ project_stakeholder.logo.url }}" class="contact_img">
-
+<br/><br>
                     {% endif %}
                     {% if project_stakeholder.name %}
                         <h3>{{ project_stakeholder.name }}</h3>
+                        </div>
 
                     {% endif %}
                     {% if project_stakeholder.role %}
@@ -53,7 +55,7 @@
                     {% endif %}
                     {% if project_stakeholder.project_stakeholders.website %}
                         <p class="text-center w-75 m-auto"><i class="fa fa-globe"></i> <a
-                                href="{{ project_stakeholder.project_stakeholders.website }}">website</a></p>
+                                href="{{ project_stakeholder.project_stakeholders.website }}"> visit website</a></p>
 
                     {% endif %}
                     <br>

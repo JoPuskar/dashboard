@@ -245,3 +245,7 @@ p.time {
 .navbar-light .navbar-nav .nav-link {
     color: rgb(0, 98, 142) !important;
 }
+.card-content.eve.stakep {
+    padding: 40px;
+    text-align: justify;
+}
