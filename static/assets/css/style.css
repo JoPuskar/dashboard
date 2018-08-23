@@ -15,7 +15,7 @@ Version: 1.0
     color: rgb(0, 98, 142) !important;
 }
 
-.story-item{
+.story-item .story{
         min-height: 325px;
         max-height: 325px
 }
