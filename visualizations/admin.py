@@ -108,6 +108,24 @@ class MaterialsAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
+class AboutUsAdmin(admin.ModelAdmin):
+
+    def has_add_permission(self, request):
+        return AboutUs.objects.all().count() == 0
+
+
+class DispensedAmountAdmin(admin.ModelAdmin):
+
+    def has_add_permission(self, request):
+        return DispensedAmount.objects.all().count() == 0
+
+
+class TotalAmountAdmin(admin.ModelAdmin):
+
+    def has_add_permission(self, request):
+        return TotalAmount.objects.all().count() == 0
+
+
 admin.site.register(HousingCompletion, HousingCompletionAdmin)
 admin.site.register(ReconstructionGrant)
 admin.site.register(District)
@@ -118,7 +136,7 @@ admin.site.register(Training, TrainingAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Media)
 admin.site.register(ProjectStakeholders, ProjectStakeholdersAdmin)
-admin.site.register(DispensedAmount)
-admin.site.register(AboutUs)
-admin.site.register(TotalAmount)
+admin.site.register(DispensedAmount, DispensedAmountAdmin)
+admin.site.register(AboutUs, AboutUsAdmin)
+admin.site.register(TotalAmount, TotalAmountAdmin)
 admin.site.register(Materials, MaterialsAdmin)
