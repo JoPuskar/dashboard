@@ -558,7 +558,7 @@
     <div class="container">
         <div class="module-story">
             <div class="story-header">
-                <h5>#IndiaInNepalReconstruction</h5>
+                <h5>Stories From The Field</h5>
                 <a href="{% url 'visualizations:recent_stories' %}" title="">View All</a>
             </div>
             <div class="story-section padding-top" >
@@ -571,9 +571,7 @@
                                 <span>{{ story.description }}</span>
                             </div>
                             <p>
-                                {{ story.content|truncatechars:100|safe }} <a
-                                    href="{% url 'visualizations:recent_story_detail' story.id %}" title="">read more
-                                [+]</a>
+                                {{ story.content|truncatewords:15|safe }} <a href="{% url 'visualizations:recent_story_detail' story.id %}" title="">read more [+]</a>
                             </p>
                         </div>
                     </div>{% endfor %}
@@ -591,7 +589,7 @@
                 <a class="twitter-timeline" data-height="500"
                    href="#">
 
-                    <h3>Twitter #IndiaInNepalStories</h3></a>
+                    <h3>Twitter Feed #IndiaInNepalReconstruction</h3></a>
                 <div class="row">
 
                     {% for tweet in tweets %}
@@ -621,7 +619,7 @@
 
         <!-- project Stakeholders -->
 
-        <h4 class="text-center partner"><strong>Project Stakeholders</strong></h4><br>
+        <h4 class="text-center partner"><strong>Project Partners</strong></h4><br>
         <div class="row autoplay margin-top">
             {% for project_stakeholder in project_stakeholders %}
                 <div class="col-md-3 text-center"><a href="#"><img height="100" src="{{ project_stakeholder.logo.url }}"

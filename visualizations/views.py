@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, ListView
 
 from dashboard import settings
-from .models import HousingCompletion, ReconstructionGrant, RecentStory, Data, RecentStories, Event, Contact, Training, \
+from .models import HousingCompletion, ReconstructionGrant, Data, RecentStories, Event, Contact, Training, \
     Media, ProjectStakeholders, DispensedAmount, AboutUs, TotalAmount, Materials
 
 
@@ -281,28 +281,6 @@ class ReconstructionGrantUpdate(UpdateView):
 
     model = ReconstructionGrant
     template_name = "visualizations/housing_completion_create.html"
-    fields = '__all__'
-    success_url = reverse_lazy("dashboard")
-
-
-class RecentStoryCreate(CreateView):
-    """
-    CreateView for RecentStory
-    """
-
-    model = RecentStory
-    template_name = "visualizations/recent_story_create.html"
-    fields = '__all__'
-    success_url = reverse_lazy("dashboard")
-
-
-class RecentStoryUpdate(UpdateView):
-    """
-    UpdateView for RecentStory
-    """
-
-    model = RecentStory
-    template_name = "visualizations/recent_story_create.html"
     fields = '__all__'
     success_url = reverse_lazy("dashboard")
 

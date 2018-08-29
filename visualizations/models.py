@@ -23,7 +23,7 @@ class HousingCompletion(models.Model):
         return self.label
 
     class Meta:
-        verbose_name_plural = 'Housing Completion'
+        verbose_name_plural = 'Reconstruction Stages'
 
 
 class ReconstructionGrant(models.Model):
@@ -37,16 +37,6 @@ class ReconstructionGrant(models.Model):
         verbose_name_plural = 'Reconstruction Grant'
 
 
-class RecentStory(models.Model):
-    name = models.CharField(max_length=120)
-    address = models.CharField(max_length=120)
-    picture = models.ImageField(upload_to='recentstories/')
-    description = models.TextField(max_length=500)
-
-    def __str__(self):
-        return self.name
-
-
 class District(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
@@ -54,7 +44,7 @@ class District(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'District'
+        verbose_name_plural = 'Districts'
 
 
 class Gaunpalika(models.Model):
@@ -99,7 +89,7 @@ class Data(models.Model):
         return "{} data".format(self.gaunpalika.name)
 
     class Meta:
-        verbose_name_plural = 'Data'
+        verbose_name_plural = 'Reconstruction per Municipality'
 
     def get_version(self):
         return self.version
@@ -156,7 +146,7 @@ class Data(models.Model):
 class RecentStories(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField("Title", max_length=255)
-    description = models.CharField("Short Description", max_length=255)
+    description = models.CharField("Short Title", max_length=255)
     content = RichTextField()
     thumbnail = StdImageField(validators=[MinSizeValidator(100, 100)])
     banner = StdImageField(validators=[MinSizeValidator(1600, 600)])
@@ -168,7 +158,7 @@ class RecentStories(models.Model):
         return self.title
 
     class Meta:
-        verbose_name_plural = 'Recent Stories'
+        verbose_name_plural = 'Stories From The Field'
 
 
 class Event(models.Model):
@@ -183,7 +173,7 @@ class Event(models.Model):
         return self.title
 
     class Meta:
-        verbose_name_plural = 'Event'
+        verbose_name_plural = 'Events'
 
 
 class Training(models.Model):
@@ -198,7 +188,7 @@ class Training(models.Model):
         return self.title
 
     class Meta:
-        verbose_name_plural = 'Training'
+        verbose_name_plural = 'Trainings'
 
 
 class DispensedAmount(models.Model):
@@ -210,7 +200,7 @@ class DispensedAmount(models.Model):
         return str(self.amount)
 
     class Meta:
-        verbose_name_plural = 'Dispensed Amount'
+        verbose_name_plural = 'Disbursed Amount'
 
 
 class TotalAmount(models.Model):
@@ -220,7 +210,7 @@ class TotalAmount(models.Model):
         return str(self.amount)
 
     class Meta:
-        verbose_name_plural = 'Total Amount'
+        verbose_name_plural = 'Total EOI Funding'
 
 
 class Media(models.Model):
@@ -250,7 +240,7 @@ class ProjectStakeholders(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'Project Stakeholders'
+        verbose_name_plural = 'Partners'
 
 
 class AboutUs(models.Model):
@@ -261,7 +251,7 @@ class AboutUs(models.Model):
         return self.content[:15]
 
     class Meta:
-        verbose_name_plural = 'About Us'
+        verbose_name_plural = 'Project Overview'
 
 
 class Contact(models.Model):
@@ -276,7 +266,7 @@ class Contact(models.Model):
         return self.partner_name.name
 
     class Meta:
-        verbose_name_plural = 'Contact'
+        verbose_name_plural = 'Contacts'
 
 
 class Materials(models.Model):
