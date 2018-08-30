@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from django.db.models import Q
 from visualizations.models import HousingCompletion, ReconstructionGrant, RecentStories,\
     District, Gaunpalika, Data, Contact, Training, Event, Media, ProjectStakeholders, DispensedAmount, AboutUs, TotalAmount, Materials
 
@@ -19,8 +19,25 @@ class EventAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super(EventAdmin, self).get_queryset(request)
+
         if not request.user.is_superuser:
-            qs = qs.filter(created_by=request.user)
+            if request.user.groups.values_list('name', flat=True)[0] == 'EOI Admin':
+                qs = qs.filter(Q(created_by__groups__name="EOI Group") | Q(created_by__groups__name="EOI Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'EOI Group':
+                qs = qs.filter(created_by=request.user)
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNDP Admin':
+                qs = qs.filter(Q(created_by__groups__name="UNDP Group") | Q(created_by__groups__name="UNDP Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNDP Group':
+                qs = qs.filter(created_by=request.user)
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNOPS Admin':
+                qs = qs.filter(Q(created_by__groups__name="UNOPS Group") | Q(created_by__groups__name="UNOPS Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNOPS Group':
+                qs = qs.filter(created_by=request.user)
 
         return qs
 
@@ -40,8 +57,25 @@ class RecentStoriesAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super(RecentStoriesAdmin, self).get_queryset(request)
+
         if not request.user.is_superuser:
-            qs = qs.filter(created_by=request.user)
+            if request.user.groups.values_list('name', flat=True)[0] == 'EOI Admin':
+                qs = qs.filter(Q(created_by__groups__name="EOI Group") | Q(created_by__groups__name="EOI Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'EOI Group':
+                qs = qs.filter(created_by=request.user)
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNDP Admin':
+                qs = qs.filter(Q(created_by__groups__name="UNDP Group") | Q(created_by__groups__name="UNDP Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNDP Group':
+                qs = qs.filter(created_by=request.user)
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNOPS Admin':
+                qs = qs.filter(Q(created_by__groups__name="UNOPS Group") | Q(created_by__groups__name="UNOPS Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNOPS Group':
+                qs = qs.filter(created_by=request.user)
 
         return qs
 
@@ -65,8 +99,25 @@ class TrainingAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super(TrainingAdmin, self).get_queryset(request)
+
         if not request.user.is_superuser:
-            qs = qs.filter(created_by=request.user)
+            if request.user.groups.values_list('name', flat=True)[0] == 'EOI Admin':
+                qs = qs.filter(Q(created_by__groups__name="EOI Group") | Q(created_by__groups__name="EOI Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'EOI Group':
+                qs = qs.filter(created_by=request.user)
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNDP Admin':
+                qs = qs.filter(Q(created_by__groups__name="UNDP Group") | Q(created_by__groups__name="UNDP Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNDP Group':
+                qs = qs.filter(created_by=request.user)
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNOPS Admin':
+                qs = qs.filter(Q(created_by__groups__name="UNOPS Group") | Q(created_by__groups__name="UNOPS Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNOPS Group':
+                qs = qs.filter(created_by=request.user)
 
         return qs
 
@@ -82,8 +133,25 @@ class ProjectStakeholdersAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super(ProjectStakeholdersAdmin, self).get_queryset(request)
+
         if not request.user.is_superuser:
-            qs = qs.filter(created_by=request.user)
+            if request.user.groups.values_list('name', flat=True)[0] == 'EOI Admin':
+                qs = qs.filter(Q(created_by__groups__name="EOI Group") | Q(created_by__groups__name="EOI Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'EOI Group':
+                qs = qs.filter(created_by=request.user)
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNDP Admin':
+                qs = qs.filter(Q(created_by__groups__name="UNDP Group") | Q(created_by__groups__name="UNDP Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNDP Group':
+                qs = qs.filter(created_by=request.user)
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNOPS Admin':
+                qs = qs.filter(Q(created_by__groups__name="UNOPS Group") | Q(created_by__groups__name="UNOPS Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNOPS Group':
+                qs = qs.filter(created_by=request.user)
 
         return qs
 
@@ -98,8 +166,25 @@ class MaterialsAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super(MaterialsAdmin, self).get_queryset(request)
+
         if not request.user.is_superuser:
-            qs = qs.filter(created_by=request.user)
+            if request.user.groups.values_list('name', flat=True)[0] == 'EOI Admin':
+                qs = qs.filter(Q(created_by__groups__name="EOI Group") | Q(created_by__groups__name="EOI Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'EOI Group':
+                qs = qs.filter(created_by=request.user)
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNDP Admin':
+                qs = qs.filter(Q(created_by__groups__name="UNDP Group") | Q(created_by__groups__name="UNDP Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNDP Group':
+                qs = qs.filter(created_by=request.user)
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNOPS Admin':
+                qs = qs.filter(Q(created_by__groups__name="UNOPS Group") | Q(created_by__groups__name="UNOPS Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNOPS Group':
+                qs = qs.filter(created_by=request.user)
 
         return qs
 
