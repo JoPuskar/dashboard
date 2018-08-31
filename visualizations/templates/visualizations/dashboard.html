@@ -566,14 +566,14 @@
             <div class="story-section padding-top">
                 <div class="story-list">{% for story in recent_story %}
                     <div>
-                        <div class="story-item story" style="height: 287px;">
+                        <div class="story-item story" style="height: 230px;">
                             <img src="{{ story.thumbnail.url }}" alt="" width="100" height="100">
                             <div class="user-info">
                                 <h6>{{ story.title }}</h6>
                                 <span>{{ story.description }}</span>
                             </div>
                             <p>
-                                {{ story.content|truncatewords:18|safe }} <a href="{% url 'visualizations:recent_story_detail' story.id %}" title="">read more [+]</a>
+                                {{ story.content|truncatewords:15|safe }} <a href="{% url 'visualizations:recent_story_detail' story.id %}" title="">read more [+]</a>
                             </p>
                         </div>
                     </div>{% endfor %}
