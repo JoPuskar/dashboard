@@ -630,7 +630,7 @@
 
 		var div = L.DomUtil.create('div', 'info legend'),
 			grades = [0, 20, 40, 60, 80],
-			labels = [],
+			labels = ['<strong>Reconstruction Progress</strong>'],
 			from, to;
 
 		for (var i = 0; i < grades.length; i++) {

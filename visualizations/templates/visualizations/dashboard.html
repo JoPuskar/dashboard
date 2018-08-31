@@ -115,9 +115,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% for partner in partners %}
-                          <a class="dropdown-item" href="{% url 'visualizations:partner_detail' partner.pk %}">{{ partner.name }}</a>
+                            <a class="dropdown-item"
+                               href="{% url 'visualizations:partner_detail' partner.pk %}">{{ partner.name }}</a>
 
-                      {% endfor %}
+                        {% endfor %}
 
 
                 </li>
@@ -130,7 +131,8 @@
 
         </div>
     </nav>
-</div><div class="bg-white module-padding">
+</div>
+<div class="bg-white module-padding">
     <div class="container">
         <div class="stat-wrap">
             <div class="stat-head">
@@ -561,7 +563,7 @@
                 <h5>Stories From The Field</h5>
                 <a href="{% url 'visualizations:recent_stories' %}" title="">View All</a>
             </div>
-            <div class="story-section padding-top" >
+            <div class="story-section padding-top">
                 <div class="story-list">{% for story in recent_story %}
                     <div>
                         <div class="story-item story" style="height: 287px;">
@@ -571,7 +573,7 @@
                                 <span>{{ story.description }}</span>
                             </div>
                             <p>
-                                {{ story.content|truncatewords:15|safe }} <a href="{% url 'visualizations:recent_story_detail' story.id %}" title="">read more [+]</a>
+                                {{ story.content|truncatewords:18|safe }} <a href="{% url 'visualizations:recent_story_detail' story.id %}" title="">read more [+]</a>
                             </p>
                         </div>
                     </div>{% endfor %}
@@ -593,14 +595,18 @@
                 <div class="row">
 
                     {% for tweet in tweets %}
-                        <div class="col-sm-4">
-                            <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}"
-                               target="_blank">
-                                <img src="{{ tweet.user.profile_image_url }}" width="48" height="48"/>
-                                <h5>{{ tweet.user.name }}<br/></h5>
-                                <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
-                            </a>
-                            <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
+
+                            <div class="col-sm-4">
+                                <div class="tweet-wrap">
+
+                                <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}"
+                                   target="_blank">
+                                    <img src="{{ tweet.user.profile_image_url }}" width="48" height="48"/>
+                                    <h5>{{ tweet.user.name }}<br/></h5>
+                                    <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
+                                </a>
+                                <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
+                            </div>
                         </div>
 
                     {% endfor %}
@@ -622,7 +628,7 @@
         <h4 class="text-center partner"><strong>Project Partners</strong></h4><br>
         <div class="row autoplay margin-top">
             {% for project_stakeholder in project_stakeholders %}
-                <div class="col-md-3 text-center"><a href="#"><img height="100" src="{{ project_stakeholder.logo.url }}"
+                <div class="col-md-3 text-center"><a href="{% url 'visualizations:partner_detail' project_stakeholder.pk %}"><img height="100" src="{{ project_stakeholder.logo.url }}"
                                                                    class="stake"></a></div>
 
             {% endfor %}
@@ -896,9 +902,9 @@
 <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
 <!--map js end-->
 <script>
-    $.get( "http://dfid.naxa.com.np/core/layer-data/", function( data ) {
-    console.log(data);
-});
+    $.get("http://dfid.naxa.com.np/core/layer-data/", function (data) {
+        console.log(data);
+    });
 </script>
 </body>
 </html>
