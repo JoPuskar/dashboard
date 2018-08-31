@@ -146,7 +146,7 @@ class Data(models.Model):
 class RecentStories(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField("Title", max_length=255)
-    description = models.CharField("Short Title", max_length=255)
+    description = models.CharField("subtitle", max_length=255)
     content = RichTextField()
     thumbnail = StdImageField(validators=[MinSizeValidator(100, 100)])
     banner = StdImageField(validators=[MinSizeValidator(1600, 600)])
