@@ -3,9 +3,8 @@
 <html>
 <head>
   <title></title>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
 <!------ Include the above in your HEAD tag ---------->
@@ -15,7 +14,7 @@
 {% include 'visualizations/navbar.html' %}
 
 <section class="details-card">
-    <h2 class="title text-center">Events</h2>
+    <h2 class="title text-center margin-top-large">Events</h2>
 
     <div class="container">
         <div class="row">
@@ -34,7 +33,7 @@
                         {% endif %}
                        <!--  <span><h4>heading</h4></span> -->
                     </div>
-                    <div class="col-md-8 card-desc">
+                    <div class="col-md-8 card-desc text-left">
 
                              <h3>{{ event.title }} </h3>                            <p class="time"> {{ event.updated }}</p>
 
@@ -56,6 +55,10 @@
 
 </section>
 <!-- details card section starts from here -->
+<script>window.jQuery || document.write('<script src="{% static 'assets/js/vendor/jquery-1.11.2.min.js' %}"><\/script>')</script>
+<script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
+
 </body>
 </html>
 

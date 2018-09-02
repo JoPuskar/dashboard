@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
     <script src="{% static 'assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
@@ -81,57 +82,8 @@
         {% endfor %}
     </div>
 </div>
+{% include 'visualizations/navbar.html' %}
 
-<div class="sub-nav">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'dashboard' %}"><i class="fas fa-home"></i><span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'visualizations:about' %}">About</a>
-                </li>
-                <li class="nav-item">
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'visualizations:media' %}">Media</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'visualizations:materials' %}">Materials</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'visualizations:event' %}">Events</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'visualizations:training' %}">Training</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Partners
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% for partner in partners %}
-                            <a class="dropdown-item"
-                               href="{% url 'visualizations:partner_detail' partner.pk %}">{{ partner.name }}</a>
-
-                        {% endfor %}
-
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'visualizations:contact' %}">Contact</a>
-                </li>
-
-            </ul>
-
-
-        </div>
-    </nav>
-</div>
 <div class="bg-white module-padding">
     <div class="container">
         <div class="stat-wrap">
@@ -591,7 +543,7 @@
                 <a class="twitter-timeline" data-height="500"
                    href="#">
 
-                    <h3>Twitter Feed #IndiaInNepalReconstruction</h3></a>
+                    <h4><strong>Twitter Feed #IndiaInNepalReconstruction</strong></h4></a>
                 <div class="row">
 
                     {% for tweet in tweets %}

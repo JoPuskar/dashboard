@@ -68,6 +68,7 @@ class Gaunpalika(models.Model):
 
 
 class Data(models.Model):
+
     """
     Stores a single data entry, related to :model:`District` and
     :model:`Gaunpaika`.

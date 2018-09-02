@@ -35,55 +35,7 @@
         }
     </style>
 </head>
-<div class="sub-nav">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'dashboard' %}"><i class="fas fa-home"></i><span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'visualizations:about' %}">About</a>
-                </li>
-                <li class="nav-item">
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'visualizations:media' %}">Media</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'visualizations:materials' %}">Materials</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'visualizations:event' %}">Events</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'visualizations:training' %}">Training</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Partners
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% for partner in partners %}
-                          <a class="dropdown-item" href="{% url 'visualizations:partner_detail' partner.pk %}">{{ partner.name }}</a>
-
-                      {% endfor %}
-
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'visualizations:contact' %}">Contact</a>
-                </li>
-
-            </ul>
-
-
-        </div>
-    </nav>
-</div>
+{% include 'visualizations/navbar.html' %}
 <body class="bg-gray ">
 <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -117,8 +69,6 @@
 </div>
 
 
-<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-3.2.1.min.js"><\/script>')</script>-->
 <script>window.jQuery || document.write('<script src="{% static 'assets/js/vendor/jquery-1.11.2.min.js' %}"><\/script>')</script>
 <script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
 <script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>

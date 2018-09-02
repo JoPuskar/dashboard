@@ -1,10 +1,9 @@
 /* card details start  */
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Condensed:400,400i,700,700i');
 section{
     padding: 25px 0;
 }
 .details-card {
-	background: #ecf0f1;
+
 }
 
 .card-content {
@@ -76,7 +75,6 @@ section{
 	margin: 0px;
 	margin-bottom: 20px;
 	padding: 0;
-	font-family: 'Raleway', sans-serif;
 }
 .btn-card{
 	background-color: #1ABC9C;
@@ -132,9 +130,8 @@ button.btn.btn-outline-black.waves-effect.filter {
 
 img.img-fluid.media {
    
-    min-width: 340px;
+    width: 100%;
     max-height: 226.66px;
-    max-width: 340px;
     min-height: 226.66px;
     margin-bottom: 10px;
 }
@@ -165,9 +162,7 @@ iframe.video{
 
 p.media-dsc {
     font-size: 10px;
-    float: right;
-    color: gray;
-    margin-right: 10px;
+    color: rgba(0,0,0,.5);
 }
 
 video.media-vdo {
@@ -182,9 +177,7 @@ video.media-vdo {
 
 audio.media-audio {
     margin-top: -65px;
-    position: absolute;
-    max-width: 340px;
-    min-width: auto;
+    width: 100%;
 }
 
 /*media*/
@@ -248,4 +241,116 @@ p.time {
 .card-content.eve.stakep {
     padding: 40px;
     text-align: justify;
+}
+
+
+
+
+/*=====BG Modified====*/
+
+/*===Twitter===*/
+.tweet-wrap{
+padding: 15px;
+border: 1px solid rgba(0,0,0,.1);
+margin-top: 1.5rem;
+}
+
+.tweet-wrap a{
+
+}
+
+.tweet-wrap a img{
+float: left;
+margin-right: 10px;
+border-radius: 50%;
+height: 40px;
+width: 40px;
+}
+
+.tweet-wrap a h5{
+color: #333;
+font-weight: bold;
+margin: 0;
+line-height: 100%;
+font-size: 1.2rem;
+}
+
+.tweet-wrap a span{
+font-size: 13px;
+color: rgba(0,0,0,.6);
+}
+
+.tweet-wrap a:after{
+content: '';
+display: table;
+clear: both;
+}
+
+
+.tweet-wrap p{
+font-size: 15px;
+margin-top: 10px;
+}
+
+
+/*====About Us===*/
+.about-container{
+padding-top: 1.5rem;
+}
+
+.about-container h2{
+font-size: 1.5rem;
+font-weight: bold;
+margin-bottom: 1rem;
+}
+
+.about-container p{
+font-size: .9rem;
+text-align: justify;
+}
+
+
+/*====Materials===*/
+.card-content{
+border: 1px solid rgba(0,0,0,.1);
+box-shadow: none;
+padding: 1rem;
+text-align: center;
+}
+
+.card-content img{
+max-width: 90px;
+}
+
+.card-content span{
+display: inline-block;
+}
+
+.card-desc p a{
+font-size: 11px;
+display: inline-block;
+border: 1px solid;
+padding: .2rem .5rem;
+margin-top: 10px;
+}
+
+.card-desc p a:hover, .card-desc p a:focus{
+background: #00628e;
+color: #FFF;
+text-decoration: none;
+}
+
+/**/
+.contact-card{
+    min-height: 255px;
+}
+
+.contact-card h3{
+font-weight: bold;
+font-size: 1.5rem;
+}
+
+.contact-card p{
+font-size: 14px;
+padding-top: .3rem;
 }

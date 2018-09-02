@@ -2,43 +2,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
-<link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
-<!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
+    <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
 {% include 'visualizations/navbar.html' %}
 
 <!-- details card section starts from here -->
-  <section id="about">
-      <div class="container">
+<section id="about">
+    <div class="container">
         <div class="row about-container">
-           {% for about in about %}
+            {% for about in about %}
 
-          <div class="col-lg-6 content order-lg-1 order-2">
-                {{ about.content|safe }}
+                <div class="col-lg-6 content order-lg-1 order-2">
+                    {{ about.content|safe }}
 
 
-          </div>
-        {% if about.image %}
-            <div style="background: url({{ about.image.url }});     min-height: 300px;
-" class="col-lg-6 order-lg-2 order-1 wow fadeInRight"></div>
-               {% else %}
-                      <div class="col-lg-6 background order-lg-2 order-1 wow fadeInRight"></div>
+                </div>
+                {% if about.image %}
+                    <div style="background: url({{ about.image.url }});     min-height: 300px;
+                            " class="col-lg-6 order-lg-2 order-1 wow fadeInRight"></div>
+                {% else %}
+                    <div class="col-lg-6 background order-lg-2 order-1 wow fadeInRight"></div>
 
-               {% endif %}
-                       {% endfor %}
+                {% endif %}
+            {% endfor %}
 
         </div>
 
-      </div>
-    </section><!-- #about -->
+    </div>
+</section><!-- #about -->
 
 <!-- details card section starts from here -->
+<script>window.jQuery || document.write('<script src="{% static 'assets/js/vendor/jquery-1.11.2.min.js' %}"><\/script>')</script>
+<script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
 </body>
 </html>
 
