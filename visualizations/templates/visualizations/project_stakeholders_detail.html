@@ -19,18 +19,21 @@
 
             <div class="col-md-12">
                 <div class="card-content eve stakep">
-                <div class="text-center part-logo">
-                    {% if project_stakeholder.logo %}
-                        <img src="{{ project_stakeholder.logo.url }}" class="contact_img">
-<br/><br>
-                    {% endif %}
-                    {% if project_stakeholder.name %}
-                        <h3>{{ project_stakeholder.name }}</h3>
-                        </div>
+                    <div class="text-center part-logo">
+                        {% if project_stakeholder.logo %}
+                            <img src="{{ project_stakeholder.logo.url }}" class="contact_img">
+                            <br/><br>
+                        {% endif %}
+                        {% if project_stakeholder.name %}
+                            <h3>{{ project_stakeholder.name }}</h3>
+                            </div>
 
-                    {% endif %}
+                        {% endif %}
                     {% if project_stakeholder.role %}
-                        <h6>{{ project_stakeholder.role }}</h6>
+                        <div class="partdes text-center">
+                            <h6>{{ project_stakeholder.role }}</h6>
+
+                        </div>
 
                     {% endif %}
                     {% if project_stakeholder.description %}

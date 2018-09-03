@@ -288,7 +288,6 @@ clear: both;
 
 
 .tweet-wrap p{
-font-size: 15px;
 margin-top: 10px;
 }
 
@@ -342,7 +341,7 @@ text-decoration: none;
 
 /**/
 .contact-card{
-    min-height: 255px;
+    min-height: 280px;
 }
 
 .contact-card h3{
