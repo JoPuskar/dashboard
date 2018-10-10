@@ -196,7 +196,7 @@ class Dashboard(TemplateView):
         context ['all_data'] = all_data
 
         context['housing_label'] = list(HousingCompletion.objects.values_list('label', flat=True))
-        context['housing_values'] = [total_houses_completed, total_houses_stage_iii, total_houses_stage_ii, total_houses_stage_i]
+        context['housing_values'] = [total_houses_completed, total_houses_stage_i, total_houses_stage_ii, total_houses_stage_iii]
 
         context['reconstruction_label'] = list(ReconstructionGrant.objects.values_list('label', flat=True))
         context['reconstruction_values'] = [total_received_tranche_i, total_received_tranche_ii, \

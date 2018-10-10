@@ -181,6 +181,7 @@
                                     <div class="count">{{ all_data.total_houses_stage_i }}
                                         ({{ all_data.ths1_percentage|floatformat:"0" }}%)
                                     </div>
+                                    
                                     Foundation and Plinth
                                 </div>
                                 <div class="pop-info-item bg-light">
@@ -547,23 +548,7 @@
                     <h4><strong>Twitter Feed #IndiaInNepalReconstruction</strong></h4></a>
                 <div class="row">
 
-                    {% for tweet in tweets %}
-
-                            <div class="col-sm-4">
-                                <div class="tweet-wrap">
-
-                                <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}"
-                                   target="_blank">
-                                    <img src="{{ tweet.user.profile_image_url }}" width="48" height="48"/>
-                                    <h5>{{ tweet.user.name }}<br/></h5>
-                                    <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
-                                </a>
-                                <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
-                            </div>
-                        </div>
-
-                    {% endfor %}
-                </div>
+                    
 
             </div>
 
@@ -682,6 +667,7 @@
 </script>
 <script>
     var ctx = document.getElementById("housingChart");
+    console.log({{housing_values}});
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
