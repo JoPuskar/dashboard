@@ -18,7 +18,7 @@ def get_tweets():
     # return api.GetUserTimeline(screen_name='nepalearthquake', exclude_replies=True, include_rts=False)  # includes entities
     return api.GetSearch(term="IndiaInNepalReconstruction")
 
-    # return api
+    return api
 
 
 class Dashboard(TemplateView):
@@ -196,7 +196,7 @@ class Dashboard(TemplateView):
         context ['all_data'] = all_data
 
         context['housing_label'] = list(HousingCompletion.objects.values_list('label', flat=True))
-        context['housing_values'] = [total_houses_completed, total_houses_stage_iii, total_houses_stage_ii, total_houses_stage_i]
+        context['housing_values'] = [total_houses_completed, total_houses_stage_i, total_houses_stage_ii, total_houses_stage_iii]
 
         context['reconstruction_label'] = list(ReconstructionGrant.objects.values_list('label', flat=True))
         context['reconstruction_values'] = [total_received_tranche_i, total_received_tranche_ii, \

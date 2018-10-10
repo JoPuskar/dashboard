@@ -536,7 +536,7 @@
 
 
 	$("#inputDistrict").on('change',function(){ //console.log("input district");
-		//console.log($("#inputDistrict option:selected")[0].id);
+		console.log($("#inputDistrict option:selected")[0].id);
 		var distSelected = $("#inputDistrict option:selected")[0].id;
 		if(distSelected == "gorkha"){
 			if(!map.hasLayer(gorkha)){
@@ -586,6 +586,21 @@
 			if(map.hasLayer(nuwakot)){
 				map.removeLayer(nuwakot);
 			}
+
+			gorkhaLayer.setStyle({
+				fillColor : '#00628e',
+				fillOpacity: 0.8,
+				color:'black',
+				weight:1,
+				opacity:0.6
+			});
+			nuwaLayer.setStyle({
+				fillColor : '#00628e',
+				fillOpacity: 0.8,
+				color:'black',
+				weight:1,
+				opacity:0.6
+			});
 		}
 	});
 
