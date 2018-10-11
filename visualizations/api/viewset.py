@@ -3,7 +3,8 @@ from rest_framework import viewsets
 
 from .serializers import DistrictSerializer, GaunpalikaSerializer, DataSerializers
 from rest_framework.views import APIView
-
+from django.http import HttpResponse
+from django.core.serializers import serialize
 
 
 class DistrictViewSet(viewsets.ModelViewSet):
