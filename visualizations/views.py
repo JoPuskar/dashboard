@@ -18,7 +18,7 @@ def get_tweets():
     # return api.GetUserTimeline(screen_name='nepalearthquake', exclude_replies=True, include_rts=False)  # includes entities
     return api.GetSearch(term="IndiaInNepalReconstruction")
 
-    return api
+    # return api
 
 
 class Dashboard(TemplateView):

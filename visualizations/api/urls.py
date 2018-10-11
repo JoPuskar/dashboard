@@ -13,4 +13,6 @@ router.register(r'data', viewset.DataViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('stfc-locations/', viewset.STFCViewSet.as_view(), name="stfc"),
+
 ]

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from stdimage.models import StdImageField
 from ckeditor.fields import RichTextField
 from stdimage.validators import MinSizeValidator
-
+from django.contrib.gis.db.models import PointField
 from phonenumber_field.modelfields import PhoneNumberField
 
 MEDIA_CHOICES = (
@@ -282,4 +282,19 @@ class Materials(models.Model):
 
     class Meta:
         verbose_name_plural = 'Materials'
+
+
+class STFCLocations(models.Model):
+    name = models.CharField(max_length=200)
+    type = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
+    district = models.ForeignKey(District, related_name='stfc_locations', on_delete=models.CASCADE)
+    district_name = models.CharField(max_length=200, null=True, blank=True)
+    latlong = PointField(null=True, blank=True)
+    contact_number = PhoneNumberField(blank=True)
+    contact_person = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
 
