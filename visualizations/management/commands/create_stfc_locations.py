@@ -16,7 +16,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("-f", type=argparse.FileType(), required=True)   
 
-        df = pd.read_csv(sys.argv[3]).fillna(value=0)
+        df = pd.read_excel(sys.argv[3]).fillna(value=0)
         total = df['STFC Name'].count()
         for row in range(0, total):
 
