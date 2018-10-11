@@ -286,13 +286,12 @@ class Materials(models.Model):
 
 class STFCLocations(models.Model):
     name = models.CharField(max_length=200)
-    type = models.CharField(max_length=200)
-    address = models.CharField(max_length=200)
-    district = models.ForeignKey(District, related_name='stfc_locations', on_delete=models.CASCADE, null=True, blank=True)
+    type = models.CharField(max_length=200, null=True, blank=True)
+    address = models.CharField(max_length=200, null=True, blank=True)
     district_name = models.CharField(max_length=200, null=True, blank=True)
     latlong = PointField(null=True, blank=True)
-    contact_number = PhoneNumberField(blank=True)
-    contact_person = models.CharField(max_length=200)
+    contact_number = models.CharField(max_length=200, null=True, blank=True)
+    contact_person = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
         return self.name
