@@ -30,4 +30,4 @@ class Command(BaseCommand):
                     latlong = pnt,                                      
                 )
             if created:
-                self.stdout.write('Sucessfully loaded %s' % stfc)0
+                self.stdout.write('Sucessfully loaded %s' % stfc)
