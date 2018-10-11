@@ -288,7 +288,7 @@ class STFCLocations(models.Model):
     name = models.CharField(max_length=200)
     type = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
-    district = models.ForeignKey(District, related_name='stfc_locations', on_delete=models.CASCADE)
+    district = models.ForeignKey(District, related_name='stfc_locations', on_delete=models.CASCADE, null=True, blank=True)
     district_name = models.CharField(max_length=200, null=True, blank=True)
     latlong = PointField(null=True, blank=True)
     contact_number = PhoneNumberField(blank=True)
