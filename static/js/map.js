@@ -139,13 +139,17 @@
 
 
 		layer.bindLabel(layer.feature.properties.DISTRICT);
-
+		nepal_district.bringToBack();
         layer.on('click',function(e){
 
-			layer.bindPopup(layer.feature.properties.DISTRICT);
+			//layer.bindPopup(layer.feature.properties.DISTRICT);
 
 
         });
+        if(map.hasLayer(district)){
+        	//district.bringToFront();
+        }
+        
 	}
 
 
@@ -154,7 +158,7 @@
 
 
 
-	var district = new L.TopoJSON();
+	district = new L.TopoJSON();
 	$.getJSON(district_json)
 	  .done(addTopoData);
 
@@ -310,6 +314,16 @@
 			//show legend and info div
             $('.legend').css('display','block');
             $('.info').css('display','block');
+
+             //add point markers
+              stfc_gorkha.addTo(map);
+              
+              if(map.hasLayer(stfc_nuwakot)){
+              	map.removeLayer(stfc_nuwakot);
+              }
+              
+             //add point markers end
+
             }
 			else {
 
@@ -331,7 +345,19 @@
             	$('.legend').css('display','block');
             	$('.info').css('display','block');
 
-            	 }
+
+             //add point markers
+              stfc_nuwakot.addTo(map);
+              stfc_nuwakot.bringToFront();
+              if(map.hasLayer(stfc_gorkha)){
+              	map.removeLayer(stfc_gorkha);
+              }
+              
+             //add point markers end
+
+            }
+
+
 
 
         });
@@ -387,6 +413,11 @@
 			  gorkha.addTo(map);
 			  gorkha.eachLayer(handleMun);
 			  map.fitBounds(gorkha.getBounds(),[-50,-50]);
+			  if(map.hasLayer(stfc_gorkha)){
+			  	stfc_gorkha.bringToFront();
+			  }
+			  		  
+			  
 			}	
 		}
 		else if(district == "NUWAKOT"){
@@ -408,6 +439,9 @@
 			  nuwakot.addTo(map);
 			  nuwakot.eachLayer(handleMun);
 			  map.fitBounds(nuwakot.getBounds());
+			  if(map.hasLayer(stfc_nuwakot)){
+			  	stfc_nuwakot.bringToFront();
+			  }
 			}
 		}
 	}
@@ -546,6 +580,10 @@
 			if(map.hasLayer(nuwakot)){
 				map.removeLayer(nuwakot);
 			}
+			map.addLayer(stfc_gorkha);
+			if(map.hasLayer(stfc_nuwakot)){ console.log("stfc nuwakot asjdfljaslfjsalfjls");
+				map.removeLayer(stfc_nuwakot);
+			}
 
 
 
@@ -564,6 +602,10 @@
 			}
 			if(map.hasLayer(gorkha)){
 				map.removeLayer(gorkha);
+			}
+			map.addLayer(stfc_nuwakot);
+			if(map.hasLayer(stfc_gorkha)){
+				map.removeLayer(stfc_gorkha);
 			}
 
 			gorkhaLayer.setStyle({
@@ -585,6 +627,13 @@
 			
 			if(map.hasLayer(nuwakot)){
 				map.removeLayer(nuwakot);
+			}
+
+			if(map.hasLayer(stfc_nuwakot)){
+				map.removeLayer(stfc_nuwakot);
+			}
+			if(map.hasLayer(stfc_gorkha)){
+				map.removeLayer(stfc_gorkha);
 			}
 
 			gorkhaLayer.setStyle({
@@ -639,40 +688,160 @@
 
 
 	//plot markers
-	stfc = new L.geoJson.ajax("http://eoi.naxa.com.np/visualizations/api/stfc-locations/", {
+
+	var circlemarkerColor = ["red","green","blue","purple"," #33a8ff","aqua"];
+	var markerLabel = ["District Office","Area Office","Municipality Office","Rural Municipality Office", "STFC","Building Permit Studio"];
+	stfc_gorkha = new L.geoJson.ajax("http://eoi.naxa.com.np/visualizations/api/stfc-locations/?district_name=Gorkha", {
 					pointToLayer: function (feature,latlng){
-						var url = "";
+						//var url = "";
+						var fill_color = "";
 						if(feature.properties.type.toLowerCase() == "district office"){
-							url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png';
+							//url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png';
+							fill_color = circlemarkerColor[0];
 						}
 						else if(feature.properties.type.toLowerCase() == "area office"){
-							url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png';
+							fill_color = circlemarkerColor[1];
+							//url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png';
 						}
 						else if(feature.properties.type.toLowerCase() == "nagarpalika office"){
-							url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png';
+							fill_color = circlemarkerColor[2];
+							//url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png';
 						}
 						else if(feature.properties.type.toLowerCase() == "gaupalika office"){
-							url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png';
+							fill_color = circlemarkerColor[3];
+							//url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png';
 						}
 						else if(feature.properties.type.toLowerCase() == "stfc" ){
-							url ='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png';
+							fill_color = circlemarkerColor[4];
+							//url ='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png';
 
 						}
 						else if(feature.properties.type.toLowerCase() == "building permit studio"){
-							url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png';
+							fill_color = circlemarkerColor[5];
+							//url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png';
 						}
-						var icon = L.icon({
-						    iconUrl: url,
-						    //shadowUrl: 'leaf-shadow.png',
+						// var icon = L.icon({
+						//     iconUrl: url,
+						//     //shadowUrl: 'leaf-shadow.png',
 
-						    // iconSize:     [38, 95], // size of the icon
-						    // shadowSize:   [50, 64], // size of the shadow
-						    // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-						    // shadowAnchor: [4, 62],  // the same for the shadow
-						    // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+						//     // iconSize:     [38, 95], // size of the icon
+						//     // shadowSize:   [50, 64], // size of the shadow
+						//     // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+						//     // shadowAnchor: [4, 62],  // the same for the shadow
+						//     // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+						// });
+						// console.log(latlng);
+						var marker = L.circleMarker([latlng.lng,latlng.lat], {
+							radius:5,
+							fillColor: fill_color,
+							color: 'black', 
+							fillOpacity: 1,
+							weight:1
 						});
-						console.log(latlng);
-						var marker = L.marker([latlng.lng,latlng.lat], {icon:icon});
+						return marker;
+
+					},
+                    onEachFeature: function (feature, layer) {
+                        
+						var popUpContent = "";
+                        popUpContent += '<table style="width:100%;" id="District-popup" class="popuptable">';
+                        //console.log(feature);
+						for (data in layer.feature.properties) {
+                            
+                            //var dataspaced = underscoreToSpace(data);
+							//console.log(data);
+                            popUpContent += "<tr>" + "<td>" + data + "</td>" + "<td>" + "  " + layer.feature.properties[data] + "</td>" + "</tr>";
+							//console.log(popUpContent);
+					   }
+                        popUpContent += '</table>';
+						//console.log(popUpContent);
+                        //layer.bindLabel(feature.properties['DISTRICT'], { 'noHide': true, id:"labelDiv" });
+
+                        
+
+                        layer.bindPopup(L.popup({
+                            closeOnClick: true,
+                            closeButton: true,
+                            keepInView: true,
+                            autoPan: true,
+                            maxHeight: 200,
+                            minWidth: 250
+                        }).setContent(popUpContent));
+
+                        // layer.on("mouseover", function (e) {
+                        //          e.target.setStyle({weight:2});
+                        //          $("#labelDiv").html("<table class='popuptable'><tr><td><h5><b>Layer:</b> District</h5></td></tr><tr><td><h5><b>Name:</b> "+feature.properties['DISTRICT']+"</h5></td><tr></table>");
+                        // }).on("mouseout", function(e){
+                        //          e.target.setStyle({weight:1});
+                        //          $("#labelDiv").html("");
+                        // });
+
+                    }
+                });
+                stfc_gorkha.on('data:loaded', function (data) {
+                    // stfc_gorkha.setStyle({
+                    //         fillColor: randomColor(),
+                    //         weight: 1,
+                    //         opacity: 1,
+                    //         color: 'black',
+                    //         dashArray: '3',
+                    //         fillOpacity: 1
+                    // });
+                   
+                    console.log("stfc Layer Added");
+                    // 
+                });
+                //stfc_gorkha.addTo(map);
+                //stfc_gorkha.bringToFront();
+
+
+
+                stfc_nuwakot = new L.geoJson.ajax("http://eoi.naxa.com.np/visualizations/api/stfc-locations/?district_name=Nuwakot", {
+					pointToLayer: function (feature,latlng){
+						var fill_color = "";
+						if(feature.properties.type.toLowerCase() == "district office"){
+							//url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png';
+							fill_color = circlemarkerColor[0];
+						}
+						else if(feature.properties.type.toLowerCase() == "area office"){
+							fill_color = circlemarkerColor[1];
+							//url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png';
+						}
+						else if(feature.properties.type.toLowerCase() == "nagarpalika office"){
+							fill_color = circlemarkerColor[2];
+							//url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png';
+						}
+						else if(feature.properties.type.toLowerCase() == "gaupalika office"){
+							fill_color = circlemarkerColor[3];
+							//url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png';
+						}
+						else if(feature.properties.type.toLowerCase() == "stfc" ){
+							fill_color = circlemarkerColor[4];
+							//url ='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png';
+
+						}
+						else if(feature.properties.type.toLowerCase() == "building permit studio"){
+							fill_color = circlemarkerColor[5];
+							//url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png';
+						}
+						// var icon = L.icon({
+						//     iconUrl: url,
+						//     //shadowUrl: 'leaf-shadow.png',
+
+						//     // iconSize:     [38, 95], // size of the icon
+						//     // shadowSize:   [50, 64], // size of the shadow
+						//     // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+						//     // shadowAnchor: [4, 62],  // the same for the shadow
+						//     // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+						// });
+						//console.log(latlng);
+						var marker = L.circleMarker([latlng.lng,latlng.lat], {
+							radius:5,
+							fillColor: fill_color,
+							color: 'black', 
+							fillOpacity: 1,
+							weight:1
+						});
 						return marker;
 
 					},
@@ -713,20 +882,20 @@
 
                     }
                 });
-                stfc.on('data:loaded', function (data) {
-                    stfc.setStyle({
-                            fillColor: randomColor(),
-                            weight: 1,
-                            opacity: 1,
-                            color: 'black',
-                            dashArray: '3',
-                            fillOpacity: 0.0
-                    });
+                stfc_nuwakot.on('data:loaded', function (data) {
+                    // stfc_nuwakot.setStyle({
+                    //         fillColor: randomColor(),
+                    //         weight: 1,
+                    //         opacity: 1,
+                    //         color: 'black',
+                    //         dashArray: '3',
+                    //         fillOpacity: 1
+                    // });
                    
                     console.log("stfc Layer Added");
                     // 
                 });
-                stfc.addTo(map);
+                //stfc_nuwakot.addTo(map);
 	//plot markers end
 
 
@@ -739,20 +908,30 @@
 			grades = [0, 20, 40, 60, 80],
 			labels = ['<strong>Reconstruction Progress</strong>'],
 			from, to;
+		//div.classList.add("col-md-12");
 
 		for (var i = 0; i < grades.length; i++) {
 			from = grades[i];
 			to = grades[i + 1];
 
 			labels.push(
-				'<div style="background:' + getColor(from + 1) + '; width: 20px; height:20px; display: inline-block; padding-top:5px;"></div> ' +
-				from + (to ? '&ndash;' + to + "%" : '%+'));
+				'<div style="background:' + getColor(from + 1) + '; width: 15px; height:15px; display: inline-block; padding-top:5px;"></div><font class = "legend-text"> ' +
+				from + (to ? '&ndash;' + to + "%" : '%+')+'</font>');
 		}
 
-		div.innerHTML = labels.join('<br>');
-		return div;
-	};
+		labels_marker = ['<strong>STFC Offices</strong>'];
+			
 
+		for (var i = 0; i < circlemarkerColor.length; i++) {
+
+			labels_marker.push(
+				'<div class="dot" style="background:' + circlemarkerColor[i] + '; width: 15px; height:15px; display: inline-block; padding-top:5px;"></div><font class = "legend-text"> ' +
+				markerLabel[i]+'</font>');
+		}
+
+		div.innerHTML = '<table><tr><td style="padding:5px;><div class = "locations">'+ labels_marker.join('<br>')+'</div></td>' +'<td style="padding:5px;"><div class = "progress" style="display:inline;">'+labels.join('<br>')+'</div></td></tr></table>';
+		return div;
+	}
 	legend.addTo(map);
 
 
