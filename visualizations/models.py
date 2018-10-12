@@ -263,6 +263,7 @@ class Contact(models.Model):
     website = models.URLField(blank=True)
     phone = models.CharField(max_length=300, blank=True, null=True)
     updated = models.DateTimeField(auto_now=True)
+    order = models.IntegerField(default=0)
 
     def __str__(self):
         return self.partner_name.name

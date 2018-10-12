@@ -375,7 +375,7 @@ class ContactListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['contacts'] = Contact.objects.order_by('-pk')
+        context['contacts'] = Contact.objects.order_by('order')
         context['other_contacts'] = OtherContact.objects.order_by('-pk')
        
         return context
