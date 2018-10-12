@@ -750,7 +750,9 @@
                             
                             //var dataspaced = underscoreToSpace(data);
 							//console.log(data);
-                            popUpContent += "<tr>" + "<td>" + data + "</td>" + "<td>" + "  " + layer.feature.properties[data] + "</td>" + "</tr>";
+							data1 = data.replace("_","");
+							data1 = data1.charAt(0).toUpperCase()+data1.substr(1);
+                            popUpContent += "<tr>" + "<td>" + data1 + "</td>" + "<td>" + "  " + layer.feature.properties[data] + "</td>" + "</tr>";
 							//console.log(popUpContent);
 					   }
                         popUpContent += '</table>';
@@ -765,7 +767,8 @@
                             keepInView: true,
                             autoPan: true,
                             maxHeight: 200,
-                            minWidth: 250
+                            minWidth: 250,
+                            popupAnchor:  [-3, -76]
                         }).setContent(popUpContent));
 
                         // layer.on("mouseover", function (e) {
@@ -853,8 +856,9 @@
 						for (data in layer.feature.properties) {
                             
                             //var dataspaced = underscoreToSpace(data);
-							//console.log(data);
-                            popUpContent += "<tr>" + "<td>" + data + "</td>" + "<td>" + "  " + layer.feature.properties[data] + "</td>" + "</tr>";
+							data1 = data.replace("_","");
+							data1 = data1.charAt(0).toUpperCase()+data1.substr(1);
+                            popUpContent += "<tr>" + "<td>" + data1 + "</td>" + "<td>" + "  " + layer.feature.properties[data] + "</td>" + "</tr>";
 							//console.log(popUpContent);
 					   }
                         popUpContent += '</table>';
@@ -896,7 +900,13 @@
                     // 
                 });
                 //stfc_nuwakot.addTo(map);
+                //layerswitcher.addOverlay(stfc_gorkha,"STFC Locations Gorkha");
+                //layerswitcher.addOverlay(stfc_nuwakot,"STFC Locations Nuwakot");
 	//plot markers end
+
+
+
+
 
 
 
@@ -929,7 +939,7 @@
 				markerLabel[i]+'</font>');
 		}
 
-		div.innerHTML = '<table><tr><td style="padding:5px;><div class = "locations">'+ labels_marker.join('<br>')+'</div></td>' +'<td style="padding:5px;"><div class = "progress" style="display:inline;">'+labels.join('<br>')+'</div></td></tr></table>';
+		div.innerHTML = '<table><tr><td style="padding:5px;"><div class = "locations" style = "font-size:10px !important;">'+ labels_marker.join('<br>')+'</div></td>' +'<td style="padding:5px;"><div class = "progress" style="display:inline;">'+labels.join('<br>')+'</div></td></tr></table>';
 		return div;
 	}
 	legend.addTo(map);
