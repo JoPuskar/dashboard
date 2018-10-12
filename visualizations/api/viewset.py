@@ -27,7 +27,7 @@ class STFCViewSet(APIView):
     def get(self, request):
     	district_query = self.request.query_params.get('district_name')
 
-    	if district_query == 'Gorkha':
+    	if district_query == 'Gorkha': 
     		return HttpResponse(serialize('geojson', STFCLocations.objects.filter(district_name=district_query),
                                           geometry_field='latlong',
                                           fields=(
