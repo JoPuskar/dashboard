@@ -169,6 +169,7 @@ class Event(models.Model):
     image = models.ImageField(upload_to='event/')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    event_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -260,8 +261,9 @@ class Contact(models.Model):
     address = models.CharField(max_length=300, blank=True)
     email = models.EmailField(blank=True)
     website = models.URLField(blank=True)
-    phone = PhoneNumberField(blank=True)
+    phone = models.CharField(max_length=300, blank=True, null=True)
     updated = models.DateTimeField(auto_now=True)
+    order = models.IntegerField(default=0)
 
     def __str__(self):
         return self.partner_name.name
@@ -296,4 +298,13 @@ class STFCLocations(models.Model):
     def __str__(self):
         return self.name
 
+class OtherContact(models.Model):
+    name = models.CharField(max_length=300)
+    address = models.CharField(max_length=300)
+    phone = models.CharField(max_length=300)
+    logo = models.ImageField(upload_to='contacts-logo/', null=True, blank=True)
 
+
+    def __str__(self):
+        return self.name
+    

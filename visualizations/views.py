@@ -5,7 +5,7 @@ from django.views.generic import TemplateView, CreateView, UpdateView, DetailVie
 
 from dashboard import settings
 from .models import HousingCompletion, ReconstructionGrant, Data, RecentStories, Event, Contact, Training, \
-    Media, ProjectStakeholders, DispensedAmount, AboutUs, TotalAmount, Materials
+    Media, ProjectStakeholders, DispensedAmount, AboutUs, TotalAmount, Materials, OtherContact
 
 
 def get_tweets():
@@ -348,7 +348,7 @@ class EventsListView(ListView):
     context_object_name = 'events'
 
     def get_queryset(self):
-        return Event.objects.order_by('-updated')
+        return Event.objects.order_by('-event_date')
 
 
 class EventDetailView(DetailView):
@@ -366,12 +366,20 @@ class TrainingDetailView(DetailView):
     context_object_name = 'training'
 
 
-class ContactListView(ListView):
-    model = Contact
+class ContactListView(TemplateView):
     context_object_name = 'contacts'
+    template_name = 'visualizations/contact_list.html'
 
-    def get_queryset(self):
-        return Contact.objects.order_by('-updated')
+    # def get_queryset(self):
+    #     return Contact.objects.order_by('-pk')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['contacts'] = Contact.objects.order_by('order')
+        context['other_contacts'] = OtherContact.objects.order_by('-pk')
+       
+        return context
+
 
 
 class AboutView(ListView):

@@ -57,6 +57,35 @@
                 {% empty %}
                 <h2>No Contacts</h2>
             {% endfor %}
+            {% for contact in other_contacts %}
+
+                <div class="col-md-6">
+                    <div class="card-content contact-card eve text-center">
+                        {% if contact.logo %}
+
+                            <img height="250" src="{{ contact.logo.url }}" class="contact_img">
+
+
+                        {% endif %}
+                        {% if contact.name %}
+                            <h3>{{ contact.name }}</h3>
+
+                        {% endif %}
+                        {% if contact.address %}
+                            <p class="text-center w-75 m-auto">{{ contact.address }}</p>
+
+                        {% endif %}
+                       
+                        {% if contact.phone %}
+                            <p class="text-center w-75 m-auto"><i class="fa fa-phone"></i> {{ contact.phone }}</p>
+
+                        {% endif %}
+                       
+                        <br>
+                    </div>
+                </div>
+                
+            {% endfor %}
         </div>
     </div>
 </section>
