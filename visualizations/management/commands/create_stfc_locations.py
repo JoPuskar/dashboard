@@ -19,7 +19,7 @@ class Command(BaseCommand):
         total = df['STFC Name'].count()
         for row in range(0, total):
 
-            pnt = Point(df['Latitude'][row], df['Longitude'][row])
+            pnt = Point(df['Longitude'][row], df['Latitude'][row])
             stfc, created = STFCLocations.objects.get_or_create(
                     district_name=df['District'][row],
                     name=df['STFC Name'][row],

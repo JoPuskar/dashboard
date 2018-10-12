@@ -531,22 +531,6 @@
 
                     <h4><strong>Twitter Feed #IndiaInNepalReconstruction</strong></h4></a>
                 <div class="row">
-                    {% for tweet in tweets %}
-
-                            <div class="col-sm-4">
-                                <div class="tweet-wrap">
-
-                                <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}"
-                                   target="_blank">
-                                    <img src="{{ tweet.user.profile_image_url }}" width="48" height="48"/>
-                                    <h5>{{ tweet.user.name }}<br/></h5>
-                                    <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
-                                </a>
-                                <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
-                            </div>
-                        </div>
-
-                    {% endfor %}
 
                 </div>
 
@@ -563,7 +547,7 @@
 
         <!-- project Stakeholders -->
 
-        <h4 class="text-center partner"><strong>Project Partners</strong></h4><br>
+        <h4 class="text-center partner"><strosng>Project Partners</strong></h4><br>
         <div class="row autoplay margin-top">
             {% for project_stakeholder in project_stakeholders %}
                 <div class="col-md-3 text-center"><a href="{% url 'visualizations:partner_detail' project_stakeholder.pk %}"><img height="100" src="{{ project_stakeholder.logo.url }}"
@@ -833,6 +817,7 @@
 <link rel="stylesheet" href="{% static 'css/leaflet.css' %}"/>
 
 <script type="text/javascript" src="{% static 'js/leaflet.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/leaflet.ajax.min.js' %}"></script>
 <!--<script type="text/javascript" src="./js/jquery.min.js"></script>-->
 <script type="text/javascript" src="{% static 'js/leaflet.label.js' %}"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>

@@ -25,7 +25,37 @@ class DataViewSet(viewsets.ModelViewSet):
 class STFCViewSet(APIView):
 
     def get(self, request):
-    	return HttpResponse(serialize('geojson', STFCLocations.objects.all(),
+    	district_query = self.request.query_params.get('district_name')
+
+    	if district_query == 'Gorkha': 
+    		return HttpResponse(serialize('geojson', STFCLocations.objects.filter(district_name=district_query),
+                                          geometry_field='latlong',
+                                          fields=(
+                                              'pk',
+                                              'district_name',
+                                              'name',
+                                              'type',
+                                              'address',
+                                              'contact_number',
+                                              'contact_person',
+                                          )),
+                                content_type='application/json')
+
+    	elif district_query == 'Nuwakot':
+    		return HttpResponse(serialize('geojson', STFCLocations.objects.filter(district_name=district_query),
+                                          geometry_field='latlong',
+                                          fields=(
+                                              'pk',
+                                              'district_name',
+                                              'name',
+                                              'type',
+                                              'address',
+                                              'contact_number',
+                                              'contact_person',
+                                          )),
+                                content_type='application/json')
+    	else:
+    	    return HttpResponse(serialize('geojson', STFCLocations.objects.all(),
                                           geometry_field='latlong',
                                           fields=(
                                               'pk',
