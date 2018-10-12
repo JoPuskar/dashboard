@@ -36,6 +36,23 @@
         .info {
             background: white;
             padding: 5px;
+            font-size:10px;
+        }
+        .progress{
+            font-size:10px;
+        }
+        .dot {
+          height: 25px;
+          width: 25px;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+        }
+        .leaflet-bottom .leaflet-control {
+            margin-bottom: 0px !important;
+        }
+        .legend-text{
+            vertical-align: super;
         }
     </style>
 </head>
@@ -528,7 +545,22 @@
 <div class="bg-white module-padding">
     <div class="container">
         <div class="row ">
+                    {% for tweet in tweets %}
 
+                            <div class="col-sm-4">
+                                <div class="tweet-wrap">
+
+                                <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}"
+                                   target="_blank">
+                                    <img src="{{ tweet.user.profile_image_url }}" width="48" height="48"/>
+                                    <h5>{{ tweet.user.name }}<br/></h5>
+                                    <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
+                                </a>
+                                <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
+                            </div>
+                        </div>
+
+                    {% endfor %}
 
             <div class="col-md-12">
                 <a class="twitter-timeline" data-height="500"
