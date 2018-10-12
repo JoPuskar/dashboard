@@ -750,7 +750,7 @@
                             
                             //var dataspaced = underscoreToSpace(data);
 							//console.log(data);
-							data1 = data.replace("_","");
+							data1 = data.replace("_"," ");
 							data1 = data1.charAt(0).toUpperCase()+data1.substr(1);
                             popUpContent += "<tr>" + "<td>" + data1 + "</td>" + "<td>" + "  " + layer.feature.properties[data] + "</td>" + "</tr>";
 							//console.log(popUpContent);
@@ -856,7 +856,7 @@
 						for (data in layer.feature.properties) {
                             
                             //var dataspaced = underscoreToSpace(data);
-							data1 = data.replace("_","");
+							data1 = data.replace("_"," ");
 							data1 = data1.charAt(0).toUpperCase()+data1.substr(1);
                             popUpContent += "<tr>" + "<td>" + data1 + "</td>" + "<td>" + "  " + layer.feature.properties[data] + "</td>" + "</tr>";
 							//console.log(popUpContent);
