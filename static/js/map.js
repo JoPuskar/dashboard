@@ -638,6 +638,98 @@
 
 
 
+	//plot markers
+	stfc = new L.geoJson.ajax("http://eoi.naxa.com.np/visualizations/api/stfc-locations/", {
+					pointToLayer: function (feature,latlng){
+						var url = "";
+						if(feature.properties.type.toLowerCase() == "district office"){
+							url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png';
+						}
+						else if(feature.properties.type.toLowerCase() == "area office"){
+							url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png';
+						}
+						else if(feature.properties.type.toLowerCase() == "nagarpalika office"){
+							url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png';
+						}
+						else if(feature.properties.type.toLowerCase() == "gaupalika office"){
+							url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png';
+						}
+						else if(feature.properties.type.toLowerCase() == "stfc" ){
+							url ='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png';
+
+						}
+						else if(feature.properties.type.toLowerCase() == "building permit studio"){
+							url = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png';
+						}
+						var icon = L.icon({
+						    iconUrl: url,
+						    //shadowUrl: 'leaf-shadow.png',
+
+						    // iconSize:     [38, 95], // size of the icon
+						    // shadowSize:   [50, 64], // size of the shadow
+						    // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+						    // shadowAnchor: [4, 62],  // the same for the shadow
+						    // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+						});
+						console.log(latlng);
+						var marker = L.marker([latlng.lng,latlng.lat], {icon:icon});
+						return marker;
+
+					},
+                    onEachFeature: function (feature, layer) {
+                        
+						var popUpContent = "";
+                        popUpContent += '<table style="width:100%;" id="District-popup" class="popuptable">';
+                        console.log(feature);
+						for (data in layer.feature.properties) {
+                            
+                            //var dataspaced = underscoreToSpace(data);
+							//console.log(data);
+                            popUpContent += "<tr>" + "<td>" + data + "</td>" + "<td>" + "  " + layer.feature.properties[data] + "</td>" + "</tr>";
+							//console.log(popUpContent);
+					   }
+                        popUpContent += '</table>';
+						//console.log(popUpContent);
+                        //layer.bindLabel(feature.properties['DISTRICT'], { 'noHide': true, id:"labelDiv" });
+
+                        
+
+                        layer.bindPopup(L.popup({
+                            closeOnClick: true,
+                            closeButton: true,
+                            keepInView: true,
+                            autoPan: true,
+                            maxHeight: 200,
+                            minWidth: 250
+                        }).setContent(popUpContent));
+
+                        // layer.on("mouseover", function (e) {
+                        //          e.target.setStyle({weight:2});
+                        //          $("#labelDiv").html("<table class='popuptable'><tr><td><h5><b>Layer:</b> District</h5></td></tr><tr><td><h5><b>Name:</b> "+feature.properties['DISTRICT']+"</h5></td><tr></table>");
+                        // }).on("mouseout", function(e){
+                        //          e.target.setStyle({weight:1});
+                        //          $("#labelDiv").html("");
+                        // });
+
+                    }
+                });
+                stfc.on('data:loaded', function (data) {
+                    stfc.setStyle({
+                            fillColor: randomColor(),
+                            weight: 1,
+                            opacity: 1,
+                            color: 'black',
+                            dashArray: '3',
+                            fillOpacity: 0.0
+                    });
+                   
+                    console.log("stfc Layer Added");
+                    // 
+                });
+                stfc.addTo(map);
+	//plot markers end
+
+
 
 	var legend = L.control({position: 'bottomright'});
 
