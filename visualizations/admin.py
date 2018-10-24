@@ -211,6 +211,15 @@ class TotalAmountAdmin(admin.ModelAdmin):
         return TotalAmount.objects.all().count() == 0
 
 
+class MediaAdmin(admin.ModelAdmin):
+    list_display = ['category', 'file', 'title', 'created', 'updated']
+    exclude = ('created_by',)
+
+    def save_model(self, request, obj, form, change):
+        obj.created_by = request.user
+        super().save_model(request, obj, form, change)
+
+
 admin.site.register(HousingCompletion, HousingCompletionAdmin)
 admin.site.register(ReconstructionGrant)
 admin.site.register(District)
@@ -219,7 +228,7 @@ admin.site.register(Data, DataAdmin)
 admin.site.register(RecentStories, RecentStoriesAdmin)
 admin.site.register(Training, TrainingAdmin)
 admin.site.register(Event, EventAdmin)
-admin.site.register(Media)
+admin.site.register(Media, MediaAdmin)
 admin.site.register(ProjectStakeholders, ProjectStakeholdersAdmin)
 admin.site.register(DispensedAmount, DispensedAmountAdmin)
 admin.site.register(AboutUs, AboutUsAdmin)
