@@ -215,6 +215,30 @@ class MediaAdmin(admin.ModelAdmin):
     list_display = ['category', 'file', 'title', 'created', 'updated']
     exclude = ('created_by',)
 
+    def get_queryset(self, request):
+        qs = super(MediaAdmin, self).get_queryset(request)
+
+        if not request.user.is_superuser:
+            if request.user.groups.values_list('name', flat=True)[0] == 'EOI Admin':
+                qs = qs.filter(Q(created_by__groups__name="EOI Group") | Q(created_by__groups__name="EOI Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'EOI Group':
+                qs = qs.filter(created_by=request.user)
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNDP Admin':
+                qs = qs.filter(Q(created_by__groups__name="UNDP Group") | Q(created_by__groups__name="UNDP Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNDP Group':
+                qs = qs.filter(created_by=request.user)
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNOPS Admin':
+                qs = qs.filter(Q(created_by__groups__name="UNOPS Group") | Q(created_by__groups__name="UNOPS Admin"))
+
+            if request.user.groups.values_list('name', flat=True)[0] == 'UNOPS Group':
+                qs = qs.filter(created_by=request.user)
+
+        return qs
+
     def save_model(self, request, obj, form, change):
         obj.created_by = request.user
         super().save_model(request, obj, form, change)

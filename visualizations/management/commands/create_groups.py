@@ -41,5 +41,10 @@ class Command(BaseCommand):
             perms = Permission.objects.filter(content_type=contact_perm)
             for p in perms:
                 group.permissions.add(p)
+            
+            media_perm = ContentType.objects.get(app_label='visualizations', model='media')
+            perms = Permission.objects.filter(content_type=media_perm)
+            for p in perms:
+                group.permissions.add(p)
 
 
