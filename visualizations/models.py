@@ -14,6 +14,12 @@ MEDIA_CHOICES = (
 
 )
 
+ROLE_CHOICES = (
+    ("DONOR", "Donor"),
+    ("PARTNER", "Partner"),
+
+)
+
 
 class HousingCompletion(models.Model):
     label = models.CharField(max_length=120)
@@ -234,7 +240,8 @@ class ProjectStakeholders(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=300, null=True, blank=True)
     logo = models.ImageField(upload_to='project_stakeholders/')
-    role = models.TextField(null=True, blank=True)
+    role = models.CharField(max_length=50, choices=ROLE_CHOICES, default = 'PARTNER')
+    # role = models.TextField(null=True, blank=True)
     description = RichTextField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
 

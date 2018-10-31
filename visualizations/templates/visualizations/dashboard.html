@@ -584,17 +584,27 @@
     <div class="container">
 
         <!-- project Stakeholders -->
-
-        <h4 class="text-center partner"><strosng>Project Partners</strong></h4><br>
+        <h4 class="text-center partner"><strong>Donor</strong></h4>
         <div class="row autoplay margin-top">
-            {% for project_stakeholder in project_stakeholders %}
+
+            {% for project_stakeholder in project_stakeholders_donor %}
                 <div class="col-md-3 text-center"><a href="{% url 'visualizations:partner_detail' project_stakeholder.pk %}"><img height="100" src="{{ project_stakeholder.logo.url }}"
                                                                    class="stake"></a></div>
-
             {% endfor %}
 
 
         </div>
+        <h4 class="text-center partner"><strong>Partners</strong></h4><br>
+
+        <div class="row autoplay margin-top">
+
+                {% for project_stakeholder in project_stakeholders_partners %}
+                    <div class="col-md-3 text-center"><a href="{% url 'visualizations:partner_detail' project_stakeholder.pk %}"><img height="100" src="{{ project_stakeholder.logo.url }}"
+                                                                       class="stake"></a></div>
+                {% endfor %}
+    
+    
+            </div>
     </div>
 </div>
 
