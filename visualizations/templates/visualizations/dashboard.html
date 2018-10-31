@@ -588,7 +588,7 @@
         <div class="row autoplay margin-top">
 
             {% for project_stakeholder in project_stakeholders_donor %}
-                <div class="col-md-3 text-center"><a href="{% url 'visualizations:partner_detail' project_stakeholder.pk %}"><img height="100" src="{{ project_stakeholder.logo.url }}"
+                <div class="col-md-6 text-center"><a href="{% url 'visualizations:partner_detail' project_stakeholder.pk %}"><img height="100" src="{{ project_stakeholder.logo.url }}"
                                                                    class="stake"></a></div>
             {% endfor %}
 
@@ -599,7 +599,7 @@
         <div class="row autoplay margin-top">
 
                 {% for project_stakeholder in project_stakeholders_partners %}
-                    <div class="col-md-3 text-center"><a href="{% url 'visualizations:partner_detail' project_stakeholder.pk %}"><img height="100" src="{{ project_stakeholder.logo.url }}"
+                    <div class="col-md-4 text-center"><a href="{% url 'visualizations:partner_detail' project_stakeholder.pk %}"><img height="100" src="{{ project_stakeholder.logo.url }}"
                                                                        class="stake"></a></div>
                 {% endfor %}
     
