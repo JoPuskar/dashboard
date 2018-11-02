@@ -546,22 +546,6 @@
 <div class="bg-white module-padding">
     <div class="container">
         <div class="row ">
-                    {% for tweet in tweets %}
-
-                            <div class="col-sm-4">
-                                <div class="tweet-wrap">
-
-                                <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}"
-                                   target="_blank">
-                                    <img src="{{ tweet.user.profile_image_url }}" width="48" height="48"/>
-                                    <h5>{{ tweet.user.name }}<br/></h5>
-                                    <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
-                                </a>
-                                <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
-                            </div>
-                        </div>
-
-                    {% endfor %}
 
             <div class="col-md-12">
                 <a class="twitter-timeline" data-height="500"
@@ -569,6 +553,22 @@
 
                     <h4><strong>Twitter Feed #IndiaInNepalReconstruction</strong></h4></a>
                 <div class="row">
+                        {% for tweet in tweets %}
+
+                        <div class="col-sm-4">
+                            <div class="tweet-wrap">
+
+                            <a href="https://www.twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}"
+                               target="_blank">
+                                <img src="{{ tweet.user.profile_image_url }}" width="48" height="48"/>
+                                <h5>{{ tweet.user.name }}<br/></h5>
+                                <span>@{{ tweet.user.screen_name }} &middot; {{ tweet.created_at|twitter_date }}</span>
+                            </a>
+                            <p>{{ tweet|expand_tweet_urls|urlize_tweet_text|safe }}</p>
+                        </div>
+                    </div>
+
+                {% endfor %}
 
                 </div>
 
@@ -584,22 +584,24 @@
     <div class="container">
 
         <!-- project Stakeholders -->
-        <h4 class="text-center partner"><strong>Donor</strong></h4>
-        <div class="row autoplay margin-top">
+        <div class="">
+            <h4 class="text-center partner" style="min-width:auto;  "><strong>Donor</strong></h4>
 
             {% for project_stakeholder in project_stakeholders_donor %}
-                <div class="col-md-9 text-center"><a href="{% url 'visualizations:partner_detail' project_stakeholder.pk %}"><img height="100" src="{{ project_stakeholder.logo.url }}"
+
+                <div class="col-md-9 text-center" style = "max-width:100%;" ><a href="{% url 'visualizations:partner_detail' project_stakeholder.pk %}"><img style="margin:auto;"height="100" src="{{ project_stakeholder.logo.url }}"
                                                                    class="stake"></a></div>
             {% endfor %}
 
 
-        </div><br>
+        </div><br><hr/>
         <h4 class="text-center partner"><strong>Partners</strong></h4>
 
-        <div class="row autoplay margin-top">
+        <!-- <div class="row autoplay margin-top"> -->
+            <div class="text-center">
 
                 {% for project_stakeholder in project_stakeholders_partners %}
-                    <div class="col-md-4 text-center"><a href="{% url 'visualizations:partner_detail' project_stakeholder.pk %}"><img height="100" src="{{ project_stakeholder.logo.url }}"
+                    <div class="col-md-4 text-center" style = "display: inline;"><a href="{% url 'visualizations:partner_detail' project_stakeholder.pk %}"><img height="100" src="{{ project_stakeholder.logo.url }}"
                                                                        class="stake"></a></div>
                 {% endfor %}
     

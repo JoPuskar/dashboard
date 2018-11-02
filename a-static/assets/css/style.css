@@ -47,3 +47,7 @@ font-size: 12px;
 margin: 0;
 margin-top: 5px;
 }
+.slick-track   h4 {width:220px!important;}
+.slick-slide img {
+    margin: auto!important;
+}
