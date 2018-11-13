@@ -70,7 +70,7 @@
                             {% if media.category == "AUDIO" %}
                                 <div class="col-md-4 ">
                                     <img class="img-fluid media"
-                                         src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
+                                         src="{% static 'images/audio.jpg'%}"
                                          alt="Card image cap">
                                     <audio controls class="media-audio">
                                         {% if media.file %}
@@ -157,7 +157,7 @@
                 {% for audio in audios %}
                     <div class="col-md-4 ">
                         <img class="img-fluid media"
-                             src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
+                             src="{% static 'images/audio.jpg'%}"
                              alt="Card image cap">
                         <audio controls class="media-audio">
                             {% if audio.file %}
