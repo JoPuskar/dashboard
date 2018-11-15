@@ -158,7 +158,7 @@ class RecentStories(models.Model):
     thumbnail = StdImageField(validators=[MinSizeValidator(100, 100)])
     # banner image field used instead banner
     banner = StdImageField(validators=[MinSizeValidator(1600, 600)])
-    banner_image = models.ImageField(upload_to='test/', null=True, blank=True)
+    banner_image = models.ImageField(upload_to='banner_image/', null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     use_banner = models.BooleanField(default=False)
