@@ -51,7 +51,7 @@ class ContactAdminInline(admin.StackedInline):
 
 
 class RecentStoriesAdmin(admin.ModelAdmin):
-    list_display = ['title', 'description', 'thumbnail', 'banner']
+    list_display = ['title', 'description', 'thumbnail', 'banner_image']
 
     exclude = ('created_by',)
 

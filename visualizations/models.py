@@ -156,8 +156,7 @@ class RecentStories(models.Model):
     description = models.CharField("subtitle", max_length=255)
     content = RichTextField()
     thumbnail = StdImageField(validators=[MinSizeValidator(100, 100)])
-    # banner image field used instead banner
-    banner = StdImageField(validators=[MinSizeValidator(1600, 600)])
+    # banner = StdImageField(validators=[MinSizeValidator(1600, 600)])
     banner_image = models.ImageField(upload_to='banner_image/', null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
