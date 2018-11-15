@@ -48,7 +48,12 @@
                 <a href="{% url 'visualizations:recent_stories' %}" title="" class="float-left">All Stories</a>
             </div>
             <div class="story-section padding-top">
+                
+                {% if story.banner_image %}
                 <img src="{{story.banner_image.url}}" alt="" class="img-responsive">
+   
+                {% endif %}
+                    
                 <div class="row margin-top">
                     <div class="col-md-12">
                         <div class="story-item">
