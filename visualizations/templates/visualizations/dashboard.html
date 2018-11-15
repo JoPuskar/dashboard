@@ -82,13 +82,15 @@
             <div>
                 <div class="slide-item">
                     {% if slide_item.use_banner %}
-                        <a href="{% url 'visualizations:recent_story_detail' slide_item.id %}"><img
-                                src="{{ slide_item.banner.url }}" alt=""></a>
+                          
+                          <a href="{% url 'visualizations:recent_story_detail' slide_item.id %}">
+                            {% if slide_item.banner_image %}
 
-                    {% else %}
-
-                        <a href="{% url 'visualizations:recent_story_detail' slide_item.id %}"><img
-                                src="{{ slide_item.banner.url }}" alt=""></a>
+                            <img src="{{ slide_item.banner_image.url }}" alt="">
+                          
+                          {% endif %}
+                        </a>
+                                                  
 
                     {% endif %}
                     <div class="slide-caption">

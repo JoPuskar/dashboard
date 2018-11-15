@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from PIL import Image
 from stdimage.models import StdImageField
 from ckeditor.fields import RichTextField
 from stdimage.validators import MinSizeValidator
@@ -156,13 +156,24 @@ class RecentStories(models.Model):
     description = models.CharField("subtitle", max_length=255)
     content = RichTextField()
     thumbnail = StdImageField(validators=[MinSizeValidator(100, 100)])
+    # banner image field used instead banner
     banner = StdImageField(validators=[MinSizeValidator(1600, 600)])
+    banner_image = models.ImageField(upload_to='test/', null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     use_banner = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
+    
+    def save(self, force_insert=False, force_update=False):
+        
+        super(RecentStories, self).save(force_insert, force_update)
+
+        if self.banner_image:
+            image = Image.open(self.banner_image.path)
+            image = image.resize((1284, 820), Image.ANTIALIAS)
+            image.save(self.banner_image.path)
 
     class Meta:
         verbose_name_plural = 'Stories From The Field'
