@@ -45,33 +45,33 @@ class Command(BaseCommand):
                         # print(obj.__dict__)
                         obj.save()
 
-            # if nuwakot_data.json():
-            #     # [Data.objects.filter(gaunpalika__name=data['Municipality']).update( \
-            #     #     houses_in_stage_i=data['house_in_stage_i'], houses_in_stage_ii=data['house_in_stage_ii'], \
-            #     #     houses_in_stage_iii=data['house_in_stage_iii'], received_tranche_i=data['received_trache_i'], \
-            #     #     received_tranche_ii=data['received_trache_ii'], received_tranche_iii=data['received_trache_iii'], \
-            #     #     total_houses=data['total_houses'], houses_completed=data['houses_completed'], women_percentage=0)
-            #     #     for data in nuwakot_data.json()]
-            #     data = nuwakot_data.json()
-            #     with transaction.atomic():
-            #         for d in data:
-            #             print(d)
+            if nuwakot_data.json():
+                # [Data.objects.filter(gaunpalika__name=data['Municipality']).update( \
+                #     houses_in_stage_i=data['house_in_stage_i'], houses_in_stage_ii=data['house_in_stage_ii'], \
+                #     houses_in_stage_iii=data['house_in_stage_iii'], received_tranche_i=data['received_trache_i'], \
+                #     received_tranche_ii=data['received_trache_ii'], received_tranche_iii=data['received_trache_iii'], \
+                #     total_houses=data['total_houses'], houses_completed=data['houses_completed'], women_percentage=0)
+                #     for data in nuwakot_data.json()]
+                data = nuwakot_data.json()
+                with transaction.atomic():
+                    for d in data:
+                        print(d)
 
-            #             gaunpalika = d['Municipality']
-            #             if gaunpalika == "None":
-            #                 continue
-            #             obj = Data.objects.get(gaunpalika__name=gaunpalika)
-            #             obj.received_tranche_i = d["received_trache_i"]
-            #             obj.received_tranche_ii = d["received_trache_ii"]
-            #             obj.received_tranche_iii = d["received_trache_iii"]
+                        gaunpalika = d['Municipality']
+                        if gaunpalika == "None":
+                            continue
+                        obj = Data.objects.get(gaunpalika__name=gaunpalika)
+                        obj.received_tranche_i = d["received_trache_i"]
+                        obj.received_tranche_ii = d["received_trache_ii"]
+                        obj.received_tranche_iii = d["received_trache_iii"]
                        
-            #             obj.houses_in_stage_i = d["house_in_stage_i"]
-            #             obj.houses_in_stage_ii = d["house_in_stage_ii"]
-            #             obj.houses_in_stage_iii = d["house_in_stage_iii"]
-            #             obj.houses_completed = d["houses_completed"]
-            #             obj.total_houses = d["total_houses"]
-            #             # print(obj.__dict__)
-            #             obj.save()
+                        obj.houses_in_stage_i = d["house_in_stage_i"]
+                        obj.houses_in_stage_ii = d["house_in_stage_ii"]
+                        obj.houses_in_stage_iii = d["house_in_stage_iii"]
+                        obj.houses_completed = d["houses_completed"]
+                        obj.total_houses = d["total_houses"]
+                        # print(obj.__dict__)
+                        obj.save()
         except Exception as e:
             print(str(e))
             raise CommandError('No data available.')
