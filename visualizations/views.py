@@ -35,7 +35,7 @@ class Dashboard(TemplateView):
 
 
         all_data = {}
-        data = Data.objects.all()
+        data = Data.objects.all().select_related()
 
         total_houses_completed = 0
         total_houses_stage_i = 0
@@ -227,9 +227,9 @@ class Dashboard(TemplateView):
         if denom:
             context['nuwakot_women_percentage'] = round((sum_women_percentage['sum_wp']/denom)*100)
 
-        context['data_values_gorkha'] = Data.objects.filter(gaunpalika__district__name='Gorkha')
+        context['data_values_gorkha'] = Data.objects.select_related('gaunpalika__district').filter(gaunpalika__district__name='Gorkha')
 
-        context['data_values_nuwakot'] = Data.objects.filter(gaunpalika__district__name='Nuwakot')
+        context['data_values_nuwakot'] = Data.objects.select_related('gaunpalika__district').filter(gaunpalika__district__name='Nuwakot')
 
         context['gorkha_data'] = Data.objects.filter(gaunpalika__district__name='Gorkha').values_list('gaunpalika__name')
 
