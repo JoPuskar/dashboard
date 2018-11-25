@@ -172,6 +172,8 @@ class RecentStories(models.Model):
         if self.banner_image:
             image = Image.open(self.banner_image.path)
             image = image.resize((1284, 820), Image.ANTIALIAS)
+            # image.thumbnail((1284, 500), Image.ANTIALIAS)
+
             image.save(self.banner_image.path)
 
     class Meta:
