@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from PIL import Image
+from PIL import Image, ImageOps
 from stdimage.models import StdImageField
 from ckeditor.fields import RichTextField
 from stdimage.validators import MinSizeValidator
@@ -171,8 +171,9 @@ class RecentStories(models.Model):
 
         if self.banner_image:
             image = Image.open(self.banner_image.path)
-            image = image.resize((1284, 820), Image.ANTIALIAS)
-            # image.thumbnail((1284, 500), Image.ANTIALIAS)
+            # image = image.resize((1350, 700), Image.ANTIALIAS)
+            # image.thumbnail((1350, 700), Image.ANTIALIAS)
+            image = ImageOps.fit(image, (1350, 700), Image.ANTIALIAS)
 
             image.save(self.banner_image.path)
 

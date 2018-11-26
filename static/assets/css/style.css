@@ -16,6 +16,31 @@ width: 100%;
 }
 
 .slider-list .slick-slide{
-height: 580px;
+height: 550px;
 overflow: hidden;
+}
+.slick-prev:before, .slick-next:before, .slider-list .slick-prev:before, .slider-list .slick-next:before{
+font-size: 26px;
+color: #00638e;
+}
+
+.slick-prev, .slick-next{
+background: white;
+border-radius: 50%;
+height: 27px;
+width: 28px;
+box-shadow: 0 0 15px rgba(0,0,0,.3);
+}
+
+.slick-dots li button:before{
+font-size: 12px;
+color: #00638e;
+}
+
+.slick-dots li.slick-active button:before{
+color: #00638e;
+}
+
+.slick-dots{
+bottom: -40px;
 }
