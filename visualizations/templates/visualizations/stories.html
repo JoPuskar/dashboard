@@ -3,9 +3,12 @@
 {% load twitter_tags %}
 {% load humanize %}
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
@@ -18,7 +21,8 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
     <script src="{% static 'assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
     <style>
 
@@ -34,13 +38,14 @@
             background: white;
             padding:5px;
         }
+
     </style>
 </head>
 {% include 'visualizations/navbar.html' %}
 <body class="bg-gray ">
-<!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+<!--&lt;!&ndash;[if lt IE 8]>-->
+<!--<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>-->
+<!--<![endif]&ndash;&gt;-->
 
 <div class="bg-gray module-padding">
     <div class="container">
@@ -59,7 +64,9 @@
                                 <span>{{ story.description|truncatechars:30 }}</span>
                             </div>
                             <p>
-                                {{ story.content|truncatewords:15 | safe}} <a href="{% url 'visualizations:recent_story_detail' story.id %}" title="">read more [+]</a>
+                                {{ story.content|truncatewords:15 | safe}} <a
+                                    href="{% url 'visualizations:recent_story_detail' story.id %}" title="">read more
+                                [+]</a>
                             </p>
                         </div>
                     </div>
@@ -71,7 +78,9 @@
 </div>
 
 
-<script>window.jQuery || document.write('<script src="{% static 'assets/js/vendor/jquery-1.11.2.min.js' %}"><\/script>')</script>
+<script>
+    window.jQuery || document.write('<script src="{% static 'assets/js/vendor/jquery-1.11.2.min.js' %}"><\/script>')
+</script>
 <script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
 <script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
 <script src="{% static 'assets/js/plugins.js' %}"></script>
