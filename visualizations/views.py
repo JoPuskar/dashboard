@@ -202,7 +202,7 @@ class Dashboard(TemplateView):
         context['reconstruction_values'] = [total_received_tranche_i, total_received_tranche_ii, \
                                             total_received_tranche_iii]
 
-        context['recent_story'] = RecentStories.objects.order_by('-updated')
+        context['recent_story'] = RecentStories.objects.order_by('-updated')[:2]
 
         context['district_json_path'] = "/static/json/gorkhaNuwakot.json"
         context['district_nepal'] = "/static/json/District.json"
