@@ -79,7 +79,12 @@
 
 
 <script>
+$( document ).ready(function() {
+    $("bg-gray strong").replaceWith(function() { return $(this).contents(); });
+});
     window.jQuery || document.write('<script src="{% static 'assets/js/vendor/jquery-1.11.2.min.js' %}"><\/script>')
+
+
 </script>
 <script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
 <script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
