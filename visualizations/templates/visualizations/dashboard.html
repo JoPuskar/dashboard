@@ -183,31 +183,31 @@
             <div id="Total-form" class="col-md-5 details">
                 <div class="map-popup">
                     <div class="pop-head">
-                        Total ({{ all_data.total_housess }} Houses)
+                        Total ({{ all_data.total_housess|intcomma  }} Houses)
                     </div>
                     <div class="pop-body">
                         <div class="pop-info-item">
                             Houses Completed
-                            <div class="count">{{ all_data.total_houses_completed }}
+                            <div class="count">{{ all_data.total_houses_completed|intcomma }}
                                 ({{ all_data.total_houses_completed_percentage|floatformat:"0" }}%)
                             </div>
                         </div>
                         <div class="row no-gutters">
                             <div class="col">
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.total_houses_stage_i }}
+                                    <div class="count">{{ all_data.total_houses_stage_i|intcomma }}
                                         ({{ all_data.ths1_percentage|floatformat:"0" }}%)
                                     </div>
                                     Foundation and Plinth
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.total_houses_stage_ii }}
+                                    <div class="count">{{ all_data.total_houses_stage_ii|intcomma }}
                                         ({{ all_data.ths2_percentage|floatformat:"0" }}%)
                                     </div>
                                     Walls and Lintel
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.total_houses_stage_iii }}
+                                    <div class="count">{{ all_data.total_houses_stage_iii|intcomma }}
                                         ({{ all_data.ths3_percentage|floatformat:"0" }}%)
                                     </div>
                                     Roof and completion
@@ -215,19 +215,19 @@
                             </div>
                             <div class="col">
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.total_received_tranche_i }}
+                                    <div class="count">{{ all_data.total_received_tranche_i|intcomma }}
                                         ({{ all_data.trt1_percentage|floatformat:"0" }}%)
                                     </div>
                                     Received Tranche - I
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.total_received_tranche_ii }}
+                                    <div class="count">{{ all_data.total_received_tranche_ii|intcomma }}
                                         ({{ all_data.trt2_percentage|floatformat:"0" }}%)
                                     </div>
                                     Received Tranche - II
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.total_received_tranche_iii }}
+                                    <div class="count">{{ all_data.total_received_tranche_iii|intcomma }}
                                         ({{ all_data.trt3_percentage|floatformat:"0" }}%)
                                     </div>
                                     Received Tranche - III
@@ -249,31 +249,31 @@
             <div id="Gorkha-form1" class="col-md-5 details">
                 <div class="map-popup">
                     <div class="pop-head">
-                        Gorkha District ({{ all_data.gorkha_total_houses }} Houses)
+                        Gorkha District ({{ all_data.gorkha_total_houses|intcomma }} Houses)
                     </div>
                     <div class="pop-body">
                         <div class="pop-info-item">
                             Houses Completed
-                            <div class="count">{{ all_data.gorkha_total_houses_completed }}
+                            <div class="count">{{ all_data.gorkha_total_houses_completed|intcomma }}
                                 ({{ all_data.gorkha_houses_completed_percentage|floatformat:"0" }}%)
                             </div>
                         </div>
                         <div class="row no-gutters">
                             <div class="col">
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.gorkha_total_houses_stage_i }}
+                                    <div class="count">{{ all_data.gorkha_total_houses_stage_i|intcomma }}
                                         ({{ all_data.gorkha_ths1_percentage|floatformat:"0" }}%)
                                     </div>
                                     Houses in Stage - I
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.gorkha_total_houses_stage_ii }}
+                                    <div class="count">{{ all_data.gorkha_total_houses_stage_ii|intcomma }}
                                         ({{ all_data.gorkha_ths2_percentage|floatformat:"0" }}%)
                                     </div>
                                     Houses in Stage - II
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.gorkha_total_houses_stage_iii }}
+                                    <div class="count">{{ all_data.gorkha_total_houses_stage_iii|intcomma }}
                                         ({{ all_data.gorkha_ths3_percentage|floatformat:"0" }}%)
                                     </div>
                                     Houses in Stage - III
@@ -281,19 +281,19 @@
                             </div>
                             <div class="col">
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.gorkha_total_received_tranche_i }}
+                                    <div class="count">{{ all_data.gorkha_total_received_tranche_i|intcomma }}
                                         ({{ all_data.gorkha_trt1_percentage|floatformat:"0" }}%)
                                     </div>
                                     Received Tranche - I
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.gorkha_total_received_tranche_ii }}
+                                    <div class="count">{{ all_data.gorkha_total_received_tranche_ii|intcomma }}
                                         ({{ all_data.gorkha_trt2_percentage|floatformat:"0" }}%)
                                     </div>
                                     Received Tranche - II
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.gorkha_total_received_tranche_iii }}
+                                    <div class="count">{{ all_data.gorkha_total_received_tranche_iii|intcomma }}
                                         ({{ all_data.gorkha_trt3_percentage|floatformat:"0" }}%)
                                     </div>
                                     Received Tranche - III
@@ -320,31 +320,31 @@
             <div id="Nuwakot-form1" class="col-md-5 details">
                 <div class="map-popup">
                     <div class="pop-head">
-                        Nuwakot District ({{ all_data.nuwakot_total_houses }} Houses)
+                        Nuwakot District ({{ all_data.nuwakot_total_houses|intcomma }} Houses)
                     </div>
                     <div class="pop-body">
                         <div class="pop-info-item">
                             Houses Completed
-                            <div class="count">{{ all_data.nuwakot_total_houses_completed }}
+                            <div class="count">{{ all_data.nuwakot_total_houses_completed|intcomma }}
                                 ({{ all_data.nuwakot_houses_completed_percentage|floatformat:"0" }}%)
                             </div>
                         </div>
                         <div class="row no-gutters">
                             <div class="col">
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.nuwakot_total_houses_stage_i }}
+                                    <div class="count">{{ all_data.nuwakot_total_houses_stage_i|intcomma }}
                                         ({{ all_data.nuwakot_ths1_percentage|floatformat:"0" }}%)
                                     </div>
                                     Houses in Stage - I
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.nuwakot_total_houses_stage_ii }}
+                                    <div class="count">{{ all_data.nuwakot_total_houses_stage_ii|intcomma }}
                                         ({{ all_data.nuwakot_ths2_percentage|floatformat:"0" }}%)
                                     </div>
                                     Houses in Stage - II
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.nuwakot_total_houses_stage_iii }}
+                                    <div class="count">{{ all_data.nuwakot_total_houses_stage_iii|intcomma }}
                                         ({{ all_data.nuwakot_ths3_percentage|floatformat:"0" }}%)
                                     </div>
                                     Houses in Stage - III
@@ -352,19 +352,19 @@
                             </div>
                             <div class="col">
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.nuwakot_total_received_tranche_i }}
+                                    <div class="count">{{ all_data.nuwakot_total_received_tranche_i|intcomma }}
                                         ({{ all_data.nuwakot_trt1_percentage|floatformat:"0" }}%)
                                     </div>
                                     Received Tranche - I
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.nuwakot_total_received_tranche_ii }}
+                                    <div class="count">{{ all_data.nuwakot_total_received_tranche_ii|intcomma }}
                                         ({{ all_data.nuwakot_trt2_percentage|floatformat:"0" }}%)
                                     </div>
                                     Received Tranche - II
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ all_data.nuwakot_total_received_tranche_iii }}
+                                    <div class="count">{{ all_data.nuwakot_total_received_tranche_iii|intcomma }}
                                         ({{ all_data.nuwakot_trt3_percentage|floatformat:"0" }}%)
                                     </div>
                                     Received Tranche - III
@@ -391,27 +391,27 @@
             <div id="GoPa_{{ forloop.counter0 }}-form" class="col-md-5 details">
                 <div class="map-popup">
                     <div class="pop-head">
-                        {{ data.gaunpalika }} ({{ data.total_houses }} Houses)
+                        {{ data.gaunpalika }} ({{ data.total_houses|intcomma }} Houses)
                     </div>
                     <div class="pop-body">
                         <div class="pop-info-item">
                             Houses Completed
-                            <div class="count">{{ data.houses_completed }} ({{ data.thcp|floatformat:"0" }}%)</div>
+                            <div class="count">{{ data.houses_completed|intcomma }} ({{ data.thcp|floatformat:"0" }}%)</div>
                         </div>
                         <div class="row no-gutters">
                             <div class="col">
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ data.houses_in_stage_i }} ({{ data.s1p|floatformat:"0" }}%)
+                                    <div class="count">{{ data.houses_in_stage_i|intcomma }} ({{ data.s1p|floatformat:"0" }}%)
                                     </div>
                                     Houses in Stage - I
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ data.houses_in_stage_ii }} ({{ data.s2p|floatformat:"0" }}%)
+                                    <div class="count">{{ data.houses_in_stage_ii|intcomma }} ({{ data.s2p|floatformat:"0" }}%)
                                     </div>
                                     Houses in Stage - II
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ data.houses_in_stage_iii }}
+                                    <div class="count">{{ data.houses_in_stage_iii|intcomma }}
                                         ({{ data.s3p|floatformat:"0" }}%)
                                     </div>
                                     Houses in Stage - III
@@ -419,18 +419,18 @@
                             </div>
                             <div class="col">
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ data.received_tranche_i }} ({{ data.t1p|floatformat:"0" }}%)
+                                    <div class="count">{{ data.received_tranche_i|intcomma }} ({{ data.t1p|floatformat:"0" }}%)
                                     </div>
                                     Received Tranche - I
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ data.received_tranche_ii }}
+                                    <div class="count">{{ data.received_tranche_ii|intcomma }}
                                         ({{ data.t2p|floatformat:"0" }}%)
                                     </div>
                                     Received Tranche - II
                                 </div>
                                 <div class="pop-info-item bg-light">
-                                    <div class="count">{{ data.received_tranche_iii }}
+                                    <div class="count">{{ data.received_tranche_iii|intcomma }}
                                         ({{ data.t3p|floatformat:"0" }}%)
                                     </div>
                                     Received Tranche - III
@@ -458,25 +458,25 @@
                 <div id="NuPa_{{ forloop.counter0 }}-form" class="col-md-5 details">
                     <div class="map-popup">
                         <div class="pop-head">
-                            {{ data.gaunpalika }} ({{ data.total_houses }} Houses)
+                            {{ data.gaunpalika }} ({{ data.total_houses|intcomma }} Houses)
                         </div>
                         <div class="pop-body">
                             <div class="pop-info-item">
                                 <b>Houses Completed</b>
-                                <div class="count">{{ data.houses_completed }} ({{ data.thcp|floatformat:"0" }}%)</div>
+                                <div class="count">{{ data.houses_completed|intcomma }} ({{ data.thcp|floatformat:"0" }}%)</div>
                             </div>
                             <div class="row no-gutters">
                                 <div class="col">
                                     <div class="pop-info-item bg-light">
-                                        <div class="count">{{ data.houses_in_stage_i }} ({{ data.s1p|floatformat:"0" }}%)</div>
+                                        <div class="count">{{ data.houses_in_stage_i|intcomma }} ({{ data.s1p|floatformat:"0" }}%)</div>
                                         Houses in Stage - I
                                     </div>
                                     <div class="pop-info-item bg-light">
-                                        <div class="count">{{ data.houses_in_stage_ii }} ({{ data.s2p|floatformat:"0" }}%)</div>
+                                        <div class="count">{{ data.houses_in_stage_ii|intcomma }} ({{ data.s2p|floatformat:"0" }}%)</div>
                                         Houses in Stage - II
                                     </div>
                                     <div class="pop-info-item bg-light">
-                                        <div class="count">{{ data.houses_in_stage_iii }}
+                                        <div class="count">{{ data.houses_in_stage_iii|intcomma }}
                                             ({{ data.s3p|floatformat:"0" }}%)
                                         </div>
                                         Houses in Stage - III
@@ -484,17 +484,17 @@
                                 </div>
                                 <div class="col">
                                     <div class="pop-info-item bg-light">
-                                        <div class="count">{{ data.received_tranche_i }} ({{ data.t1p|floatformat:"0" }}%)</div>
+                                        <div class="count">{{ data.received_tranche_i|intcomma }} ({{ data.t1p|floatformat:"0" }}%)</div>
                                         Received Tranche - I
                                     </div>
                                     <div class="pop-info-item bg-light">
-                                        <div class="count">{{ data.received_tranche_ii }}
+                                        <div class="count">{{ data.received_tranche_ii|intcomma }}
                                             ({{ data.t2p|floatformat:"0" }}%)
                                         </div>
                                         Received Tranche - II
                                     </div>
                                     <div class="pop-info-item bg-light">
-                                        <div class="count">{{ data.received_tranche_iii }}
+                                        <div class="count">{{ data.received_tranche_iii|intcomma }}
                                             ({{ data.t3p|floatformat:"0" }}%)
                                         </div>
                                         Received Tranche - III
@@ -742,6 +742,7 @@
     });
 
     var ctx = document.getElementById("reconstructionGrantsReceivedChart");
+    alert({{reconstruction_values.0}});
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -770,8 +771,16 @@
                     fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'",
                     padding: 20,
                 }
-            }
-        }
+            },
+            scales: {
+                yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+                }]
+      },
+        },
+        
     });
 
 

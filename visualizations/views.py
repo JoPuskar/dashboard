@@ -2,6 +2,7 @@ import twitter
 from django.db.models import Sum, Count
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, ListView
+from django.contrib.humanize.templatetags.humanize import intcomma
 
 from dashboard import settings
 from .models import HousingCompletion, ReconstructionGrant, Data, RecentStories, Event, Contact, Training, \

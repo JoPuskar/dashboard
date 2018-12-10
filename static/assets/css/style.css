@@ -15,7 +15,7 @@ Version: 1.0
 width: 100%;
 }
 
-.slider-list .slick-slide{
+.slider-list .slick-slide, .slider-list .slide-item{
 height: 550px;
 overflow: hidden;
 }
